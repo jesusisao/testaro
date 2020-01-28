@@ -1,0 +1,25 @@
+.Menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+  background-color: #282c34;
+  height: 100vh;
+  overflow: hidden;
+  width: 160px;
+  h1 {
+    margin: 10px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 10px;
+      background-color: #282c34;
+      &:hover {
+        background-color: #6a768d;
+      }
+    }
+  }
+}

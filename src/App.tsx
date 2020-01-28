@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'normalize.css';
+import './App.scss';
+import Menu from './menu/Menu'
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -19,6 +19,7 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
+      <Menu></Menu>
     </div>
   );
 }
