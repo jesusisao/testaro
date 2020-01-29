@@ -1,14 +1,16 @@
-.App-header {
+@import './config.scss';
+
+.App-container {
+  left: $config-menu-width;
+  position: absolute;
+  width: calc(100% - #{$config-menu-width});
   background-color: #3b414d;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+  color: $config-font-color;
+  padding: 20px;
+  box-sizing: border-box;
 }

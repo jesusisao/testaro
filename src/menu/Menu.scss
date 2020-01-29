@@ -1,12 +1,14 @@
+@import '../config.scss';
+
 .Menu {
   position: fixed;
   top: 0;
   left: 0;
-  color: white;
+  color: $config-font-color;
   background-color: #282c34;
   height: 100vh;
   overflow: hidden;
-  width: 160px;
+  width: $config-menu-width;
   h1 {
     margin: 10px;
   }
