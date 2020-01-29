@@ -3,7 +3,7 @@ import './StringGenerator.scss';
 
 const StringGenerator: React.FC = () => {
   const pattern = '○○○○○○○○○●';
-  const charNum = 65535;
+  const charNum = 1000;
   const [genStr, setGenStr] = useState('');
 
   const generate = () => {
@@ -11,11 +11,20 @@ const StringGenerator: React.FC = () => {
     setGenStr(result)
   }
 
+  const copyToClipboard = () => {
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(genStr);
+    }
+  }
+
   return (
     <div className="StringGenerator">
       <h1>テスト文字列生成</h1>
-      <button onClick={generate}>生成</button>
-      <textarea readOnly value={genStr}></textarea>
+      <div>
+        <button onClick={generate}>生成</button>
+        <button onClick={copyToClipboard}>クリップボードにコピー</button>
+      </div>
+      <textarea className="output-area" readOnly value={genStr}></textarea>
     </div>
   );
 }
