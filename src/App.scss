@@ -1,5 +1,9 @@
 @import './config.scss';
 
+.Menu {
+  z-index: 100;
+}
+
 .App-container {
   left: $config-menu-width;
   position: absolute;
@@ -13,4 +17,5 @@
   color: $config-font-color;
   padding: 20px;
   box-sizing: border-box;
+  z-index: 0;
 }

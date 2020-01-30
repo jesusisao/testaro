@@ -2,9 +2,10 @@
 
 .StringGenerator {
   height: 100%;
-  width: 100%;
+  min-width: 100%;
+  overflow: hidden;
   .output-area {
-    width: 700px;
+    width: 500px;
     height: 200px;
   }
 }
