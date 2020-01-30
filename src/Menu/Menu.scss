@@ -19,6 +19,10 @@
     li {
       padding: 10px;
       background-color: #282c34;
+      a {
+        text-decoration: none;
+        color: $config-font-color;
+      }
       &:hover {
         background-color: #6a768d;
       }
