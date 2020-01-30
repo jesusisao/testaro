@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './StringGenerator.scss';
 
 const StringGenerator: React.FC = () => {
-  const pattern = '○○○○○○○○○●';
-  const charNum = 1000;
+  const [pattern, setPattern] = useState('1234567890');
+  const [charNum, setCharNum] = useState(0);
   const [genStr, setGenStr] = useState('');
 
   const generate = () => {
@@ -12,7 +12,7 @@ const StringGenerator: React.FC = () => {
   }
 
   const copyToClipboard = () => {
-    if(navigator.clipboard){
+    if (navigator.clipboard) {
       navigator.clipboard.writeText(genStr);
     }
   }
@@ -21,10 +21,29 @@ const StringGenerator: React.FC = () => {
     <div className="StringGenerator">
       <h1>テスト文字列生成</h1>
       <div>
+        <select name="pattern" id="pattern" onChange={ e => setPattern(e.target.value) }>
+          <option value="0123456789">0123456789</option>
+          <option value="あアｱｶﾞﾊﾟＡａAa１1亜">あアｱｶﾞﾊﾟＡａAa１1亜</option>
+          <option value="ぜんかくひらがな">ぜんかくひらがな</option>
+          <option value="ゼンカクカタカナ">ゼンカクカタカナ</option>
+          <option value="ﾊﾝｶｸｶﾀｶﾅﾀﾞｸﾃﾝｲﾘ">ﾊﾝｶｸｶﾀｶﾅﾀﾞｸﾃﾝｲﾘ</option>
+          <option value="ABCDEFG">ABCDEFG</option>
+          <option value="abcdefg">abcdefg</option>
+          <option value="ＡＢＣＤＥＦＧ">ＡＢＣＤＥＦＧ</option>
+          <option value="ａｂｃｄｅｆｇ">ａｂｃｄｅｆｇ</option>
+          <option value="０１２３４５６７８９">０１２３４５６７８９</option>
+          <option value="亜唖娃阿哀愛挨姶逢葵">亜唖娃阿哀愛挨姶逢葵</option>
+          <option value="XXXXXXXXX*">XXXXXXXXX*</option>
+          <option value="○○○○○○○○○●">○○○○○○○○○●</option>
+          {/* <option value="🤔😂😊😭😇💪👊✋🙏👏">よく使う絵文字</option> */}
+        </select>
+        <input type="number" onChange={ e => setCharNum( parseInt(e.target.value) ) }></input>
         <button onClick={generate}>生成</button>
-        <button onClick={copyToClipboard}>クリップボードにコピー</button>
       </div>
       <textarea className="output-area" readOnly value={genStr}></textarea>
+      <div>
+        <button onClick={copyToClipboard}>クリップボードにコピー</button>
+      </div>
     </div>
   );
 }
