@@ -8,4 +8,8 @@
     // widthやheightで指定すると描画の比率がおかしくなるので注意
     background-color: rgb(255, 255, 255);
   }
+  .param {
+    display: block;
+    margin: 5px;
+  }
 }

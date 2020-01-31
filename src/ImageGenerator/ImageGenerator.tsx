@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ImageGenerator.scss';
+import ParamBox from '../Common/ParamBox';
 
 const ImageGenerator: React.FC = () => {
   const [comment, setComment] = useState('テスト画像');
@@ -8,6 +9,8 @@ const ImageGenerator: React.FC = () => {
   const [genNum, setGenNum] = useState(1);
   const [color, setColor] = useState("#009d2d");
   const [font, setFont] = useState("serif");
+  const [fontSize, setFontSize] = useState(64);
+  const [fontColor, setFontColor] = useState("#FFFFFF");
   const [useRandomColor, setUseRandomColor] = useState(false);
 
   const generate = () => {
@@ -16,14 +19,13 @@ const ImageGenerator: React.FC = () => {
     ctx.fillStyle = useRandomColor ? generateRandomColor() : color;
     ctx.fillRect(0, 0, width, height);
 
-    const fontSize = 64;
     // フォントによってtextWidthが変わるので注意
     ctx.font = `${fontSize}px ${font}`;
     const textWidth = ctx.measureText( comment ).width;
     const textHeight = fontSize;
     const fontX = (width - textWidth) / 2;
     const fontY = (height + textHeight) / 2;
-    ctx.fillStyle = `rgb(255, 255, 255)`;
+    ctx.fillStyle = fontColor;
     ctx.fillText(comment, fontX, fontY);
     ctx.save();
   }
@@ -59,21 +61,35 @@ const ImageGenerator: React.FC = () => {
     <div className="ImageGenerator">
       <h1>テスト画像生成</h1>
       <div>
-        <input type="number" defaultValue={width} onChange={ e => setWidth(parseInt(e.target.value)) }></input>
-        <input type="number" defaultValue={height} onChange={ e => setHeight(parseInt(e.target.value)) }></input>
-        <select defaultValue={font} onChange={ e => setFont(e.target.value) }>
-          <option value="serif">serif</option>
-          <option value="sans-serif">sans-serif</option>
-          <option value="monospace">monospace</option>
-        </select>
-        <input type="text" defaultValue={comment} onChange={ e => setComment(e.target.value) }></input>
-        <input type="checkbox" defaultChecked={useRandomColor} onChange={ e => setUseRandomColor(e.target.checked) }></input>
-        <input type="color" defaultValue={color} disabled={Boolean(useRandomColor)} onChange={ e => setColor(e.target.value) }></input>
+        <ParamBox labelName="幅">
+          <input type="number" defaultValue={width} onChange={ e => setWidth(parseInt(e.target.value)) }></input>
+        </ParamBox>
+        <ParamBox labelName="高さ">
+          <input type="number" defaultValue={height} onChange={ e => setHeight(parseInt(e.target.value)) }></input>
+        </ParamBox>
+        <ParamBox labelName="フォント">
+          <select defaultValue={font} onChange={ e => setFont(e.target.value) }>
+            <option value="serif">serif</option>
+            <option value="sans-serif">sans-serif</option>
+            <option value="monospace">monospace</option>
+          </select>
+        </ParamBox>
+        <ParamBox labelName="画像内の文字">
+          <input type="text" defaultValue={comment} onChange={ e => setComment(e.target.value) }></input>
+        </ParamBox>
+        <ParamBox labelName="背景色をランダムにする">
+          <input type="checkbox" defaultChecked={useRandomColor} onChange={ e => setUseRandomColor(e.target.checked) }></input>
+        </ParamBox>
+        <ParamBox labelName="背景色">
+          <input type="color" defaultValue={color} disabled={Boolean(useRandomColor)} onChange={ e => setColor(e.target.value) }></input>
+        </ParamBox>
         <button onClick={generate}>生成</button>
       </div>
       <canvas className="canvas" ref={canvasRef}  width={width} height={height} />
       <div>
-        <input type="number" defaultValue={1} onChange={ e => setGenNum( parseInt(e.target.value) ) }></input>
+        <ParamBox labelName="出力枚数">
+          <input type="number" defaultValue={1} onChange={ e => setGenNum( parseInt(e.target.value) ) }></input>
+        </ParamBox>
         <button onClick={downloadsImage}>画像をダウンロード</button>
       </div>
     </div>
