@@ -5,7 +5,7 @@ import ParamBox from "../Common/ParamBox";
 
 const title = "ダミー画像生成";
 
-const sleep = (msec: number): Promise<null> =>
+const sleep = (msec: number): Promise<void> =>
   new Promise(resolve => setTimeout(resolve, msec));
 
 const generateRandomColor = (): string => {
