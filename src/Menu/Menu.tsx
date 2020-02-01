@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Menu: React.FC = () => {
   return (
     <div className="Menu">
-      <h1>Testaro.</h1>
+      <h1>Testaro</h1>
       <ul>
         <li><Link to='/'>テスト文字列</Link></li>
         {/* <li>テストデータ</li> */}
