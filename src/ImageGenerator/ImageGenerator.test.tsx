@@ -1,0 +1,9 @@
+import React from 'react';
+import { render } from '@testing-library/react';
+import { replaceVariable } from './ImageGenerator';
+
+test('replaceVariable', () => {
+  const original = "テスト画像#{count}番"
+  const result = replaceVariable(original, 1)
+  expect(result).toBe("テスト画像1番");
+});

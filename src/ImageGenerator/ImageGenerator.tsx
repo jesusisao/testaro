@@ -8,27 +8,13 @@ const ImageGenerator: React.FC = () => {
   const [genNum, setGenNum] = useState(1);
   const [comment, setComment] = useState('テスト画像#{count}');
   const [font, setFont] = useState("serif");
-  const [fontSize, setFontSize] = useState(64);
+  const [fontSize, setFontSize] = useState(48);
   const [fontColor, setFontColor] = useState("#FFFFFF");
-  const [useRandomColor, setUseRandomColor] = useState(false);
+  const [useRandomColor, setUseRandomColor] = useState(true);
   const [color, setColor] = useState("#009d2d");
-
-  const generate = () => {
-    const ctx: CanvasRenderingContext2D = getContext();
-
-    ctx.fillStyle = useRandomColor ? generateRandomColor() : color;
-    ctx.fillRect(0, 0, width, height);
-
-    // フォントによってtextWidthが変わるので注意
-    ctx.font = `${fontSize}px ${font}`;
-    const textWidth = ctx.measureText( comment ).width;
-    const textHeight = fontSize;
-    const fontX = (width - textWidth) / 2;
-    const fontY = (height + textHeight) / 2;
-    ctx.fillStyle = fontColor;
-    ctx.fillText(comment, fontX, fontY);
-    ctx.save();
-  }
+  const [fileNamePrefix, setFileNamePrefix] = useState("test_img");
+  const [imageFormat, setImageFormat] = useState("jpg");
+  const [downloading, setDownloading] = useState(false);
 
   const canvasRef = useRef(null);
 
@@ -37,19 +23,49 @@ const ImageGenerator: React.FC = () => {
     return canvas.getContext('2d');
   };
 
-  const downloadsImage = async () => {
-    for (let i = 0; i < genNum; i++) {
-      generate()
-      downloadImage();
-      await sleep(300);
-    }
+  const generate = (count: number = 1) => {
+    const ctx: CanvasRenderingContext2D = getContext();
+
+    ctx.fillStyle = useRandomColor ? generateRandomColor() : color;
+    ctx.fillRect(0, 0, width, height);
+
+    const replacedComment = replaceVariable(comment, count);
+
+    // フォントによってtextWidthが変わるので注意
+    ctx.font = `${fontSize}px ${font}`;
+    const textWidth = ctx.measureText( replacedComment ).width;
+    const textHeight = fontSize;
+    const fontX = (width - textWidth) / 2;
+    const fontY = (height + textHeight) / 2;
+    ctx.fillStyle = fontColor;
+    ctx.fillText(replacedComment, fontX, fontY);
+    ctx.save();
   }
 
-  const downloadImage = () => {
+  const downloadsImage = async () => {
+    if (genNum >= 50) {
+      const doExec = window.confirm(`${genNum}枚の画像をダウンロードしようとしています。本当に宜しいですか？`);
+      if (!doExec) return;
+    }
+    setDownloading(true);
+    const useNumSplitter = genNum > 1
+    for (let i = 0; i < genNum; i++) {
+      generate(i + 1)
+      downloadImage(i + 1, useNumSplitter);
+      // あんまり速く大量にDLさせられない
+      await sleep(300);
+    }
+    setDownloading(false);
+  }
+
+  const downloadImage = (imageNumber: number, useNumSplitter: boolean) => {
     const canvas: any = canvasRef.current;
     const link = document.createElement('a');
-    link.download = 'test_image.jpeg';
-    link.href = canvas.toDataURL("image/jpeg");
+    const fileName = useNumSplitter
+      ? `${fileNamePrefix}_${imageNumber}.${imageFormat}`
+      : `${fileNamePrefix}.${imageFormat}`;
+    link.download = fileName;
+    link.href = canvas.toDataURL(`image/${imageFormat}`);
     link.click();
   }
 
@@ -93,17 +109,31 @@ const ImageGenerator: React.FC = () => {
         <ParamBox labelName="背景色をランダムにする">
           <input type="checkbox" defaultChecked={useRandomColor} onChange={ e => setUseRandomColor(e.target.checked) }></input>
         </ParamBox>
-        <ParamBox labelName="背景色">
-          <input type="color" defaultValue={color} disabled={useRandomColor} onChange={ e => setColor(e.target.value) }></input>
-        </ParamBox>
-        <button onClick={generate}>生成</button>
+        {
+          !useRandomColor &&
+          <ParamBox labelName="背景色">
+            <input type="color" defaultValue={color} disabled={useRandomColor} onChange={ e => setColor(e.target.value) }></input>
+          </ParamBox>
+        }
+        <button onClick={() => generate()}>再生成</button>
       </div>
 
       <canvas className="canvas" ref={canvasRef}  width={width} height={height} />
 
       <div>
         <ParamBox labelName="出力枚数">
-          <input type="number" defaultValue={1} onChange={ e => setGenNum( parseInt(e.target.value) ) }></input>
+          <input type="number" defaultValue={genNum} onChange={ e => setGenNum( parseInt(e.target.value) ) }></input>
+        </ParamBox>
+        <ParamBox labelName="ファイル名">
+          <input type="text" defaultValue={fileNamePrefix} onChange={ e => setFileNamePrefix(e.target.value) }></input>
+        </ParamBox>
+        <ParamBox labelName="画像の形式">
+          <select defaultValue={imageFormat} onChange={ e => setImageFormat(e.target.value) }>
+            <option value="jpg">jpg</option>
+            <option value="jpeg">jpeg</option>
+            <option value="png">png</option>
+            <option value="gif">gif</option>
+          </select>
         </ParamBox>
         <button onClick={downloadsImage}>画像をダウンロード</button>
       </div>
@@ -114,10 +144,25 @@ const ImageGenerator: React.FC = () => {
 const sleep = (msec: number) => new Promise(resolve => setTimeout(resolve, msec));
 
 const generateRandomColor = (): string => {
+  // 255だとデフォルトのフォントのwhiteが見えにくくなることがあるので下げた
   const ran1 = Math.floor(Math.random() * 200);
   const ran2 = Math.floor(Math.random() * 200);
   const ran3 = Math.floor(Math.random() * 200);
   return `rgb(${ran1}, ${ran2}, ${ran3})`;
+}
+
+export const replaceVariable = (original: string, num: number) => {
+  const re = /#{.+?}/;
+  const matches = original.match(re);
+  if (matches === null) return original;
+  const matchesNames = matches.map((str) => str.slice(2).slice(0, -1));
+  let copied = original.slice();
+  for (const match of matchesNames) {
+    if (match === "count") {
+      copied = copied.replace("#{count}", num.toString())
+    }
+  }
+  return copied
 }
 
 export default ImageGenerator;
