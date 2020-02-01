@@ -33,17 +33,17 @@ export const replaceVariable = (original: string, num: number): string => {
 const ImageGenerator: React.FC = () => {
   const [width, setWidth] = useState(400);
   const [height, setHeight] = useState(300);
-  const [genNum, setGenNum] = useState(1);
   const [comment, setComment] = useState("Dummy #{count}");
   const [font, setFont] = useState("serif");
   const [fontSize, setFontSize] = useState(48);
   const [fontColor, setFontColor] = useState("#FFFFFF");
+  const [doDrawSize, setDoDrawSize] = useState(true);
   const [useRandomColor, setUseRandomColor] = useState(true);
   const [color, setColor] = useState("#009d2d");
-  const [fileNamePrefix, setFileNamePrefix] = useState("dummy_img");
+  const [fileName, setFileName] = useState("dummy_#{count}");
   const [imageFormat, setImageFormat] = useState("jpg");
+  const [genNum, setGenNum] = useState(1);
   const [downloading, setDownloading] = useState(false);
-  const [doDrawSize, setDoDrawSize] = useState(true);
 
   const canvasRef = useRef(null);
 
@@ -78,17 +78,16 @@ const ImageGenerator: React.FC = () => {
     ctx.save();
   };
 
-  const downloadImage = (
-    imageNumber: number,
-    useNumSplitter: boolean
-  ): void => {
+  const createFileFullName = (imageNumber: number): string => {
+    const replacedFileName = replaceVariable(fileName, imageNumber);
+    return `${replacedFileName}.${imageFormat}`;
+  };
+
+  const downloadImage = (imageNumber: number): void => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const canvas: any = canvasRef.current;
     const link = document.createElement("a");
-    const fileName = useNumSplitter
-      ? `${fileNamePrefix}_${imageNumber}.${imageFormat}`
-      : `${fileNamePrefix}.${imageFormat}`;
-    link.download = fileName;
+    link.download = createFileFullName(imageNumber);
     link.href = canvas.toDataURL(`image/${imageFormat}`);
     link.click();
   };
@@ -101,10 +100,9 @@ const ImageGenerator: React.FC = () => {
       if (!doExec) return;
     }
     setDownloading(true);
-    const useNumSplitter = genNum > 1;
     for (let i = 0; i < genNum; i++) {
       draw(i + 1);
-      downloadImage(i + 1, useNumSplitter);
+      downloadImage(i + 1);
       // あんまり速く大量にDLさせられない
       await sleep(300);
     }
@@ -220,20 +218,12 @@ const ImageGenerator: React.FC = () => {
 
         <div>
           <h2>ファイルパラメータ</h2>
-          <ParamBox labelName="出力枚数">
-            <input
-              type="number"
-              defaultValue={genNum}
-              disabled={downloading}
-              onChange={(e): void => setGenNum(parseInt(e.target.value))}
-            ></input>
-          </ParamBox>
           <ParamBox labelName="ファイル名">
             <input
               type="text"
-              defaultValue={fileNamePrefix}
+              defaultValue={fileName}
               disabled={downloading}
-              onChange={(e): void => setFileNamePrefix(e.target.value)}
+              onChange={(e): void => setFileName(e.target.value)}
             ></input>
           </ParamBox>
           <ParamBox labelName="画像の形式">
@@ -248,6 +238,14 @@ const ImageGenerator: React.FC = () => {
               <option value="gif">gif</option>
             </select>
           </ParamBox>
+          <ParamBox labelName="出力枚数">
+            <input
+              type="number"
+              defaultValue={genNum}
+              disabled={downloading}
+              onChange={(e): void => setGenNum(parseInt(e.target.value))}
+            ></input>
+          </ParamBox>
           <ParamBox>
             <button
               className="testaro-button"
@@ -260,12 +258,10 @@ const ImageGenerator: React.FC = () => {
         </div>
       </div>
 
-      <canvas
-        className="canvas"
-        ref={canvasRef}
-        width={width}
-        height={height}
-      />
+      <label className="canvasLabel" htmlFor="canvas">
+        ファイル名（プレビュー）: {createFileFullName(1)}
+      </label>
+      <canvas id="canvas" ref={canvasRef} width={width} height={height} />
     </div>
   );
 };

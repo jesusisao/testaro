@@ -7,6 +7,10 @@
   .paras-container {
     display: flex;
   }
+  .canvasLabel {
+    margin: 3px;
+    display: block;
+  }
   .canvas {
     // canvasはstyleのwidthやheightで指定すると
     // 中身の比率がおかしくなるので注意
