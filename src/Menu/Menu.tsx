@@ -7,9 +7,9 @@ const Menu: React.FC = () => {
     <div className="Menu">
       <h1>Testaro</h1>
       <ul>
-        <li><Link to='/'>テスト文字列</Link></li>
+        <li><Link to='/' className="link">テスト文字列</Link></li>
         {/* <li>テストデータ</li> */}
-        <li><Link to='/imggen'>ダミー画像</Link></li>
+        <li><Link to='/imggen' className="link">ダミー画像</Link></li>
         {/* <li>Hash</li> */}
         {/* <li>バーコード</li> */}
       </ul>
