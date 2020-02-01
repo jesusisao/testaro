@@ -1,27 +1,27 @@
-import { generateManyChars } from './StringGenerator';
+import { generateManyChars } from "./StringGenerator";
 
-describe('generateManyChars', () => {
-  test('num0', () => {
-    const pattern = "○○○○○○○○○●"
-    const result = generateManyChars(pattern, 0)
+describe("generateManyChars", () => {
+  test("num0", () => {
+    const pattern = "○○○○○○○○○●";
+    const result = generateManyChars(pattern, 0);
     expect(result).toBe("");
   });
 
-  test('num21', () => {
-    const pattern = "○○○○○○○○○●"
-    const result = generateManyChars(pattern, 21)
+  test("num21", () => {
+    const pattern = "○○○○○○○○○●";
+    const result = generateManyChars(pattern, 21);
     expect(result).toBe("○○○○○○○○○●○○○○○○○○○●○");
   });
 
-  test('number is smaller than pattern', () => {
-    const pattern = "○○○○○○○○○●"
-    const result = generateManyChars(pattern, 9)
+  test("number is smaller than pattern", () => {
+    const pattern = "○○○○○○○○○●";
+    const result = generateManyChars(pattern, 9);
     expect(result).toBe("○○○○○○○○○");
   });
 
-  test('no pattern', () => {
-    const pattern = ""
-    const result = generateManyChars(pattern, 10)
+  test("no pattern", () => {
+    const pattern = "";
+    const result = generateManyChars(pattern, 10);
     expect(result).toBe("");
   });
-})
+});

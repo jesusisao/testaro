@@ -1,15 +1,40 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './ImageGenerator.scss';
-import '../Common/common.scss';
-import ParamBox from '../Common/ParamBox';
+import React, { useState, useEffect, useRef } from "react";
+import "./ImageGenerator.scss";
+import "../Common/common.scss";
+import ParamBox from "../Common/ParamBox";
 
 const title = "ダミー画像生成";
+
+const sleep = (msec: number): Promise<null> =>
+  new Promise(resolve => setTimeout(resolve, msec));
+
+const generateRandomColor = (): string => {
+  // 255だとデフォルトのフォントのwhiteが見えにくくなることがあるので下げた
+  const ran1 = Math.floor(Math.random() * 200);
+  const ran2 = Math.floor(Math.random() * 200);
+  const ran3 = Math.floor(Math.random() * 200);
+  return `rgb(${ran1}, ${ran2}, ${ran3})`;
+};
+
+export const replaceVariable = (original: string, num: number): string => {
+  const re = /#{.+?}/;
+  const matches = original.match(re);
+  if (matches === null) return original;
+  const matchesNames = matches.map(str => str.slice(2).slice(0, -1));
+  let copied = original.slice();
+  for (const match of matchesNames) {
+    if (match === "count") {
+      copied = copied.replace("#{count}", num.toString());
+    }
+  }
+  return copied;
+};
 
 const ImageGenerator: React.FC = () => {
   const [width, setWidth] = useState(400);
   const [height, setHeight] = useState(300);
   const [genNum, setGenNum] = useState(1);
-  const [comment, setComment] = useState('Dummy #{count}');
+  const [comment, setComment] = useState("Dummy #{count}");
   const [font, setFont] = useState("serif");
   const [fontSize, setFontSize] = useState(48);
   const [fontColor, setFontColor] = useState("#FFFFFF");
@@ -23,11 +48,12 @@ const ImageGenerator: React.FC = () => {
   const canvasRef = useRef(null);
 
   const getContext = (): CanvasRenderingContext2D => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const canvas: any = canvasRef.current;
-    return canvas.getContext('2d');
+    return canvas.getContext("2d");
   };
 
-  const draw = (count: number = 1) => {
+  const draw = (count = 1): void => {
     const ctx: CanvasRenderingContext2D = getContext();
 
     ctx.fillStyle = useRandomColor ? generateRandomColor() : color;
@@ -37,7 +63,7 @@ const ImageGenerator: React.FC = () => {
 
     // フォントによってtextWidthが変わるので注意
     ctx.font = `${fontSize}px ${font}`;
-    const textWidth = ctx.measureText( replacedComment ).width;
+    const textWidth = ctx.measureText(replacedComment).width;
     const textHeight = fontSize;
     const fontX = (width - textWidth) / 2;
     const fontY = (height + textHeight) / 2;
@@ -50,38 +76,44 @@ const ImageGenerator: React.FC = () => {
       ctx.fillText(`height: ${height}px`, 10, height - 15);
     }
     ctx.save();
-  }
+  };
 
-  const downloadsImage = async () => {
-    if (genNum >= 50) {
-      const doExec = window.confirm(`${genNum}枚の画像をダウンロードしようとしています。本当に宜しいですか？`);
-      if (!doExec) return;
-    }
-    setDownloading(true);
-    const useNumSplitter = genNum > 1
-    for (let i = 0; i < genNum; i++) {
-      draw(i + 1)
-      downloadImage(i + 1, useNumSplitter);
-      // あんまり速く大量にDLさせられない
-      await sleep(300);
-    }
-    setDownloading(false);
-  }
-
-  const downloadImage = (imageNumber: number, useNumSplitter: boolean) => {
+  const downloadImage = (
+    imageNumber: number,
+    useNumSplitter: boolean
+  ): void => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const canvas: any = canvasRef.current;
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     const fileName = useNumSplitter
       ? `${fileNamePrefix}_${imageNumber}.${imageFormat}`
       : `${fileNamePrefix}.${imageFormat}`;
     link.download = fileName;
     link.href = canvas.toDataURL(`image/${imageFormat}`);
     link.click();
-  }
+  };
+
+  const downloadsImage = async (): Promise<void> => {
+    if (genNum >= 50) {
+      const doExec = window.confirm(
+        `${genNum}枚の画像をダウンロードしようとしています。本当に宜しいですか？`
+      );
+      if (!doExec) return;
+    }
+    setDownloading(true);
+    const useNumSplitter = genNum > 1;
+    for (let i = 0; i < genNum; i++) {
+      draw(i + 1);
+      downloadImage(i + 1, useNumSplitter);
+      // あんまり速く大量にDLさせられない
+      await sleep(300);
+    }
+    setDownloading(false);
+  };
 
   useEffect(() => {
-    draw()
-  })
+    draw();
+  });
 
   return (
     <div className="ImageGenerator">
@@ -94,30 +126,30 @@ const ImageGenerator: React.FC = () => {
               type="number"
               defaultValue={width}
               disabled={downloading}
-              onChange={ e => setWidth(parseInt(e.target.value)) }>
-            </input>
+              onChange={(e): void => setWidth(parseInt(e.target.value))}
+            ></input>
           </ParamBox>
           <ParamBox labelName="高さ">
             <input
               type="number"
               defaultValue={height}
               disabled={downloading}
-              onChange={ e => setHeight(parseInt(e.target.value)) }>
-            </input>
+              onChange={(e): void => setHeight(parseInt(e.target.value))}
+            ></input>
           </ParamBox>
           <ParamBox labelName="画像内の文字">
-            <input 
+            <input
               type="text"
               defaultValue={comment}
               disabled={downloading}
-              onChange={ e => setComment(e.target.value) }>
-            </input>
+              onChange={(e): void => setComment(e.target.value)}
+            ></input>
           </ParamBox>
           <ParamBox labelName="フォント">
             <select
               defaultValue={font}
               disabled={downloading}
-              onChange={ e => setFont(e.target.value) }
+              onChange={(e): void => setFont(e.target.value)}
             >
               <option value="serif">serif</option>
               <option value="sans-serif">sans-serif</option>
@@ -129,16 +161,16 @@ const ImageGenerator: React.FC = () => {
               type="color"
               defaultValue={fontColor}
               disabled={downloading}
-              onChange={ e => setFontColor(e.target.value) }>
-            </input>
+              onChange={(e): void => setFontColor(e.target.value)}
+            ></input>
           </ParamBox>
           <ParamBox labelName="文字サイズ">
             <input
               type="number"
               value={fontSize}
               disabled={downloading}
-              onChange={ e => setFontSize(parseInt(e.target.value)) }>
-            </input>
+              onChange={(e): void => setFontSize(parseInt(e.target.value))}
+            ></input>
             <br />
             <input
               type="range"
@@ -146,40 +178,40 @@ const ImageGenerator: React.FC = () => {
               min="1"
               max="300"
               disabled={downloading}
-              onChange={ e => setFontSize(parseInt(e.target.value)) }></input>
+              onChange={(e): void => setFontSize(parseInt(e.target.value))}
+            ></input>
           </ParamBox>
           <ParamBox labelName="高さと幅を画像に書き込む">
             <input
               type="checkbox"
               defaultChecked={doDrawSize}
               disabled={downloading}
-              onChange={ e => setDoDrawSize(e.target.checked) }>
-            </input>
+              onChange={(e): void => setDoDrawSize(e.target.checked)}
+            ></input>
           </ParamBox>
           <ParamBox labelName="背景色をランダムにする">
             <input
               type="checkbox"
               defaultChecked={useRandomColor}
               disabled={downloading}
-              onChange={ e => setUseRandomColor(e.target.checked) }>
-            </input>
+              onChange={(e): void => setUseRandomColor(e.target.checked)}
+            ></input>
           </ParamBox>
-          {
-            !useRandomColor &&
+          {!useRandomColor && (
             <ParamBox labelName="背景色">
               <input
                 type="color"
                 defaultValue={color}
                 disabled={useRandomColor || downloading}
-                onChange={ e => setColor(e.target.value) }>
-              </input>
+                onChange={(e): void => setColor(e.target.value)}
+              ></input>
             </ParamBox>
-          }
+          )}
           <ParamBox>
             <button
               className="testaro-button"
               disabled={downloading}
-              onClick={() => draw()}
+              onClick={(): void => draw()}
             >
               再生成
             </button>
@@ -193,22 +225,22 @@ const ImageGenerator: React.FC = () => {
               type="number"
               defaultValue={genNum}
               disabled={downloading}
-              onChange={ e => setGenNum( parseInt(e.target.value) ) }>
-            </input>
+              onChange={(e): void => setGenNum(parseInt(e.target.value))}
+            ></input>
           </ParamBox>
           <ParamBox labelName="ファイル名">
             <input
               type="text"
               defaultValue={fileNamePrefix}
               disabled={downloading}
-              onChange={ e => setFileNamePrefix(e.target.value) }>
-            </input>
+              onChange={(e): void => setFileNamePrefix(e.target.value)}
+            ></input>
           </ParamBox>
           <ParamBox labelName="画像の形式">
             <select
               defaultValue={imageFormat}
               disabled={downloading}
-              onChange={ e => setImageFormat(e.target.value) }
+              onChange={(e): void => setImageFormat(e.target.value)}
             >
               <option value="jpg">jpg</option>
               <option value="jpeg">jpeg</option>
@@ -228,33 +260,14 @@ const ImageGenerator: React.FC = () => {
         </div>
       </div>
 
-      <canvas className="canvas" ref={canvasRef}  width={width} height={height} />
+      <canvas
+        className="canvas"
+        ref={canvasRef}
+        width={width}
+        height={height}
+      />
     </div>
   );
-}
-
-const sleep = (msec: number) => new Promise(resolve => setTimeout(resolve, msec));
-
-const generateRandomColor = (): string => {
-  // 255だとデフォルトのフォントのwhiteが見えにくくなることがあるので下げた
-  const ran1 = Math.floor(Math.random() * 200);
-  const ran2 = Math.floor(Math.random() * 200);
-  const ran3 = Math.floor(Math.random() * 200);
-  return `rgb(${ran1}, ${ran2}, ${ran3})`;
-}
-
-export const replaceVariable = (original: string, num: number) => {
-  const re = /#{.+?}/;
-  const matches = original.match(re);
-  if (matches === null) return original;
-  const matchesNames = matches.map((str) => str.slice(2).slice(0, -1));
-  let copied = original.slice();
-  for (const match of matchesNames) {
-    if (match === "count") {
-      copied = copied.replace("#{count}", num.toString())
-    }
-  }
-  return copied
-}
+};
 
 export default ImageGenerator;

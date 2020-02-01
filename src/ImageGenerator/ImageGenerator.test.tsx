@@ -1,7 +1,7 @@
-import { replaceVariable } from './ImageGenerator';
+import { replaceVariable } from "./ImageGenerator";
 
-test('replaceVariable', () => {
-  const original = "テスト画像#{count}番"
-  const result = replaceVariable(original, 1)
+test("replaceVariable", () => {
+  const original = "テスト画像#{count}番";
+  const result = replaceVariable(original, 1);
   expect(result).toBe("テスト画像1番");
 });
