@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import 'normalize.css';
 import './App.scss';
 import Menu from './Menu/Menu';
@@ -8,7 +8,7 @@ import ImageGenerator from './ImageGenerator/ImageGenerator';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <Menu></Menu>
         <div className="App-container">
@@ -16,7 +16,7 @@ const App: React.FC = () => {
           <Route path='/imggen' component={ImageGenerator} />
         </div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
