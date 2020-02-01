@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./StringGenerator.scss";
+import "../Common/common.scss";
 import ParamBox from "../Common/ParamBox";
 
 // パターンと文字数を入れると、パターンを繰り返して文字数分だけ文字を生成してくれる関数
@@ -65,11 +66,17 @@ const StringGenerator: React.FC = () => {
             onChange={(e): void => setCharNum(parseInt(e.target.value))}
           ></input>
         </ParamBox>
-        <button onClick={generate}>生成</button>
+        <ParamBox>
+          <button className="testaro-button" onClick={generate}>
+            生成
+          </button>
+        </ParamBox>
       </div>
       <textarea className="output-area" readOnly value={genStr}></textarea>
       <div>
-        <button onClick={copyToClipboard}>クリップボードにコピー</button>
+        <button className="testaro-button" onClick={copyToClipboard}>
+          クリップボードにコピー
+        </button>
       </div>
     </div>
   );
