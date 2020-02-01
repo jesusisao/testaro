@@ -9,7 +9,7 @@ const Menu: React.FC = () => {
       <ul>
         <li><Link to='/'>テスト文字列</Link></li>
         {/* <li>テストデータ</li> */}
-        <li><Link to='/imggen'>テスト画像</Link></li>
+        <li><Link to='/imggen'>ダミー画像</Link></li>
         {/* <li>Hash</li> */}
         {/* <li>バーコード</li> */}
       </ul>

@@ -6,15 +6,16 @@ const ImageGenerator: React.FC = () => {
   const [width, setWidth] = useState(400);
   const [height, setHeight] = useState(300);
   const [genNum, setGenNum] = useState(1);
-  const [comment, setComment] = useState('テスト画像#{count}');
+  const [comment, setComment] = useState('Dummy #{count}');
   const [font, setFont] = useState("serif");
   const [fontSize, setFontSize] = useState(48);
   const [fontColor, setFontColor] = useState("#FFFFFF");
   const [useRandomColor, setUseRandomColor] = useState(true);
   const [color, setColor] = useState("#009d2d");
-  const [fileNamePrefix, setFileNamePrefix] = useState("test_img");
+  const [fileNamePrefix, setFileNamePrefix] = useState("dummy_img");
   const [imageFormat, setImageFormat] = useState("jpg");
   const [downloading, setDownloading] = useState(false);
+  const [doDrawSize, setDoDrawSize] = useState(true);
 
   const canvasRef = useRef(null);
 
@@ -39,6 +40,12 @@ const ImageGenerator: React.FC = () => {
     const fontY = (height + textHeight) / 2;
     ctx.fillStyle = fontColor;
     ctx.fillText(replacedComment, fontX, fontY);
+
+    if (doDrawSize) {
+      ctx.font = `${15}px ${font}`;
+      ctx.fillText(`width: ${width}px`, 10, height - 35);
+      ctx.fillText(`height: ${height}px`, 10, height - 15);
+    }
     ctx.save();
   }
 
@@ -75,7 +82,7 @@ const ImageGenerator: React.FC = () => {
 
   return (
     <div className="ImageGenerator">
-      <h1>テスト画像生成</h1>
+      <h1>ダミー画像生成</h1>
       <div>
         <ParamBox labelName="幅">
           <input
@@ -125,6 +132,13 @@ const ImageGenerator: React.FC = () => {
             min="1"
             max="300"
             onChange={ e => setFontSize(parseInt(e.target.value)) }></input>
+        </ParamBox>
+        <ParamBox labelName="高さと幅を画像に書き込む">
+          <input
+            type="checkbox"
+            defaultChecked={doDrawSize}
+            onChange={ e => setDoDrawSize(e.target.checked) }>
+          </input>
         </ParamBox>
         <ParamBox labelName="背景色をランダムにする">
           <input
