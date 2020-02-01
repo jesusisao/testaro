@@ -23,7 +23,7 @@ const ImageGenerator: React.FC = () => {
     return canvas.getContext('2d');
   };
 
-  const generate = (count: number = 1) => {
+  const draw = (count: number = 1) => {
     const ctx: CanvasRenderingContext2D = getContext();
 
     ctx.fillStyle = useRandomColor ? generateRandomColor() : color;
@@ -50,7 +50,7 @@ const ImageGenerator: React.FC = () => {
     setDownloading(true);
     const useNumSplitter = genNum > 1
     for (let i = 0; i < genNum; i++) {
-      generate(i + 1)
+      draw(i + 1)
       downloadImage(i + 1, useNumSplitter);
       // あんまり速く大量にDLさせられない
       await sleep(300);
@@ -70,7 +70,7 @@ const ImageGenerator: React.FC = () => {
   }
 
   useEffect(() => {
-    generate()
+    draw()
   })
 
   return (
@@ -78,13 +78,25 @@ const ImageGenerator: React.FC = () => {
       <h1>テスト画像生成</h1>
       <div>
         <ParamBox labelName="幅">
-          <input type="number" defaultValue={width} onChange={ e => setWidth(parseInt(e.target.value)) }></input>
+          <input
+            type="number"
+            defaultValue={width}
+            onChange={ e => setWidth(parseInt(e.target.value)) }>
+          </input>
         </ParamBox>
         <ParamBox labelName="高さ">
-          <input type="number" defaultValue={height} onChange={ e => setHeight(parseInt(e.target.value)) }></input>
+          <input
+            type="number"
+            defaultValue={height}
+            onChange={ e => setHeight(parseInt(e.target.value)) }>
+          </input>
         </ParamBox>
         <ParamBox labelName="画像内の文字">
-          <input type="text" defaultValue={comment} onChange={ e => setComment(e.target.value) }></input>
+          <input 
+            type="text"
+            defaultValue={comment}
+            onChange={ e => setComment(e.target.value) }>
+          </input>
         </ParamBox>
         <ParamBox labelName="フォント">
           <select defaultValue={font} onChange={ e => setFont(e.target.value) }>
@@ -94,10 +106,18 @@ const ImageGenerator: React.FC = () => {
           </select>
         </ParamBox>
         <ParamBox labelName="文字色">
-          <input type="color" defaultValue={fontColor} onChange={ e => setFontColor(e.target.value) }></input>
+          <input
+            type="color"
+            defaultValue={fontColor}
+            onChange={ e => setFontColor(e.target.value) }>
+          </input>
         </ParamBox>
         <ParamBox labelName="文字サイズ">
-          <input type="number" value={fontSize} onChange={ e => setFontSize(parseInt(e.target.value)) }></input>
+          <input
+            type="number"
+            value={fontSize}
+            onChange={ e => setFontSize(parseInt(e.target.value)) }>
+          </input>
           <br />
           <input
             type="range"
@@ -107,25 +127,42 @@ const ImageGenerator: React.FC = () => {
             onChange={ e => setFontSize(parseInt(e.target.value)) }></input>
         </ParamBox>
         <ParamBox labelName="背景色をランダムにする">
-          <input type="checkbox" defaultChecked={useRandomColor} onChange={ e => setUseRandomColor(e.target.checked) }></input>
+          <input
+            type="checkbox"
+            defaultChecked={useRandomColor}
+            onChange={ e => setUseRandomColor(e.target.checked) }>
+          </input>
         </ParamBox>
         {
           !useRandomColor &&
           <ParamBox labelName="背景色">
-            <input type="color" defaultValue={color} disabled={useRandomColor} onChange={ e => setColor(e.target.value) }></input>
+            <input
+              type="color"
+              defaultValue={color}
+              disabled={useRandomColor}
+              onChange={ e => setColor(e.target.value) }>
+            </input>
           </ParamBox>
         }
-        <button onClick={() => generate()}>再生成</button>
+        <button onClick={() => draw()}>再生成</button>
       </div>
 
       <canvas className="canvas" ref={canvasRef}  width={width} height={height} />
 
       <div>
         <ParamBox labelName="出力枚数">
-          <input type="number" defaultValue={genNum} onChange={ e => setGenNum( parseInt(e.target.value) ) }></input>
+          <input
+            type="number"
+            defaultValue={genNum}
+            onChange={ e => setGenNum( parseInt(e.target.value) ) }>
+          </input>
         </ParamBox>
         <ParamBox labelName="ファイル名">
-          <input type="text" defaultValue={fileNamePrefix} onChange={ e => setFileNamePrefix(e.target.value) }></input>
+          <input
+            type="text"
+            defaultValue={fileNamePrefix}
+            onChange={ e => setFileNamePrefix(e.target.value) }>
+          </input>
         </ParamBox>
         <ParamBox labelName="画像の形式">
           <select defaultValue={imageFormat} onChange={ e => setImageFormat(e.target.value) }>
