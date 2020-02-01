@@ -54,7 +54,7 @@ const StringGenerator: React.FC = () => {
 }
 
 // パターンと文字数を入れると、パターンを繰り返して文字数分だけ文字を生成してくれる関数
-const generateManyChars = (pattern: string, charNum: number): string => {
+export const generateManyChars = (pattern: string, charNum: number): string => {
   const patternLength = pattern.length;
   if (charNum === 0) return '';
   if (patternLength === 0) return '';
