@@ -4,13 +4,13 @@
   height: 100%;
   min-width: 100%;
   overflow: hidden;
-  .canvas {
-    // widthやheightで指定すると描画の比率がおかしくなるので注意
-    background-color: rgb(255, 255, 255);
-    margin: 5px;
+  .paras-container {
+    display: flex;
   }
-  .param {
-    display: block;
+  .canvas {
+    // canvasはstyleのwidthやheightで指定すると
+    // 中身の比率がおかしくなるので注意
+    background-color: rgb(255, 255, 255);
     margin: 5px;
   }
 }

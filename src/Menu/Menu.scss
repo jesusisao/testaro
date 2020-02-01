@@ -19,6 +19,7 @@
     li {
       padding: 10px;
       background-color: #282c34;
+      transition: .2s;
       a {
         text-decoration: none;
         color: $config-font-color;

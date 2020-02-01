@@ -1,0 +1,13 @@
+@import '../config.scss';
+
+.testaro-button {
+  min-height: 40px;
+  color: $config-font-color;
+  background-color: $config-button-color;
+  border: none;
+  border-radius: 5px;
+  transition: .2s;
+  &:hover {
+    background-color: $config-button-hover-color;
+  }
+}

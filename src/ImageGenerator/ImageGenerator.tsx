@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ImageGenerator.scss';
+import '../Common/common.scss';
 import ParamBox from '../Common/ParamBox';
+
+const title = "ダミー画像生成";
 
 const ImageGenerator: React.FC = () => {
   const [width, setWidth] = useState(400);
@@ -82,112 +85,150 @@ const ImageGenerator: React.FC = () => {
 
   return (
     <div className="ImageGenerator">
-      <h1>ダミー画像生成</h1>
-      <div>
-        <ParamBox labelName="幅">
-          <input
-            type="number"
-            defaultValue={width}
-            onChange={ e => setWidth(parseInt(e.target.value)) }>
-          </input>
-        </ParamBox>
-        <ParamBox labelName="高さ">
-          <input
-            type="number"
-            defaultValue={height}
-            onChange={ e => setHeight(parseInt(e.target.value)) }>
-          </input>
-        </ParamBox>
-        <ParamBox labelName="画像内の文字">
-          <input 
-            type="text"
-            defaultValue={comment}
-            onChange={ e => setComment(e.target.value) }>
-          </input>
-        </ParamBox>
-        <ParamBox labelName="フォント">
-          <select defaultValue={font} onChange={ e => setFont(e.target.value) }>
-            <option value="serif">serif</option>
-            <option value="sans-serif">sans-serif</option>
-            <option value="monospace">monospace</option>
-          </select>
-        </ParamBox>
-        <ParamBox labelName="文字色">
-          <input
-            type="color"
-            defaultValue={fontColor}
-            onChange={ e => setFontColor(e.target.value) }>
-          </input>
-        </ParamBox>
-        <ParamBox labelName="文字サイズ">
-          <input
-            type="number"
-            value={fontSize}
-            onChange={ e => setFontSize(parseInt(e.target.value)) }>
-          </input>
-          <br />
-          <input
-            type="range"
-            value={fontSize}
-            min="1"
-            max="300"
-            onChange={ e => setFontSize(parseInt(e.target.value)) }></input>
-        </ParamBox>
-        <ParamBox labelName="高さと幅を画像に書き込む">
-          <input
-            type="checkbox"
-            defaultChecked={doDrawSize}
-            onChange={ e => setDoDrawSize(e.target.checked) }>
-          </input>
-        </ParamBox>
-        <ParamBox labelName="背景色をランダムにする">
-          <input
-            type="checkbox"
-            defaultChecked={useRandomColor}
-            onChange={ e => setUseRandomColor(e.target.checked) }>
-          </input>
-        </ParamBox>
-        {
-          !useRandomColor &&
-          <ParamBox labelName="背景色">
+      <h1>{title}</h1>
+      <div className="paras-container">
+        <div>
+          <h2>画像パラメータ</h2>
+          <ParamBox labelName="幅">
             <input
-              type="color"
-              defaultValue={color}
-              disabled={useRandomColor}
-              onChange={ e => setColor(e.target.value) }>
+              type="number"
+              defaultValue={width}
+              disabled={downloading}
+              onChange={ e => setWidth(parseInt(e.target.value)) }>
             </input>
           </ParamBox>
-        }
-        <button onClick={() => draw()}>再生成</button>
+          <ParamBox labelName="高さ">
+            <input
+              type="number"
+              defaultValue={height}
+              disabled={downloading}
+              onChange={ e => setHeight(parseInt(e.target.value)) }>
+            </input>
+          </ParamBox>
+          <ParamBox labelName="画像内の文字">
+            <input 
+              type="text"
+              defaultValue={comment}
+              disabled={downloading}
+              onChange={ e => setComment(e.target.value) }>
+            </input>
+          </ParamBox>
+          <ParamBox labelName="フォント">
+            <select
+              defaultValue={font}
+              disabled={downloading}
+              onChange={ e => setFont(e.target.value) }
+            >
+              <option value="serif">serif</option>
+              <option value="sans-serif">sans-serif</option>
+              <option value="monospace">monospace</option>
+            </select>
+          </ParamBox>
+          <ParamBox labelName="文字色">
+            <input
+              type="color"
+              defaultValue={fontColor}
+              disabled={downloading}
+              onChange={ e => setFontColor(e.target.value) }>
+            </input>
+          </ParamBox>
+          <ParamBox labelName="文字サイズ">
+            <input
+              type="number"
+              value={fontSize}
+              disabled={downloading}
+              onChange={ e => setFontSize(parseInt(e.target.value)) }>
+            </input>
+            <br />
+            <input
+              type="range"
+              value={fontSize}
+              min="1"
+              max="300"
+              disabled={downloading}
+              onChange={ e => setFontSize(parseInt(e.target.value)) }></input>
+          </ParamBox>
+          <ParamBox labelName="高さと幅を画像に書き込む">
+            <input
+              type="checkbox"
+              defaultChecked={doDrawSize}
+              disabled={downloading}
+              onChange={ e => setDoDrawSize(e.target.checked) }>
+            </input>
+          </ParamBox>
+          <ParamBox labelName="背景色をランダムにする">
+            <input
+              type="checkbox"
+              defaultChecked={useRandomColor}
+              disabled={downloading}
+              onChange={ e => setUseRandomColor(e.target.checked) }>
+            </input>
+          </ParamBox>
+          {
+            !useRandomColor &&
+            <ParamBox labelName="背景色">
+              <input
+                type="color"
+                defaultValue={color}
+                disabled={useRandomColor || downloading}
+                onChange={ e => setColor(e.target.value) }>
+              </input>
+            </ParamBox>
+          }
+          <ParamBox>
+            <button
+              className="testaro-button"
+              disabled={downloading}
+              onClick={() => draw()}
+            >
+              再生成
+            </button>
+          </ParamBox>
+        </div>
+
+        <div>
+          <h2>ファイルパラメータ</h2>
+          <ParamBox labelName="出力枚数">
+            <input
+              type="number"
+              defaultValue={genNum}
+              disabled={downloading}
+              onChange={ e => setGenNum( parseInt(e.target.value) ) }>
+            </input>
+          </ParamBox>
+          <ParamBox labelName="ファイル名">
+            <input
+              type="text"
+              defaultValue={fileNamePrefix}
+              disabled={downloading}
+              onChange={ e => setFileNamePrefix(e.target.value) }>
+            </input>
+          </ParamBox>
+          <ParamBox labelName="画像の形式">
+            <select
+              defaultValue={imageFormat}
+              disabled={downloading}
+              onChange={ e => setImageFormat(e.target.value) }
+            >
+              <option value="jpg">jpg</option>
+              <option value="jpeg">jpeg</option>
+              <option value="png">png</option>
+              <option value="gif">gif</option>
+            </select>
+          </ParamBox>
+          <ParamBox>
+            <button
+              className="testaro-button"
+              disabled={downloading}
+              onClick={downloadsImage}
+            >
+              画像をダウンロード
+            </button>
+          </ParamBox>
+        </div>
       </div>
 
       <canvas className="canvas" ref={canvasRef}  width={width} height={height} />
-
-      <div>
-        <ParamBox labelName="出力枚数">
-          <input
-            type="number"
-            defaultValue={genNum}
-            onChange={ e => setGenNum( parseInt(e.target.value) ) }>
-          </input>
-        </ParamBox>
-        <ParamBox labelName="ファイル名">
-          <input
-            type="text"
-            defaultValue={fileNamePrefix}
-            onChange={ e => setFileNamePrefix(e.target.value) }>
-          </input>
-        </ParamBox>
-        <ParamBox labelName="画像の形式">
-          <select defaultValue={imageFormat} onChange={ e => setImageFormat(e.target.value) }>
-            <option value="jpg">jpg</option>
-            <option value="jpeg">jpeg</option>
-            <option value="png">png</option>
-            <option value="gif">gif</option>
-          </select>
-        </ParamBox>
-        <button onClick={downloadsImage}>画像をダウンロード</button>
-      </div>
     </div>
   );
 }
