@@ -8,6 +8,7 @@ import ImageGenerator from './ImageGenerator/ImageGenerator';
 
 const App: React.FC = () => {
   return (
+    // BrowserRouterだとサーバーにリクエストが送られて画面更新時に404になる
     <HashRouter>
       <div className="App">
         <Menu></Menu>
