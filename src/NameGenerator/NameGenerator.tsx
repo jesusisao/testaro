@@ -7,8 +7,10 @@ import ParamBox from "../Common/ParamBox";
 import moment from "moment";
 import { copyToClipboard } from "../Common/util";
 
-const generateDoms = (genNum: number) => {
-  const userInstances = createRandomUserInstances(genNum);
+const generateUserList = (genNum: number, useNumro: boolean): JSX.Element => {
+  const userInstances = useNumro
+    ? createNumroInstances(genNum)
+    : createRandomUserInstances(genNum);
   const items = [];
   for (const [i, instance] of userInstances.entries()) {
     items.push(
@@ -74,6 +76,7 @@ const NameGenerator: React.FC = () => {
   const [pattern, setPattern] = useState("人名");
   const [genNum, setGenNum] = useState(10);
   const [genStr, setGenStr] = useState("");
+  const [useNumro, setUseNumro] = useState(false);
 
   const generate = (): void => {
     setGenNum(0);
@@ -105,13 +108,20 @@ const NameGenerator: React.FC = () => {
             <option value="人">人</option>
           </select>
         </ParamBox>
+        <ParamBox labelName="一条太郎方式">
+          <input
+            type="checkbox"
+            defaultChecked={useNumro}
+            onChange={(e): void => setUseNumro(e.target.checked)}
+          ></input>
+        </ParamBox>
         <ParamBox>
           <button className="testaro-button" onClick={generate}>
             再生成
           </button>
         </ParamBox>
       </div>
-      {generateDoms(genNum)}
+      {generateUserList(genNum, useNumro)}
     </div>
   );
 };
