@@ -1,0 +1,14 @@
+@import '../config.scss';
+
+.About {
+  height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+  .text-area {
+    max-width: 600px;
+    text-indent: 1em;
+  }
+  .author {
+    text-align: right;
+  }
+}

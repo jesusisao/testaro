@@ -3,6 +3,7 @@ import { HashRouter, Route } from "react-router-dom";
 import "normalize.css";
 import "./App.scss";
 import Menu from "./Menu/Menu";
+import About from "./About/About";
 import StringGenerator from "./StringGenerator/StringGenerator";
 import NameGenerator from "./NameGenerator/NameGenerator";
 import ImageGenerator from "./ImageGenerator/ImageGenerator";
@@ -14,7 +15,9 @@ const App: React.FC = () => {
       <div className="App">
         <Menu></Menu>
         <div className="App-container">
-          <Route exact path="/" component={StringGenerator} />
+          <Route exact path="/" component={About} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/strgen" component={StringGenerator} />
           <Route path="/namegen" component={NameGenerator} />
           <Route path="/imggen" component={ImageGenerator} />
         </div>

@@ -6,6 +6,9 @@
 
 .App {
   display: flex;
+  a {
+    color: $config-link-color;
+  }
 }
 
 // スマホ対応

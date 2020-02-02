@@ -8,7 +8,12 @@ const Menu: React.FC = () => {
       <h1>Testaro</h1>
       <ul>
         <li>
-          <Link to="/" className="link">
+          <Link to="/about" className="link">
+            About
+          </Link>
+        </li>
+        <li>
+          <Link to="/strgen" className="link">
             テスト文字列
           </Link>
         </li>
