@@ -75,7 +75,6 @@ const generateUserList = (genNum: number, useNumro: boolean): JSX.Element => {
 const NameGenerator: React.FC = () => {
   const [pattern, setPattern] = useState("人名");
   const [genNum, setGenNum] = useState(10);
-  const [genStr, setGenStr] = useState("");
   const [useNumro, setUseNumro] = useState(false);
 
   const generate = (): void => {

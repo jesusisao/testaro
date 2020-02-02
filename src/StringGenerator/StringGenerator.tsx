@@ -20,7 +20,7 @@ export const generateManyChars = (pattern: string, charNum: number): string => {
 
 const StringGenerator: React.FC = () => {
   const [pattern, setPattern] = useState("あアｱｶﾞﾊﾟＡａAa１1亜");
-  const [charNum, setCharNum] = useState(255);
+  const [charNum, setCharNum] = useState();
   const [genStr, setGenStr] = useState("");
 
   const generate = (): void => {
@@ -57,9 +57,22 @@ const StringGenerator: React.FC = () => {
         <ParamBox labelName="文字数">
           <input
             type="number"
+            list="charNum"
             defaultValue={charNum}
             onChange={(e): void => setCharNum(parseInt(e.target.value))}
           ></input>
+          <datalist id="charNum">
+            <option value={255} />
+            <option value={256} />
+            {/* IEのGETとPOSTで使えるURLの最大長 */}
+            <option value={2048} />
+            <option value={2049} />
+            {/* IEで使えるURLの最大長 */}
+            <option value={2083} />
+            <option value={2084} />
+            <option value={65535} />
+            <option value={65536} />
+          </datalist>
         </ParamBox>
         <ParamBox>
           <button className="testaro-button" onClick={generate}>
