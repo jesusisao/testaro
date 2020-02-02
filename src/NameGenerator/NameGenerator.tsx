@@ -65,7 +65,7 @@ const NameGenerator: React.FC = () => {
         </ParamBox>
         <ParamBox>
           <button className="testaro-button" onClick={generate}>
-            生成
+            再生成
           </button>
         </ParamBox>
       </div>
