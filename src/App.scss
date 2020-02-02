@@ -4,14 +4,22 @@
   z-index: 100;
 }
 
+.App {
+  display: flex;
+}
+
+// スマホ対応
+@media only screen and (max-width: 480px) {
+  .App {
+    flex-direction: column;
+  }
+}
+
 .App-container {
-  left: $config-menu-width;
-  position: absolute;
-  width: calc(100% - #{$config-menu-width});
+  width: 100%;
   background-color: $config-background-color;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   font-size: 14px;
   color: $config-font-color;
