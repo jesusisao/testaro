@@ -44,7 +44,9 @@ const NameGenerator: React.FC = () => {
 
   const generate = (): void => {
     setGenNum(0);
-    setGenNum(genNum);
+    setTimeout(() => {
+      setGenNum(genNum);
+    }, 0);
   };
 
   return (
