@@ -60,6 +60,7 @@ const ImageGenerator: React.FC = () => {
     const replacedComment = replaceVariable(comment, count);
 
     // フォントによってtextWidthが変わるので注意
+    // TODO: 使えるフォントもっと増やす
     ctx.font = `${fontSize}px ${font}`;
     const textWidth = ctx.measureText(replacedComment).width;
     const textHeight = fontSize;
