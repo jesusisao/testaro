@@ -63,7 +63,7 @@ export const createNumroInstances = (num: number): Array<User> => {
     const givenNameIndex = (i % NumroLength) + 1;
     const familyNameIndex = Math.floor(i / NumroLength) + 1;
     const familyName = Numjos[familyNameIndex];
-    const birthday = new Date(1990 + familyNameIndex, 0, 0);
+    const birthday = new Date(1950 + familyNameIndex, 0, 0);
     birthday.setDate(birthday.getDate() + givenNameIndex);
     result.push({
       familyName: familyName.familyName,
