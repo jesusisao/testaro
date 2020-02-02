@@ -12,7 +12,11 @@ const Menu: React.FC = () => {
             テスト文字列
           </Link>
         </li>
-        {/* <li>テストデータ</li> */}
+        <li>
+          <Link to="/namegen" className="link">
+            ダミー固有名詞
+          </Link>
+        </li>
         <li>
           <Link to="/imggen" className="link">
             ダミー画像

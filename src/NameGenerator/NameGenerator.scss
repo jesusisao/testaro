@@ -1,0 +1,10 @@
+@import '../config.scss';
+
+.NameGenerator {
+  height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+  .instance-records {
+    list-style: none;
+  }
+}
