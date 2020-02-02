@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./StringGenerator.scss";
 import "../Common/common.scss";
+import { copyToClipboard } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
 
 // パターンと文字数を入れると、パターンを繰り返して文字数分だけ文字を生成してくれる関数
@@ -25,12 +26,6 @@ const StringGenerator: React.FC = () => {
   const generate = (): void => {
     const result = generateManyChars(pattern, charNum);
     setGenStr(result);
-  };
-
-  const copyToClipboard = (): void => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(genStr);
-    }
   };
 
   return (
@@ -74,7 +69,10 @@ const StringGenerator: React.FC = () => {
       </div>
       <textarea className="output-area" readOnly value={genStr}></textarea>
       <div>
-        <button className="testaro-button" onClick={copyToClipboard}>
+        <button
+          className="testaro-button"
+          onClick={(): void => copyToClipboard(genStr)}
+        >
           クリップボードにコピー
         </button>
       </div>

@@ -14,7 +14,7 @@ const Menu: React.FC = () => {
         </li>
         <li>
           <Link to="/namegen" className="link">
-            ダミー固有名詞
+            ダミーレコード
           </Link>
         </li>
         <li>

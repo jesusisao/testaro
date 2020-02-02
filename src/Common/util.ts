@@ -15,3 +15,13 @@ export const createRandomDate = (rangeStart: Date, rangeEnd: Date): Date => {
 export const dateToString = (date: Date): string => {
   return moment(date.getTime()).format("YYYYMMDD");
 };
+
+export const copyToClipboard = (arg: string | number): void => {
+  if (navigator.clipboard) {
+    if (typeof arg === "number") {
+      navigator.clipboard.writeText(arg.toString());
+      return;
+    }
+    navigator.clipboard.writeText(arg);
+  }
+};
