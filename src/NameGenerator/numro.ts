@@ -270,7 +270,8 @@ export const createNumroInstances = (
       familyNameKana: familyNameKana,
       familyNameRome: familyNameRome,
       ...Numros[i],
-      sex: "male" as Sex
+      sex: "male" as Sex,
+      birthday: new Date()
     });
   }
   return result;

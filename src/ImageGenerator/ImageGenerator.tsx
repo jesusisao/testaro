@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ImageGenerator.scss";
 import "../Common/common.scss";
+import { sleep } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
 
 const title = "ダミー画像生成";
-
-const sleep = (msec: number): Promise<void> =>
-  new Promise(resolve => setTimeout(resolve, msec));
 
 const generateRandomColor = (): string => {
   // 255だとデフォルトのフォントのwhiteが見えにくくなることがあるので下げた

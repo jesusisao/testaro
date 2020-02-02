@@ -1,4 +1,5 @@
-import { FamilyName, GivenName, Sex, Human } from "./humanType";
+import { FamilyName, GivenName, Sex, User } from "./humanType";
+import { createRandomDate, dateToString } from "../Common/util";
 
 const HumanFamilyNames: Array<FamilyName> = [
   {
@@ -623,7 +624,7 @@ const HumanGivenNamesFemale: Array<GivenName> = [
   { givenName: "麻美", givenNameKana: "アサミ", givenNameRome: "asami" }
 ];
 
-const createRandomIndex = (arr: Array<any>) => {
+const createRandomIndex = <T>(arr: Array<T>): number => {
   return Math.floor(Math.random() * arr.length);
 };
 
@@ -633,7 +634,12 @@ const createRandomSex = (): Sex => {
   return "female";
 };
 
-export const createHumanInstance = (): Human => {
+const startDate = new Date();
+const endDate = new Date();
+startDate.setFullYear(startDate.getFullYear() - 40);
+endDate.setFullYear(endDate.getFullYear() - 15);
+
+export const createUserInstance = (): User => {
   const familyName: FamilyName =
     HumanFamilyNames[createRandomIndex(HumanFamilyNames)];
   const sex = createRandomSex();
@@ -643,17 +649,22 @@ export const createHumanInstance = (): Human => {
   } else {
     givenName = HumanGivenNamesFemale[createRandomIndex(HumanGivenNamesFemale)];
   }
+  const birthday = createRandomDate(startDate, endDate);
   return {
     ...familyName,
     ...givenName,
-    sex: sex
+    sex: sex,
+    birthday: birthday,
+    email: `${givenName.givenNameRome}.${
+      familyName.familyNameRome
+    }${dateToString(birthday)}@testaro.com`
   };
 };
 
-export const createRandomHumanInstances = (num: number): Array<Human> => {
+export const createRandomUserInstances = (num: number): Array<User> => {
   const result = [];
   for (let i = 1; i <= num; i++) {
-    result.push(createHumanInstance());
+    result.push(createUserInstance());
   }
   return result;
 };

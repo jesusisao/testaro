@@ -12,4 +12,6 @@ export type GivenName = {
 
 export type Sex = "female" | "male";
 
-export type Human = FamilyName & GivenName & { sex: Sex };
+export type Human = FamilyName & GivenName & { sex: Sex; birthday: Date };
+
+export type User = Human & { email: string };
