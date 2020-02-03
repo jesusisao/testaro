@@ -7,6 +7,7 @@ import About from "./About/About";
 import StringGenerator from "./StringGenerator/StringGenerator";
 import NameGenerator from "./NameGenerator/NameGenerator";
 import ImageGenerator from "./ImageGenerator/ImageGenerator";
+import PdfGenerator from "./PdfGenerator/PdfGenerator";
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Route exact path="/strgen" component={StringGenerator} />
           <Route path="/namegen" component={NameGenerator} />
           <Route path="/imggen" component={ImageGenerator} />
+          <Route path="/pdfgen" component={PdfGenerator} />
         </div>
       </div>
     </HashRouter>

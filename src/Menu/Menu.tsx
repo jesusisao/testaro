@@ -27,6 +27,11 @@ const Menu: React.FC = () => {
             ダミー画像
           </Link>
         </li>
+        <li>
+          <Link to="/pdfgen" className="link">
+            ダミーPDF
+          </Link>
+        </li>
         {/* <li>Hash</li> */}
         {/* <li>バーコード</li> */}
       </ul>
