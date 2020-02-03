@@ -1,5 +1,7 @@
 # Testaro
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/aa0dc421-bcd2-422f-a0f6-984076834493/deploy-status)](https://app.netlify.com/sites/testaro/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
