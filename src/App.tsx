@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { HashRouter, Route } from "react-router-dom";
 import "normalize.css";
 import "./App.scss";
@@ -7,7 +7,7 @@ import About from "./About/About";
 import StringGenerator from "./StringGenerator/StringGenerator";
 import NameGenerator from "./NameGenerator/NameGenerator";
 import ImageGenerator from "./ImageGenerator/ImageGenerator";
-import PdfGenerator from "./PdfGenerator/PdfGenerator";
+const LazyPdfGenerator = lazy(() => import("./PdfGenerator/PdfGenerator"));
 
 const App: React.FC = () => {
   return (
@@ -21,7 +21,10 @@ const App: React.FC = () => {
           <Route exact path="/strgen" component={StringGenerator} />
           <Route path="/namegen" component={NameGenerator} />
           <Route path="/imggen" component={ImageGenerator} />
-          <Route path="/pdfgen" component={PdfGenerator} />
+          {/* PDFはとてもでかいので遅延読み込みする必要がある。 */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <Route path="/pdfgen" component={LazyPdfGenerator} />
+          </Suspense>
         </div>
       </div>
     </HashRouter>
