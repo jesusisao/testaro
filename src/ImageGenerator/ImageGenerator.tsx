@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ImageGenerator.scss";
 import "../Common/common.scss";
-import { sleep } from "../Common/util";
+import { sleep, replaceVariable } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
 
 const title = "ダミー画像生成";
@@ -12,20 +12,6 @@ const generateRandomColor = (): string => {
   const ran2 = Math.floor(Math.random() * 200);
   const ran3 = Math.floor(Math.random() * 200);
   return `rgb(${ran1}, ${ran2}, ${ran3})`;
-};
-
-export const replaceVariable = (original: string, num: number): string => {
-  const re = /#{.+?}/;
-  const matches = original.match(re);
-  if (matches === null) return original;
-  const matchesNames = matches.map(str => str.slice(2).slice(0, -1));
-  let copied = original.slice();
-  for (const match of matchesNames) {
-    if (match === "count") {
-      copied = copied.replace("#{count}", num.toString());
-    }
-  }
-  return copied;
 };
 
 const ImageGenerator: React.FC = () => {

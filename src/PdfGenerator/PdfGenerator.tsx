@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 import "./PdfGenerator.scss";
 import "../Common/common.scss";
+import { sleep, replaceVariable } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PdfGenerator: React.FC = () => {
-  const [pdfContent, setPdfContent] = useState("Dummy PDF");
+  const [pdfContent, setPdfContent] = useState("Dummy PDF #{count}");
+  const [fileName, setFileName] = useState("dummy_#{count}");
+  const [genNum, setGenNum] = useState(1);
+  const [downloading, setDownloading] = useState(false);
 
-  const generate = (): void => {
-    const docDefinition = {
-      content: [{ text: pdfContent, fontSize: 48, alignment: "center" }]
-    };
-    pdfMake.createPdf(docDefinition).download("dummy");
-    console.log("generated.");
+  const generate = async (): Promise<void> => {
+    setDownloading(true);
+    for (let i = 0; i < genNum; i++) {
+      generatePdf(i + 1)
+      // あんまり速く大量にDLさせられない
+      await sleep(300);
+    }
+    setDownloading(false);
   };
+
+  const generatePdf = (num: number) => {
+    const createdPdfContent = replaceVariable(pdfContent, num);
+    const docDefinition = {
+      content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }]
+    };
+    const createdFileName = replaceVariable(fileName, num)
+    pdfMake.createPdf(docDefinition).download(createdFileName);
+  }
 
   return (
     <div className="PdfGenerator">
@@ -25,11 +40,28 @@ const PdfGenerator: React.FC = () => {
           <input
             type="text"
             defaultValue={pdfContent}
+            disabled={downloading}
             onChange={(e): void => setPdfContent(e.target.value)}
           ></input>
         </ParamBox>
+        <ParamBox labelName="ファイル名">
+          <input
+            type="text"
+            defaultValue={fileName}
+            disabled={downloading}
+            onChange={(e): void => setFileName(e.target.value)}
+          ></input>
+        </ParamBox>
+        <ParamBox labelName="出力枚数">
+          <input
+            type="number"
+            defaultValue={genNum}
+            disabled={downloading}
+            onChange={(e): void => setGenNum(parseInt(e.target.value))}
+          ></input>
+        </ParamBox>
         <ParamBox>
-          <button className="testaro-button" onClick={generate}>
+          <button className="testaro-button" disabled={downloading} onClick={generate}>
             生成
           </button>
         </ParamBox>

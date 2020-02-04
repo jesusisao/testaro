@@ -16,6 +16,20 @@ export const dateToString = (date: Date): string => {
   return moment(date.getTime()).format("YYYYMMDD");
 };
 
+export const replaceVariable = (original: string, num: number): string => {
+  const re = /#{.+?}/;
+  const matches = original.match(re);
+  if (matches === null) return original;
+  const matchesNames = matches.map(str => str.slice(2).slice(0, -1));
+  let copied = original.slice();
+  for (const match of matchesNames) {
+    if (match === "count") {
+      copied = copied.replace("#{count}", num.toString());
+    }
+  }
+  return copied;
+};
+
 export const copyToClipboard = (arg: string | number): void => {
   if (navigator.clipboard) {
     if (typeof arg === "number") {

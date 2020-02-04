@@ -1,4 +1,4 @@
-import { replaceVariable } from "./ImageGenerator";
+import { replaceVariable } from "./util";
 
 test("replaceVariable", () => {
   const original = "テスト画像#{count}番";
