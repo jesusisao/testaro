@@ -7,6 +7,7 @@ import About from "./About/About";
 import StringGenerator from "./StringGenerator/StringGenerator";
 import NameGenerator from "./NameGenerator/NameGenerator";
 import ImageGenerator from "./ImageGenerator/ImageGenerator";
+import Loading from "./Common/Loading";
 const LazyPdfGenerator = lazy(() => import("./PdfGenerator/PdfGenerator"));
 
 const App: React.FC = () => {
@@ -22,7 +23,7 @@ const App: React.FC = () => {
           <Route path="/namegen" component={NameGenerator} />
           <Route path="/imggen" component={ImageGenerator} />
           {/* PDFはとてもでかいので遅延読み込みする必要がある。 */}
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loading />}>
             <Route path="/pdfgen" component={LazyPdfGenerator} />
           </Suspense>
         </div>
