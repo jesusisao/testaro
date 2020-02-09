@@ -5,7 +5,7 @@ import { sleep, replaceVariable } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
 import pdfMake from "pdfmake/build/pdfmake";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
-import vfs from "../lib/vfs_fonts";
+import vfs from "./lib/vfs_fonts";
 pdfMake.vfs = vfs;
 pdfMake.fonts = {
   Roboto: {
