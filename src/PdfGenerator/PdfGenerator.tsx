@@ -4,8 +4,23 @@ import "../Common/common.scss";
 import { sleep, replaceVariable } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// import pdfFonts from "pdfmake/build/vfs_fonts";
+import vfs from "../lib/vfs_fonts";
+pdfMake.vfs = vfs;
+pdfMake.fonts = {
+  Roboto: {
+    normal: "Roboto-Regular.ttf",
+    bold: "Roboto-Medium.ttf",
+    italics: "Roboto-Italic.ttf",
+    bolditalics: "Roboto-MediumItalic.ttf"
+  },
+  KosugiMaru: {
+    normal: "KosugiMaru-Regular.ttf",
+    bold: "KosugiMaru-Regular.ttf",
+    italics: "KosugiMaru-Regular.ttf",
+    bolditalics: "KosugiMaru-Regular.ttf"
+  }
+};
 
 const PdfGenerator: React.FC = () => {
   const [pdfContent, setPdfContent] = useState("Dummy PDF #{count}");
@@ -16,7 +31,10 @@ const PdfGenerator: React.FC = () => {
   const generatePdf = (num: number): void => {
     const createdPdfContent = replaceVariable(pdfContent, num);
     const docDefinition = {
-      content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }]
+      content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }],
+      defaultStyle: {
+        font: "KosugiMaru"
+      }
     };
     const createdFileName = replaceVariable(fileName, num);
     pdfMake.createPdf(docDefinition).download(createdFileName);
