@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Menu: React.FC = () => {
   return (
     <div className="Menu">
-      <h1>Testaro</h1>
+      <h1 className="site-name">Testaro</h1>
       <ul>
         <li>
           <Link to="/about" className="link">

@@ -1,5 +1,9 @@
 @import "../config.scss";
 
+.site-name {
+  color: $config-link-color;
+}
+
 .Menu {
   top: 0;
   left: 0;
