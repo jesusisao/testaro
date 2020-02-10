@@ -52,7 +52,7 @@ const PdfGenerator: React.FC = () => {
 
   return (
     <div className="PdfGenerator">
-      <h1>ダミーPDF生成</h1>
+      <h1 className="page-title">ダミーPDF生成</h1>
       <div>
         <ParamBox labelName="中身の文字">
           <input

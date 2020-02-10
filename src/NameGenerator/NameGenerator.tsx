@@ -86,7 +86,7 @@ const NameGenerator: React.FC = () => {
 
   return (
     <div className="NameGenerator">
-      <h1>ダミーレコード生成</h1>
+      <h1 className="page-title">ダミーレコード生成</h1>
       <p>
         セルをクリックすると、中の値が勝手にクリップボードにコピーされます。
       </p>

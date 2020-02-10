@@ -30,7 +30,7 @@ const StringGenerator: React.FC = () => {
 
   return (
     <div className="StringGenerator">
-      <h1>テスト文字列生成</h1>
+      <h1 className="page-title">テスト文字列生成</h1>
       <div>
         <ParamBox labelName="パターン">
           <select

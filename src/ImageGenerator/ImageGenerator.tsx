@@ -100,7 +100,7 @@ const ImageGenerator: React.FC = () => {
 
   return (
     <div className="ImageGenerator">
-      <h1>{title}</h1>
+      <h1 className="page-title">{title}</h1>
       <p>
         出力枚数を指定することで、大量のダミー画像を一括でダウンロード可能です。
       </p>

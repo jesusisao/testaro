@@ -5,7 +5,7 @@ import "../Common/common.scss";
 const About: React.FC = () => {
   return (
     <div className="About">
-      <h1>About</h1>
+      <h1 className="page-title">About</h1>
       <div className="text-area">
         <p>
           このサービスは業務システム開発の手動テストを多少楽にするために作りました。React
