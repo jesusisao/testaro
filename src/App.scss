@@ -6,6 +6,7 @@
 
 .App {
   display: flex;
+  background-color: $config-menu-background-color;
   a {
     color: $config-link-color;
   }

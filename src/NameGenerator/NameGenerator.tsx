@@ -14,44 +14,71 @@ const generateUserList = (genNum: number, useNumro: boolean): JSX.Element => {
   const items = [];
   for (const [i, instance] of userInstances.entries()) {
     items.push(
-      <li key={"instance" + i}>
+      <li key={"instance" + i} className="nowrap">
         <input
+          style={{ width: 50 }}
           readOnly
           type="number"
           value={i + 1}
           onClick={(): void => copyToClipboard(i + 1)}
         />
         <input
+          style={{ width: 120 }}
+          readOnly
+          type="text"
+          value={instance.familyName + "　" + instance.givenName}
+          onClick={(): void =>
+            copyToClipboard(instance.familyName + " " + instance.givenName)
+          }
+        />
+        <input
+          style={{ width: 100 }}
           readOnly
           type="text"
           value={instance.familyName}
           onClick={(): void => copyToClipboard(instance.familyName)}
         />
         <input
+          style={{ width: 100 }}
           readOnly
           type="text"
           value={instance.givenName}
           onClick={(): void => copyToClipboard(instance.givenName)}
         />
         <input
+          style={{ width: 120 }}
+          readOnly
+          type="text"
+          value={instance.familyNameKana + "　" + instance.givenNameKana}
+          onClick={(): void =>
+            copyToClipboard(
+              instance.familyNameKana + " " + instance.givenNameKana
+            )
+          }
+        />
+        <input
+          style={{ width: 100 }}
           readOnly
           type="text"
           value={instance.familyNameKana}
           onClick={(): void => copyToClipboard(instance.familyNameKana)}
         />
         <input
+          style={{ width: 100 }}
           readOnly
           type="text"
           value={instance.givenNameKana}
           onClick={(): void => copyToClipboard(instance.givenNameKana)}
         />
         <input
+          style={{ width: 100 }}
           readOnly
           type="text"
           value={instance.sex}
           onClick={(): void => copyToClipboard(instance.sex)}
         />
         <input
+          style={{ width: 100 }}
           readOnly
           type="text"
           value={moment(instance.birthday).format("YYYY/MM/DD")}
@@ -60,6 +87,7 @@ const generateUserList = (genNum: number, useNumro: boolean): JSX.Element => {
           }
         />
         <input
+          style={{ width: 300 }}
           readOnly
           type="text"
           value={instance.email}
@@ -93,6 +121,7 @@ const NameGenerator: React.FC = () => {
       <div>
         <ParamBox labelName="生成数">
           <input
+            className="text-right"
             type="number"
             defaultValue={genNum}
             onChange={(e): void => setGenNum(parseInt(e.target.value))}

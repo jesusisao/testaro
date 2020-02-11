@@ -56,6 +56,7 @@ const StringGenerator: React.FC = () => {
         </ParamBox>
         <ParamBox labelName="文字数">
           <input
+            className="text-right"
             type="number"
             list="charNum"
             defaultValue={charNum}

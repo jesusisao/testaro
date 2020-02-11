@@ -109,6 +109,7 @@ const ImageGenerator: React.FC = () => {
           <h2>画像パラメータ</h2>
           <ParamBox labelName="幅">
             <input
+              className="text-right"
               type="number"
               defaultValue={width}
               disabled={downloading}
@@ -117,6 +118,7 @@ const ImageGenerator: React.FC = () => {
           </ParamBox>
           <ParamBox labelName="高さ">
             <input
+              className="text-right"
               type="number"
               defaultValue={height}
               disabled={downloading}
@@ -152,6 +154,7 @@ const ImageGenerator: React.FC = () => {
           </ParamBox>
           <ParamBox labelName="文字サイズ">
             <input
+              className="text-right"
               type="number"
               value={fontSize}
               disabled={downloading}
@@ -228,6 +231,7 @@ const ImageGenerator: React.FC = () => {
           </ParamBox>
           <ParamBox labelName="出力枚数">
             <input
+              className="text-right"
               type="number"
               defaultValue={genNum}
               disabled={downloading}

@@ -21,3 +21,19 @@
     border-width: 5px;
   }
 }
+
+.text-right {
+  text-align: right; 
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+input, textarea, select {
+  background-color: rgba(0,0,0,0.3);
+  color: $config-font-color;
+  border: solid rgba(0,0,0,0.4) 1px;
+  border-collapse: collapse;
+  height: 25px;
+}
