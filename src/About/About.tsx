@@ -7,6 +7,7 @@ const About: React.FC = () => {
     <div className="About">
       <h1 className="page-title">About</h1>
       <div className="text-area">
+        <h2>Testaroについて</h2>
         <p>
           このサービスは業務システム開発の手動テストを多少楽にするために作りました。React
           + TypeScriptで作られている静的なWebページです。
@@ -27,6 +28,13 @@ const About: React.FC = () => {
         <p>このページによって、多少の効率化ができたら幸いです。</p>
         <p className="author">
           <a href="https://qiita.com/jesus_isao">@jesus_isao</a>
+        </p>
+      </div>
+      <div className="text-area">
+        <h2>動作環境</h2>
+        <p>
+          PC環境で使用することを想定しています。 Google
+          Chromeで動作確認を行っています。
         </p>
       </div>
     </div>
