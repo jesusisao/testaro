@@ -3,8 +3,16 @@ import "./ImageGenerator.scss";
 import "../Common/common.scss";
 import { sleep, replaceVariable } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 
 const title = "ダミー画像生成";
+
+const style = {
+  marginLeft: "5px",
+  opacity: "0.3",
+  width: "1em"
+};
 
 const generateRandomColor = (): string => {
   // 255だとデフォルトのフォントのwhiteが見えにくくなることがあるので下げた
@@ -244,7 +252,8 @@ const ImageGenerator: React.FC = () => {
               disabled={downloading}
               onClick={downloadsImage}
             >
-              画像をダウンロード
+              生成してダウンロード
+              <FontAwesomeIcon icon={faFileDownload} style={style} />
             </button>
           </ParamBox>
         </div>

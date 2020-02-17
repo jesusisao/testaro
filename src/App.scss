@@ -1,4 +1,4 @@
-@import './config.scss';
+@import "./config.scss";
 
 .Menu {
   z-index: 100;
@@ -12,15 +12,8 @@
   }
 }
 
-// スマホ対応
-@media only screen and (max-width: 480px) {
-  .App {
-    flex-direction: column;
-  }
-}
-
 .App-container {
-  width: 100%;
+  width: calc(100% - #{$config-menu-width});
   background-color: $config-background-color;
   min-height: 100vh;
   display: flex;
@@ -30,4 +23,15 @@
   padding: 20px;
   box-sizing: border-box;
   z-index: 0;
+}
+
+// スマホ対応
+@media only screen and (max-width: 480px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .App-container {
+    width: 100%;
+  }
 }

@@ -12,7 +12,7 @@
   display: block;
   height: 100vh;
   overflow: hidden;
-  width: $config-menu-width;
+  min-width: $config-menu-width;
   h1 {
     margin: 10px;
   }

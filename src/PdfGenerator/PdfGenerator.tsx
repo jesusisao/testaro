@@ -4,6 +4,8 @@ import "../Common/common.scss";
 import { sleep, replaceVariable } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
 import pdfMake from "pdfmake/build/pdfmake";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 import vfs from "./lib/vfs_fonts";
 pdfMake.vfs = vfs;
@@ -14,6 +16,12 @@ pdfMake.fonts = {
     italics: "KosugiMaru-Regular.ttf",
     bolditalics: "KosugiMaru-Regular.ttf"
   }
+};
+
+const style = {
+  marginLeft: "5px",
+  opacity: "0.3",
+  width: "1em"
 };
 
 const PdfGenerator: React.FC = () => {
@@ -78,7 +86,8 @@ const PdfGenerator: React.FC = () => {
             disabled={downloading}
             onClick={generate}
           >
-            生成
+            生成してダウンロード
+            <FontAwesomeIcon icon={faFileDownload} style={style} />
           </button>
         </ParamBox>
       </div>
