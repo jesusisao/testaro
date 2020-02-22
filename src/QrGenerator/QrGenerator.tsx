@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, createRef } from "react";
 import "./QrGenerator.scss";
 import "../Common/common.scss";
 import ParamBox from "../Common/ParamBox";
@@ -7,45 +7,92 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 
 const QrGenerator: React.FC = () => {
-  const [code, setCode] = useState("");
-
-  const canvasRef = useRef(null);
+  const [codes, setCodes] = useState([""]);
+  const [canvasRefs, setCanvasRefs] = useState([
+    createRef<HTMLCanvasElement>()
+  ]);
+  // const elementsRef = useRef(codes.map(() => createRef<HTMLCanvasElement>()));
 
   const generate = (): void => {
-    if (code.length === 0) {
-      alert("コード長が短すぎます");
+    const containZeroLength: boolean = codes.reduce(
+      (accumulator: boolean, el: string) => el.length === 0 || accumulator,
+      false
+    );
+    if (containZeroLength) {
+      alert("空欄の項目が存在しています。");
       return;
     }
-    QRCode.toCanvas(canvasRef.current, code, function(error) {
-      if (error) console.error(error);
-      console.log("success!");
-    });
+
+    for (let i = 0; i < codes.length; i++) {
+      QRCode.toCanvas(canvasRefs[i].current, codes[i], function(error) {
+        if (error) console.error(error);
+        console.log("success!");
+      });
+    }
   };
 
-  const downloadImage = (): void => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const canvas: any = canvasRef.current;
+  const downloadImage = (index: number): void => {
+    const canvas: HTMLCanvasElement | null = canvasRefs[index].current;
     const link = document.createElement("a");
-    link.download = `${code}.png`;
-    link.href = canvas.toDataURL(`image/png`);
+    link.download = `${codes[index]}.png`;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    link.href = canvas!.toDataURL(`image/png`);
     link.click();
   };
 
-  const generateAndDownload = (): void => {
+  const generateAndDownload = (index: number): void => {
     generate();
-    downloadImage();
+    downloadImage(index);
+  };
+
+  const add = (): void => {
+    setCodes([...codes, ""]);
+    setCanvasRefs([...canvasRefs, createRef<HTMLCanvasElement>()]);
+  };
+
+  const updateCode = (index: number, value: string): void => {
+    const newCodes = [...codes];
+    newCodes[index] = value;
+    setCodes(newCodes);
+  };
+
+  const inputList = (): JSX.Element => {
+    const items = [];
+    for (const [i, code] of codes.entries()) {
+      items.push(
+        <ParamBox labelName="QR用文字列" key={i + ""}>
+          <input
+            type="text"
+            defaultValue={code}
+            onChange={(e): void => updateCode(i, e.target.value)}
+          ></input>
+          <button onClick={(): void => generateAndDownload(i)}>
+            <FontAwesomeIcon icon={faFileDownload} className="icon" />
+          </button>
+        </ParamBox>
+      );
+    }
+    return <div>{items}</div>;
+  };
+
+  const canvasList = (): JSX.Element => {
+    const items = [];
+    for (let i = 0; i < codes.length; i++) {
+      items.push(<canvas ref={canvasRefs[i]} key={i + ""}></canvas>);
+    }
+    return <div>{items}</div>;
   };
 
   return (
     <div className="QrGenerator">
       <h1 className="page-title">QRコード生成</h1>
       <div>
-        <ParamBox labelName="QR用文字列">
-          <input
-            type="text"
-            defaultValue={code}
-            onChange={(e): void => setCode(e.target.value)}
-          ></input>
+        {inputList()}
+
+        <ParamBox>
+          <button className="testaro-button" onClick={add}>
+            項目追加
+          </button>
         </ParamBox>
 
         <ParamBox>
@@ -53,14 +100,9 @@ const QrGenerator: React.FC = () => {
             生成
           </button>
         </ParamBox>
-        <ParamBox>
-          <button className="testaro-button" onClick={generateAndDownload}>
-            生成してダウンロード
-            <FontAwesomeIcon icon={faFileDownload} className="icon" />
-          </button>
-        </ParamBox>
+
+        {canvasList()}
       </div>
-      <canvas ref={canvasRef}></canvas>
     </div>
   );
 };
