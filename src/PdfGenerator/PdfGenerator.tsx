@@ -18,12 +18,6 @@ pdfMake.fonts = {
   }
 };
 
-const style = {
-  marginLeft: "5px",
-  opacity: "0.3",
-  width: "1em"
-};
-
 const PdfGenerator: React.FC = () => {
   const [pdfContent, setPdfContent] = useState("Dummy PDF #{count}");
   const [fileName, setFileName] = useState("dummy_#{count}");
@@ -87,7 +81,7 @@ const PdfGenerator: React.FC = () => {
             onClick={generate}
           >
             生成してダウンロード
-            <FontAwesomeIcon icon={faFileDownload} style={style} />
+            <FontAwesomeIcon icon={faFileDownload} className="icon" />
           </button>
         </ParamBox>
       </div>

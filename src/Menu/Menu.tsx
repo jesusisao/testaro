@@ -10,12 +10,6 @@ import {
   faFilePdf
 } from "@fortawesome/free-solid-svg-icons";
 
-const style = {
-  marginRight: "5px",
-  opacity: "0.3",
-  width: "1em"
-};
-
 const Menu: React.FC = () => {
   return (
     <div className="Menu">
@@ -23,31 +17,31 @@ const Menu: React.FC = () => {
       <ul>
         <li>
           <Link to="/about" className="link">
-            <FontAwesomeIcon icon={faSitemap} style={style} />
+            <FontAwesomeIcon icon={faSitemap} className="icon" />
             About
           </Link>
         </li>
         <li>
           <Link to="/strgen" className="link">
-            <FontAwesomeIcon icon={faFont} style={style} />
+            <FontAwesomeIcon icon={faFont} className="icon" />
             テスト文字列
           </Link>
         </li>
         <li>
           <Link to="/namegen" className="link">
-            <FontAwesomeIcon icon={faMale} style={style} />
+            <FontAwesomeIcon icon={faMale} className="icon" />
             ダミーレコード
           </Link>
         </li>
         <li>
           <Link to="/imggen" className="link">
-            <FontAwesomeIcon icon={faImages} style={style} />
+            <FontAwesomeIcon icon={faImages} className="icon" />
             ダミー画像
           </Link>
         </li>
         <li>
           <Link to="/pdfgen" className="link">
-            <FontAwesomeIcon icon={faFilePdf} style={style} />
+            <FontAwesomeIcon icon={faFilePdf} className="icon" />
             ダミーPDF
           </Link>
         </li>

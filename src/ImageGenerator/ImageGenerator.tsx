@@ -8,12 +8,6 @@ import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 
 const title = "ダミー画像生成";
 
-const style = {
-  marginLeft: "5px",
-  opacity: "0.3",
-  width: "1em"
-};
-
 const generateRandomColor = (): string => {
   // 255だとデフォルトのフォントのwhiteが見えにくくなることがあるので下げた
   const ran1 = Math.floor(Math.random() * 200);
@@ -253,7 +247,7 @@ const ImageGenerator: React.FC = () => {
               onClick={downloadsImage}
             >
               生成してダウンロード
-              <FontAwesomeIcon icon={faFileDownload} style={style} />
+              <FontAwesomeIcon icon={faFileDownload} className="icon" />
             </button>
           </ParamBox>
         </div>
