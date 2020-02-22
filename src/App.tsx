@@ -32,6 +32,9 @@ const App: React.FC = () => {
           <Route path="/imggen" component={ImageGenerator} />
           {/* PDFはとてもでかいので遅延読み込みする必要がある。 */}
           <Route path="/pdfgen" component={LazyPdfGeneratorSuspense} />
+
+          {/* 開発用 */}
+          <Route path="/dev-load" component={Loading} />
         </div>
       </div>
     </HashRouter>
