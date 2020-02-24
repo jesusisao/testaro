@@ -4,7 +4,7 @@ import "../Common/common.scss";
 import ParamBox from "../Common/ParamBox";
 import QRCode from "qrcode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import { faFileDownload, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const QrGenerator: React.FC = () => {
   const [codes, setCodes] = useState([""]);
@@ -50,6 +50,16 @@ const QrGenerator: React.FC = () => {
     setCanvasRefs([...canvasRefs, createRef<HTMLCanvasElement>()]);
   };
 
+  const remove = (index: number): void => {
+    if (codes.length <= 1) {
+      alert("項目は最低1つ必要です。削除できません。");
+    }
+    const newCodes = Object.assign([], codes);
+    const a = newCodes.splice(index, 1);
+    console.warn(a);
+    setCodes(newCodes);
+  };
+
   const updateCode = (index: number, value: string): void => {
     const newCodes = [...codes];
     newCodes[index] = value;
@@ -63,9 +73,12 @@ const QrGenerator: React.FC = () => {
         <ParamBox labelName="QR用文字列" key={i + ""}>
           <input
             type="text"
-            defaultValue={code}
+            value={code}
             onChange={(e): void => updateCode(i, e.target.value)}
           ></input>
+          <button onClick={(): void => remove(i)}>
+            <FontAwesomeIcon icon={faCheck} className="icon" />
+          </button>
           <button onClick={(): void => generateAndDownload(i)}>
             <FontAwesomeIcon icon={faFileDownload} className="icon" />
           </button>
