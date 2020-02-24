@@ -1,35 +1,30 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useEffect } from "react";
 import "./QrGenerator.scss";
 import "../Common/common.scss";
 import ParamBox from "../Common/ParamBox";
 import QRCode from "qrcode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileDownload, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faFileDownload, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const QrGenerator: React.FC = () => {
   const [codes, setCodes] = useState([""]);
   const [canvasRefs, setCanvasRefs] = useState([
     createRef<HTMLCanvasElement>()
   ]);
-  // const elementsRef = useRef(codes.map(() => createRef<HTMLCanvasElement>()));
 
   const generate = (): void => {
-    const containZeroLength: boolean = codes.reduce(
-      (accumulator: boolean, el: string) => el.length === 0 || accumulator,
-      false
-    );
-    if (containZeroLength) {
-      alert("空欄の項目が存在しています。");
-      return;
-    }
-
     for (let i = 0; i < codes.length; i++) {
+      if (codes[i] === "") continue;
       QRCode.toCanvas(canvasRefs[i].current, codes[i], function(error) {
         if (error) console.error(error);
         console.log("success!");
       });
     }
   };
+
+  useEffect(() => {
+    generate();
+  });
 
   const downloadImage = (index: number): void => {
     const canvas: HTMLCanvasElement | null = canvasRefs[index].current;
@@ -40,24 +35,28 @@ const QrGenerator: React.FC = () => {
     link.click();
   };
 
-  const generateAndDownload = (index: number): void => {
-    generate();
-    downloadImage(index);
-  };
-
   const add = (): void => {
     setCodes([...codes, ""]);
     setCanvasRefs([...canvasRefs, createRef<HTMLCanvasElement>()]);
   };
 
-  const remove = (index: number): void => {
+  const removeClicked = (index: number): void => {
     if (codes.length <= 1) {
       alert("項目は最低1つ必要です。削除できません。");
+      return;
     }
     const newCodes = Object.assign([], codes);
-    const a = newCodes.splice(index, 1);
-    console.warn(a);
+    newCodes.splice(index, 1);
     setCodes(newCodes);
+  };
+
+  const generateAndDownload = (index: number): void => {
+    try {
+      generate();
+      downloadImage(index);
+    } catch (e) {
+      alert(e);
+    }
   };
 
   const updateCode = (index: number, value: string): void => {
@@ -76,22 +75,19 @@ const QrGenerator: React.FC = () => {
             value={code}
             onChange={(e): void => updateCode(i, e.target.value)}
           ></input>
-          <button onClick={(): void => remove(i)}>
-            <FontAwesomeIcon icon={faCheck} className="icon" />
+          <button onClick={(): void => removeClicked(i)}>
+            <FontAwesomeIcon icon={faTimes} className="icon" />
           </button>
           <button onClick={(): void => generateAndDownload(i)}>
             <FontAwesomeIcon icon={faFileDownload} className="icon" />
           </button>
+          <canvas
+            ref={canvasRefs[i]}
+            key={i + ""}
+            className="qr-canvas"
+          ></canvas>
         </ParamBox>
       );
-    }
-    return <div>{items}</div>;
-  };
-
-  const canvasList = (): JSX.Element => {
-    const items = [];
-    for (let i = 0; i < codes.length; i++) {
-      items.push(<canvas ref={canvasRefs[i]} key={i + ""}></canvas>);
     }
     return <div>{items}</div>;
   };
@@ -113,8 +109,6 @@ const QrGenerator: React.FC = () => {
             生成
           </button>
         </ParamBox>
-
-        {canvasList()}
       </div>
     </div>
   );
