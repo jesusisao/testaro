@@ -14,7 +14,19 @@ const QrGenerator: React.FC = () => {
 
   const generate = (): void => {
     for (let i = 0; i < codes.length; i++) {
-      if (codes[i] === "") continue;
+      if (codes[i] === "") {
+        // canvasをクリアする。わりと無理やりな実装。
+        // QRCode.toCanvasでcanvasのwidth, heightを書き換えるのでここで無理やり最小値に戻す
+        QRCode.toCanvas(canvasRefs[i].current, "0");
+
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const canvasElement = canvasRefs[i].current!;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const context = canvasElement.getContext("2d")!;
+        context.fillStyle = "rgb(255, 128, 128)";
+        context.fillRect(0, 0, canvasElement.height, canvasElement.width);
+        continue;
+      }
       QRCode.toCanvas(canvasRefs[i].current, codes[i], function(error) {
         if (error) console.error(error);
         console.log("success!");
@@ -85,6 +97,8 @@ const QrGenerator: React.FC = () => {
             ref={canvasRefs[i]}
             key={i + ""}
             className="qr-canvas"
+            width={116}
+            height={116}
           ></canvas>
         </ParamBox>
       );
