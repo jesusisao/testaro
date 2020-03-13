@@ -7,8 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const QrGenerator: React.FC = () => {
-  const [codes, setCodes] = useState([""]);
+  const [codes, setCodes] = useState(["", "", ""]);
   const [canvasRefs, setCanvasRefs] = useState([
+    createRef<HTMLCanvasElement>(),
+    createRef<HTMLCanvasElement>(),
     createRef<HTMLCanvasElement>()
   ]);
 
@@ -23,7 +25,7 @@ const QrGenerator: React.FC = () => {
         const canvasElement = canvasRefs[i].current!;
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const context = canvasElement.getContext("2d")!;
-        context.fillStyle = "rgb(255, 128, 128)";
+        context.fillStyle = "rgb(128, 128, 128)";
         context.fillRect(0, 0, canvasElement.height, canvasElement.width);
         continue;
       }
@@ -82,24 +84,26 @@ const QrGenerator: React.FC = () => {
     for (const [i, code] of codes.entries()) {
       items.push(
         <ParamBox labelName="QR用文字列" key={i + ""}>
-          <input
-            type="text"
-            value={code}
-            onChange={(e): void => updateCode(i, e.target.value)}
-          ></input>
-          <button onClick={(): void => removeClicked(i)}>
-            <FontAwesomeIcon icon={faTimes} className="icon" />
-          </button>
-          <button onClick={(): void => generateAndDownload(i)}>
-            <FontAwesomeIcon icon={faFileDownload} className="icon" />
-          </button>
-          <canvas
-            ref={canvasRefs[i]}
-            key={i + ""}
-            className="qr-canvas"
-            width={116}
-            height={116}
-          ></canvas>
+          <div className="canvas-li">
+            <input
+              type="text"
+              value={code}
+              onChange={(e): void => updateCode(i, e.target.value)}
+            ></input>
+            <button onClick={(): void => removeClicked(i)}>
+              <FontAwesomeIcon icon={faTimes} className="icon" />
+            </button>
+            <button onClick={(): void => generateAndDownload(i)}>
+              <FontAwesomeIcon icon={faFileDownload} className="icon" />
+            </button>
+            <canvas
+              ref={canvasRefs[i]}
+              key={i + ""}
+              className="qr-canvas"
+              width={116}
+              height={116}
+            ></canvas>
+          </div>
         </ParamBox>
       );
     }

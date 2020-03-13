@@ -5,8 +5,13 @@
   min-width: 100%;
   overflow: hidden;
   .qr-canvas {
+    margin-left: 15px;
     background-color: gray;
     width: 116px;
     height: 116px;
+  }
+  .canvas-li {
+    display: flex;
+    align-items: center;
   }
 }
