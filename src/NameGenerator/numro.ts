@@ -1,4 +1,4 @@
-import { FamilyName, GivenName, User, Sex } from "./humanType";
+import { FamilyName, GivenName, User, Sex } from "./user";
 import {
   dateToString,
   numbersToKanji,

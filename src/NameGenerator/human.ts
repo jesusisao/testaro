@@ -1,4 +1,4 @@
-import { FamilyName, GivenName, Sex, User } from "./humanType";
+import { FamilyName, GivenName, Sex, User } from "./user";
 import { createRandomDate, dateToString } from "../Common/util";
 
 const HumanFamilyNames: Array<FamilyName> = [

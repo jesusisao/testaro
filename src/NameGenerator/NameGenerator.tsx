@@ -1,18 +1,15 @@
 import React, { useState } from "react";
+import moment from "moment";
 import "./NameGenerator.scss";
 import "../Common/common.scss";
-import { createNumroInstances } from "./numro";
-import { createRandomUserInstances } from "./human";
 import ParamBox from "../Common/ParamBox";
-import moment from "moment";
 import { copyToClipboard } from "../Common/util";
+import { User, createUsers, userToCsvText } from "./user";
+import { download } from "./download"
 
-const generateUserList = (genNum: number, useNumro: boolean): JSX.Element => {
-  const userInstances = useNumro
-    ? createNumroInstances(genNum)
-    : createRandomUserInstances(genNum);
+const generateUserTable = (users: User[]): JSX.Element => {
   const items = [];
-  for (const [i, instance] of userInstances.entries()) {
+  for (const [i, instance] of users.entries()) {
     items.push(
       <li key={"instance" + i} className="nowrap">
         <input
@@ -96,7 +93,6 @@ const generateUserList = (genNum: number, useNumro: boolean): JSX.Element => {
       </li>
     );
   }
-
   return <ul className="instance-records">{items}</ul>;
 };
 
@@ -112,6 +108,14 @@ const NameGenerator: React.FC = () => {
       setGenNum(genNum);
     }, 0);
   };
+
+  const users = createUsers(genNum, useNumro);
+
+  const downloadCsv = (): void => {
+    console.log(users)
+    console.log(userToCsvText(users))
+    download(userToCsvText(users), "users")
+  }
 
   return (
     <div className="NameGenerator">
@@ -145,12 +149,15 @@ const NameGenerator: React.FC = () => {
           ></input>
         </ParamBox>
         <ParamBox>
-          <button className="testaro-button" onClick={generate}>
+          <button className="testaro-button" onClick={generate} style={{ marginRight: 5 }}>
             再生成
+          </button>
+          <button className="testaro-button" onClick={downloadCsv}>
+            CSVダウンロード
           </button>
         </ParamBox>
       </div>
-      {generateUserList(genNum, useNumro)}
+      {generateUserTable(users)}
     </div>
   );
 };
