@@ -101,6 +101,7 @@ const generateUserList = (genNum: number, useNumro: boolean): JSX.Element => {
 };
 
 const NameGenerator: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [pattern, setPattern] = useState("人名");
   const [genNum, setGenNum] = useState(10);
   const [useNumro, setUseNumro] = useState(false);
