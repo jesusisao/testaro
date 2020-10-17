@@ -3,11 +3,13 @@ import "./PdfGenerator.scss";
 import "../Common/common.scss";
 import { sleep, replaceVariable } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
-import pdfMake from "pdfmake/build/pdfmake";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
 import vfs from "./lib/vfs_fonts";
+import pdfMake from "pdfmake/build/pdfmake";
+import { TDocumentDefinitions } from "pdfmake/interfaces";
+
 pdfMake.vfs = vfs;
 pdfMake.fonts = {
   KosugiMaru: {
@@ -26,7 +28,7 @@ const PdfGenerator: React.FC = () => {
 
   const generatePdf = (num: number): void => {
     const createdPdfContent = replaceVariable(pdfContent, num);
-    const docDefinition = {
+    const docDefinition: TDocumentDefinitions = {
       content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }],
       defaultStyle: {
         font: "KosugiMaru"
