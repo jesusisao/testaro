@@ -112,8 +112,6 @@ const NameGenerator: React.FC = () => {
   const users = createUsers(genNum, useNumro);
 
   const downloadCsv = (): void => {
-    console.log(users)
-    console.log(userToCsvText(users))
     download(userToCsvText(users), "users")
   }
 
