@@ -1,3 +1,4 @@
+import { toFullWidth } from "../Common/util";
 import kenData from './kenMini.json';
 const kenList = kenData as Array<KenAddress>
 const kenLength = kenList.length
@@ -40,12 +41,4 @@ const generateRandomHouseNumber = (): string => {
     li.push(toFullWidth(Math.floor(Math.random() * 19) + 1))
   }
   return li.join('ー')
-}
-
-// 半角数字を全角数字へ変換
-const toFullWidth = (num: number) => {
-  const str = num.toString();
-  return str.replace(/./g, s => {
-    return String.fromCharCode(s.charCodeAt(0) + 0xfee0)
-  })
 }

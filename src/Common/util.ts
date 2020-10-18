@@ -68,3 +68,11 @@ export const downloadAsCsv = (data: string, name: string): void => {
       'data:attachment/csv;charset=utf-8,' + encodeURIComponent(bom + data);
   }
 }
+
+// 半角数字を全角数字へ変換
+export const toFullWidth = (num: number) => {
+  const str = num.toString();
+  return str.replace(/./g, s => {
+    return String.fromCharCode(s.charCodeAt(0) + 0xfee0)
+  })
+}

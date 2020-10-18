@@ -1,7 +1,7 @@
 import { FamilyName, GivenName, User, Sex } from "./user";
-import { dateToString } from "../Common/util";
+import { dateToString, toFullWidth } from "../Common/util";
 import { numbersToKanji, numKanjiToKana, numKanjiToRome } from "./kanjiNum";
-import { generateRandomAddress } from "./address";
+import { Address } from "./address";
 
 const createNumro = (num: number): GivenName => {
   const numKanji = numbersToKanji(num);
@@ -53,6 +53,19 @@ for (let i = 1; i <= 100; i++) {
   Numjos = { [i]: createNumjo(i), ...Numjos };
 }
 
+const generateAddress = (index1: number, index2: number): Address => {
+  return {
+    postalCode: "1000001",
+    prefectureKana: "ﾄｳｷｮｳﾄ",
+    cityKana: "ﾁﾖﾀﾞｸ",
+    townAreaKana: "ﾁﾖﾀﾞ",
+    prefecture: "東京都",
+    city: "千代田区",
+    townArea: "千代田",
+    houseNumber: `${toFullWidth(index1)}ー${toFullWidth(index2)}`,
+  }
+}
+
 export const createNumroInstances = (num: number): Array<User> => {
   const result = [];
   const NumroLength = Object.keys(Numros).length;
@@ -72,7 +85,7 @@ export const createNumroInstances = (num: number): Array<User> => {
       email: `${Numros[givenNameIndex].givenNameRome}.${
         familyName.familyNameRome
       }${dateToString(birthday)}@testaro.com`,
-      ...generateRandomAddress()
+      ...generateAddress(familyNameIndex, givenNameIndex)
     });
   }
   return result;
