@@ -35,6 +35,7 @@ const usersToStringArray = (users: User[]): Array<Array<string>> => {
       user.givenNameKana,
       user.sex,
       moment(user.birthday).format("YYYY/MM/DD"),
+      user.email,
       user.postalCode,
       user.prefecture,
       user.city,
