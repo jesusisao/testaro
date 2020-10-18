@@ -1,5 +1,6 @@
 const fs = require('fs');
 const csvSync = require('csv-parse/lib/sync');
+const sampleSize = require('lodash.samplesize');
 
 const file = 'tool/x-ken-all.csv';
 const data = fs.readFileSync(file);
@@ -18,11 +19,12 @@ for (const row of res) {
     })
 }
 
-const jsonString = JSON.stringify(hashArray)
+// やりたいことはあくまでランダムに住所を出したいだけ。
+// 全件ファイル出力にするとあまりに重すぎるので一定数のみ抽出する。
+const choosedArray = sampleSize(hashArray, 5000)
+const jsonString = JSON.stringify(choosedArray)
 
-fs.writeFile('tool/kenAll.json', jsonString, (err) => {
+fs.writeFile('tool/kenMini.json', jsonString, (err) => {
     if (err) { throw err; }
-    console.log('tool/kenAll.jsonが作成されました');
+    console.log('tool/kenMini.jsonが作成されました');
 });
-
-console.log(hashArray);

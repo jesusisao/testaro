@@ -24,3 +24,4 @@ yarn-error.log*
 
 # others
 tool/kenAll.json
+tool/kenMini.json

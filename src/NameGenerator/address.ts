@@ -1,4 +1,4 @@
-import kenData from './kenAll.json';
+import kenData from './kenMini.json';
 const kenList = kenData as Array<KenAddress>
 const kenLength = kenList.length
 
