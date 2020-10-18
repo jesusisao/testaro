@@ -1,47 +1,38 @@
 import React, { useState } from "react";
-import "./PdfGenerator.scss";
+import "./PptxGenerator.scss";
 import "../Common/common.scss";
 import { sleep, replaceVariable } from "../Common/util";
 import ParamBox from "../Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
-// import pdfFonts from "pdfmake/build/vfs_fonts";
-import vfs from "./lib/vfs_fonts";
-import pdfMake from "pdfmake/build/pdfmake";
-import { TDocumentDefinitions } from "pdfmake/interfaces";
+import pptxgen from "pptxgenjs";
 
-pdfMake.vfs = vfs;
-pdfMake.fonts = {
-  KosugiMaru: {
-    normal: "KosugiMaru-Regular.ttf",
-    bold: "KosugiMaru-Regular.ttf",
-    italics: "KosugiMaru-Regular.ttf",
-    bolditalics: "KosugiMaru-Regular.ttf"
-  }
-};
-
-const PdfGenerator: React.FC = () => {
-  const [pdfContent, setPdfContent] = useState("Dummy PDF #{count}");
+const PptxGenerator: React.FC = () => {
+  const [pptxContent, setPptxContent] = useState("Dummy PPTX #{count}");
   const [fileName, setFileName] = useState("dummy_#{count}");
   const [genNum, setGenNum] = useState(1);
   const [downloading, setDownloading] = useState(false);
 
-  const generatePdf = (num: number): void => {
-    const createdPdfContent = replaceVariable(pdfContent, num);
-    const docDefinition: TDocumentDefinitions = {
-      content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }],
-      defaultStyle: {
-        font: "KosugiMaru"
-      }
-    };
-    const createdFileName = replaceVariable(fileName, num);
-    pdfMake.createPdf(docDefinition).download(createdFileName);
+  const generatePptx = (num: number): void => {
+    // 1. Create a new Presentation
+    const pres = new pptxgen();
+
+    // 2. Add a Slide
+    const slide = pres.addSlide();
+
+    // 3. Add one or more objects (Tables, Shapes, Images, Text and Media) to the Slide
+    const textboxText = replaceVariable(pptxContent, num);
+    const textboxOpts: pptxgen.TextPropsOptions = { fontSize: 48, x: 1, y: 2.5, color: "000000", align: "center" };
+    slide.addText(textboxText, textboxOpts);
+
+    // 4. Save the Presentation
+    pres.writeFile(replaceVariable(fileName, num));
   };
 
   const generate = async (): Promise<void> => {
     setDownloading(true);
     for (let i = 0; i < genNum; i++) {
-      generatePdf(i + 1);
+      generatePptx(i + 1);
       // あんまり速く大量にDLさせられない
       await sleep(300);
     }
@@ -49,18 +40,18 @@ const PdfGenerator: React.FC = () => {
   };
 
   return (
-    <div className="PdfGenerator">
-      <h1 className="page-title">ダミーPDF生成</h1>
+    <div className="PptxGenerator">
+      <h1 className="page-title">ダミーPPTX生成</h1>
       <p>
-        ダミーのPDFファイルをたくさん生成できます。
+        ダミーのパワポをたくさん生成できます。
       </p>
       <div>
         <ParamBox labelName="中身の文字">
           <input
             type="text"
-            defaultValue={pdfContent}
+            defaultValue={pptxContent}
             disabled={downloading}
-            onChange={(e): void => setPdfContent(e.target.value)}
+            onChange={(e): void => setPptxContent(e.target.value)}
           ></input>
         </ParamBox>
         <ParamBox labelName="ファイル名">
@@ -94,4 +85,4 @@ const PdfGenerator: React.FC = () => {
   );
 };
 
-export default PdfGenerator;
+export default PptxGenerator;

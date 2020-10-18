@@ -8,6 +8,7 @@ import {
   faMale,
   faImages,
   faFilePdf,
+  faFilePowerpoint,
   faQrcode
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -44,6 +45,12 @@ const Menu: React.FC = () => {
           <Link to="/pdfgen" className="link">
             <FontAwesomeIcon icon={faFilePdf} className="icon" />
             ダミーPDF
+          </Link>
+        </li>
+        <li>
+          <Link to="/pptxgen" className="link">
+            <FontAwesomeIcon icon={faFilePowerpoint} className="icon" />
+            ダミーPPTX
           </Link>
         </li>
         <li>
