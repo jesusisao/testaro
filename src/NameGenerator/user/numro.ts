@@ -48,8 +48,9 @@ const createNumjo = (num: number): FamilyName => {
 };
 
 // ここでキャッシュしておく
+// 100 * 500 == 50000より大きな数で生成しようとするとエラーになるが、そんなに生成する人はいないと仮定する。
 let Numjos: Record<number, FamilyName> = {};
-for (let i = 1; i <= 100; i++) {
+for (let i = 1; i <= 500; i++) {
   Numjos = { [i]: createNumjo(i), ...Numjos };
 }
 
@@ -66,7 +67,7 @@ const generateAddress = (index1: number, index2: number): Address => {
   }
 }
 
-export const createNumroInstances = (num: number): Array<User> => {
+export const createNumros = (num: number): Array<User> => {
   const result = [];
   const NumroLength = Object.keys(Numros).length;
   for (let i = 0; i < num; i++) {

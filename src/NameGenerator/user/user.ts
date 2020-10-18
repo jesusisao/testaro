@@ -1,6 +1,6 @@
 import moment from "moment";
-import { createNumroInstances } from "./numro";
-import { createRandomUserInstances } from "./human";
+import { createNumros } from "./numro";
+import { createRandomUsers } from "./human";
 import { arrayToCsv } from "../../Common/util";
 import { Address } from "../address";
 
@@ -19,7 +19,7 @@ export type Human = FamilyName & GivenName & { sex: Sex; birthday: Date };
 export type User = Human & { email: string } & Address;
 
 export const createUsers = (genNum: number, useNumro: boolean): User[] => {
-  return useNumro ? createNumroInstances(genNum) : createRandomUserInstances(genNum);
+  return useNumro ? createNumros(genNum) : createRandomUsers(genNum);
 }
 
 type DisplayUserKey = keyof User | "joinedName" | "joinedNameKana" | "id"

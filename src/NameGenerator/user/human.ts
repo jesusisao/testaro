@@ -640,7 +640,7 @@ const endDate = new Date();
 startDate.setFullYear(startDate.getFullYear() - 40);
 endDate.setFullYear(endDate.getFullYear() - 15);
 
-export const createUserInstance = (): User => {
+const createRandomUser = (): User => {
   const familyName: FamilyName =
     HumanFamilyNames[createRandomIndex(HumanFamilyNames)];
   const sex = createRandomSex();
@@ -663,10 +663,10 @@ export const createUserInstance = (): User => {
   };
 };
 
-export const createRandomUserInstances = (num: number): Array<User> => {
+export const createRandomUsers = (num: number): Array<User> => {
   const result = [];
   for (let i = 1; i <= num; i++) {
-    result.push(createUserInstance());
+    result.push(createRandomUser());
   }
   return result;
 };
