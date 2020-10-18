@@ -1,141 +1,54 @@
 import React, { useState } from "react";
-import moment from "moment";
 import "./NameGenerator.scss";
 import "../Common/common.scss";
 import ParamBox from "../Common/ParamBox";
 import { copyToClipboard, downloadAsCsv } from "../Common/util";
-import { User, createUsers, userToCsvText } from "./user";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import {
+  User,
+  createUsers,
+  userToCsvText,
+  sortedUserKeys,
+  DisplayUser,
+  usersDisplayHashArray,
+  userDisplayInfo
+} from "./user";
 
 const generateUserTable = (users: User[]): JSX.Element => {
+  const displayUsers = usersDisplayHashArray(users)
   const items = [];
-  for (const [i, instance] of users.entries()) {
+  for (const [i, user] of displayUsers.entries()) {
     items.push(
-      <li key={"instance" + i} className="nowrap">
-        <input
-          style={{ width: 50 }}
-          readOnly
-          type="number"
-          value={i + 1}
-          onClick={(): void => copyToClipboard(i + 1)}
-        />
-        <input
-          style={{ width: 120 }}
-          readOnly
-          type="text"
-          value={instance.familyName + "　" + instance.givenName}
-          onClick={(): void =>
-            copyToClipboard(instance.familyName + " " + instance.givenName)
-          }
-        />
-        <input
-          style={{ width: 80 }}
-          readOnly
-          type="text"
-          value={instance.familyName}
-          onClick={(): void => copyToClipboard(instance.familyName)}
-        />
-        <input
-          style={{ width: 80 }}
-          readOnly
-          type="text"
-          value={instance.givenName}
-          onClick={(): void => copyToClipboard(instance.givenName)}
-        />
-        <input
-          style={{ width: 120 }}
-          readOnly
-          type="text"
-          value={instance.familyNameKana + "　" + instance.givenNameKana}
-          onClick={(): void =>
-            copyToClipboard(
-              instance.familyNameKana + " " + instance.givenNameKana
-            )
-          }
-        />
-        <input
-          style={{ width: 100 }}
-          readOnly
-          type="text"
-          value={instance.familyNameKana}
-          onClick={(): void => copyToClipboard(instance.familyNameKana)}
-        />
-        <input
-          style={{ width: 100 }}
-          readOnly
-          type="text"
-          value={instance.givenNameKana}
-          onClick={(): void => copyToClipboard(instance.givenNameKana)}
-        />
-        <input
-          style={{ width: 80 }}
-          readOnly
-          type="text"
-          value={instance.sex}
-          onClick={(): void => copyToClipboard(instance.sex)}
-        />
-        <input
-          style={{ width: 100 }}
-          readOnly
-          type="text"
-          value={moment(instance.birthday).format("YYYY/MM/DD")}
-          onClick={(): void =>
-            copyToClipboard(moment(instance.birthday).format("YYYY/MM/DD"))
-          }
-        />
-        <input
-          style={{ width: 300 }}
-          readOnly
-          type="text"
-          value={instance.email}
-          onClick={(): void => copyToClipboard(instance.email)}
-        />
-        <input
-          style={{ width: 80 }}
-          readOnly
-          type="text"
-          value={instance.postalCode}
-          onClick={(): void => copyToClipboard(instance.postalCode)}
-        />
-        <input
-          style={{ width: 80 }}
-          readOnly
-          type="text"
-          value={instance.prefecture}
-          onClick={(): void => copyToClipboard(instance.prefecture)}
-        />
-        <input
-          style={{ width: 120 }}
-          readOnly
-          type="text"
-          value={instance.city}
-          onClick={(): void => copyToClipboard(instance.city)}
-        />
-        <input
-          style={{ width: 120 }}
-          readOnly
-          type="text"
-          value={instance.townArea}
-          onClick={(): void => copyToClipboard(instance.townArea)}
-        />
-        <input
-          style={{ width: 100 }}
-          readOnly
-          type="text"
-          value={instance.houseNumber}
-          onClick={(): void => copyToClipboard(instance.houseNumber)}
-        />
-      </li>
+      generateUserRow(i, user)
     );
   }
   return <ul className="instance-records">{items}</ul>;
 };
 
+const generateUserRow = (index: number, user: DisplayUser): JSX.Element => {
+  const items = [];
+  for (const key of sortedUserKeys) {
+    items.push(
+      <input
+        style={{ width: userDisplayInfo[key]["width"] }}
+        readOnly
+        key={key}
+        type="text"
+        value={user[key]}
+        onClick={(): void => copyToClipboard(user[key])}
+      />
+    );
+  }
+  return <li key={"user_" + index} className="nowrap">
+    {items}
+  </li>
+}
+
 const NameGenerator: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [pattern, setPattern] = useState("人名");
-  const [genNum, setGenNum] = useState(10);
+  const [genNum, setGenNum] = useState(20);
   const [useNumro, setUseNumro] = useState(false);
 
   const generate = (): void => {
