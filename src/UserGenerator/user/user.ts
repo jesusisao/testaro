@@ -18,8 +18,8 @@ export type Sex = "female" | "male";
 export type Human = FamilyName & GivenName & { sex: Sex; birthday: Date };
 export type User = Human & { email: string } & Address;
 
-export const createUsers = (genNum: number, useNumro: boolean): User[] => {
-  return useNumro ? createNumros(genNum) : createRandomUsers(genNum);
+export const createUsers = (genNum: number, useNumro: boolean, mailDomain: string): User[] => {
+  return useNumro ? createNumros(genNum, mailDomain) : createRandomUsers(genNum, mailDomain);
 }
 
 type DisplayUserKey = keyof User | "joinedName" | "joinedNameKana" | "id"

@@ -67,7 +67,7 @@ const generateAddress = (index1: number, index2: number): Address => {
   }
 }
 
-export const createNumros = (num: number): Array<User> => {
+export const createNumros = (num: number, mailDomain: string): Array<User> => {
   const result = [];
   const NumroLength = Object.keys(Numros).length;
   for (let i = 0; i < num; i++) {
@@ -85,7 +85,7 @@ export const createNumros = (num: number): Array<User> => {
       birthday: birthday,
       email: `${Numros[givenNameIndex].givenNameRome}.${
         familyName.familyNameRome
-      }${dateToString(birthday)}@testaro.com`,
+      }${dateToString(birthday)}@${mailDomain}`,
       ...generateAddress(familyNameIndex, givenNameIndex)
     });
   }

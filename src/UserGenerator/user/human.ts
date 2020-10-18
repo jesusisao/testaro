@@ -640,7 +640,7 @@ const endDate = new Date();
 startDate.setFullYear(startDate.getFullYear() - 40);
 endDate.setFullYear(endDate.getFullYear() - 15);
 
-const createRandomUser = (): User => {
+const createRandomUser = (mailDomain: string): User => {
   const familyName: FamilyName =
     HumanFamilyNames[createRandomIndex(HumanFamilyNames)];
   const sex = createRandomSex();
@@ -658,15 +658,15 @@ const createRandomUser = (): User => {
     birthday: birthday,
     email: `${givenName.givenNameRome}.${
       familyName.familyNameRome
-    }${dateToString(birthday)}@testaro.com`,
+    }${dateToString(birthday)}@${mailDomain}`,
     ...generateRandomAddress()
   };
 };
 
-export const createRandomUsers = (num: number): Array<User> => {
+export const createRandomUsers = (num: number, mailDomain: string): Array<User> => {
   const result = [];
   for (let i = 1; i <= num; i++) {
-    result.push(createRandomUser());
+    result.push(createRandomUser(mailDomain));
   }
   return result;
 };

@@ -49,6 +49,7 @@ const generateUserRow = (index: number, user: DisplayUser): JSX.Element => {
 const UserGenerator: React.FC = () => {
   const [genNum, setGenNum] = useState(20);
   const [useNumro, setUseNumro] = useState(false);
+  const [mailDomain, setMailDomain] = useState("testaro.netlify.app");
 
   const generate = (): void => {
     setGenNum(0);
@@ -57,7 +58,7 @@ const UserGenerator: React.FC = () => {
     }, 0);
   };
 
-  const users = createUsers(genNum, useNumro);
+  const users = createUsers(genNum, useNumro, mailDomain);
 
   const downloadCsv = (): void => {
     downloadAsCsv(userToCsvText(users), "users")
@@ -70,20 +71,26 @@ const UserGenerator: React.FC = () => {
         セルをクリックすると、中の値が勝手にクリップボードにコピーされます。
       </p>
       <div>
-        <ParamBox labelName="生成数">
-          <input
-            className="text-right"
-            type="number"
-            defaultValue={genNum}
-            max="1000"
-            onChange={(e): void => setGenNum(parseInt(e.target.value))}
-          ></input>
-        </ParamBox>
         <ParamBox labelName="一条太郎方式">
           <input
             type="checkbox"
             defaultChecked={useNumro}
             onChange={(e): void => setUseNumro(e.target.checked)}
+          ></input>
+        </ParamBox>
+        <ParamBox labelName="メールのドメイン">
+          <input
+            type="text"
+            defaultValue={mailDomain}
+            onChange={(e): void => setMailDomain(e.target.value)}
+          ></input>
+        </ParamBox>
+        <ParamBox labelName="生成数">
+          <input
+            className="text-right"
+            type="number"
+            defaultValue={genNum}
+            onChange={(e): void => setGenNum(parseInt(e.target.value))}
           ></input>
         </ParamBox>
         <ParamBox>
