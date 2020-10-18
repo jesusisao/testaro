@@ -1,6 +1,6 @@
 import { FamilyName, GivenName, Sex, User } from "./user";
-import { createRandomDate, dateToString } from "../Common/util";
-import { generateRandomAddress } from "./address";
+import { createRandomDate, dateToString } from "../../Common/util";
+import { generateRandomAddress } from "../address";
 
 const HumanFamilyNames: Array<FamilyName> = [
   {

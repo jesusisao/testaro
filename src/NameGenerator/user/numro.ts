@@ -1,7 +1,7 @@
 import { FamilyName, GivenName, User, Sex } from "./user";
-import { dateToString, toFullWidth } from "../Common/util";
-import { numbersToKanji, numKanjiToKana, numKanjiToRome } from "./kanjiNum";
-import { Address } from "./address";
+import { dateToString, toFullWidth } from "../../Common/util";
+import { numbersToKanji, numKanjiToKana, numKanjiToRome } from "../kanjiNum";
+import { Address } from "../address";
 
 const createNumro = (num: number): GivenName => {
   const numKanji = numbersToKanji(num);

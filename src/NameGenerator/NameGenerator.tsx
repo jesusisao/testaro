@@ -13,7 +13,7 @@ import {
   DisplayUser,
   usersDisplayHashArray,
   userDisplayInfo
-} from "./user";
+} from "./user/user";
 
 const generateUserTable = (users: User[]): JSX.Element => {
   const displayUsers = usersDisplayHashArray(users)

@@ -1,8 +1,8 @@
 import moment from "moment";
 import { createNumroInstances } from "./numro";
 import { createRandomUserInstances } from "./human";
-import { arrayToCsv } from "../Common/util";
-import { Address } from "./address";
+import { arrayToCsv } from "../../Common/util";
+import { Address } from "../address";
 
 export type FamilyName = {
   familyName: string;
