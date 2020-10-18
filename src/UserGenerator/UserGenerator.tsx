@@ -70,40 +70,46 @@ const UserGenerator: React.FC = () => {
       <p>
         セルをクリックすると、中の値が勝手にクリップボードにコピーされます。
       </p>
-      <div>
-        <ParamBox labelName="一条太郎方式">
-          <input
-            type="checkbox"
-            defaultChecked={useNumro}
-            onChange={(e): void => setUseNumro(e.target.checked)}
-          ></input>
-        </ParamBox>
-        <ParamBox labelName="メールのドメイン">
-          <input
-            type="text"
-            defaultValue={mailDomain}
-            onChange={(e): void => setMailDomain(e.target.value)}
-          ></input>
-        </ParamBox>
-        <ParamBox labelName="生成数">
-          <input
-            className="text-right"
-            type="number"
-            defaultValue={genNum}
-            onChange={(e): void => setGenNum(parseInt(e.target.value))}
-          ></input>
-        </ParamBox>
-        <ParamBox>
-          <button className="testaro-button" onClick={generate}>
-            再生成
-          </button>
-          <button className="testaro-button" onClick={downloadCsv} style={{ marginLeft: 5 }}>
-            CSVダウンロード
-            <FontAwesomeIcon icon={faFileDownload} className="icon" />
-          </button>
-        </ParamBox>
+      <div className="params-container">
+        <div className="param-container">
+          <ParamBox labelName="一条太郎方式">
+            <input
+              type="checkbox"
+              defaultChecked={useNumro}
+              onChange={(e): void => setUseNumro(e.target.checked)}
+            ></input>
+          </ParamBox>
+          <ParamBox labelName="メールのドメイン">
+            <input
+              type="text"
+              defaultValue={mailDomain}
+              onChange={(e): void => setMailDomain(e.target.value)}
+            ></input>
+          </ParamBox>
+          <ParamBox labelName="生成数">
+            <input
+              className="text-right"
+              type="number"
+              defaultValue={genNum}
+              onChange={(e): void => setGenNum(parseInt(e.target.value))}
+            ></input>
+          </ParamBox>
+          <ParamBox>
+            <button className="testaro-button" onClick={generate}>
+              再生成
+            </button>
+            <button className="testaro-button" onClick={downloadCsv} style={{ marginLeft: 5 }}>
+              CSVダウンロード
+              <FontAwesomeIcon icon={faFileDownload} className="icon" />
+            </button>
+          </ParamBox>
+        </div>
       </div>
-      {generateUserTable(users)}
+      <div className="outputs-container" style={{ display: "block"}}>
+        <div className="output-container">
+          {generateUserTable(users)}
+        </div>
+      </div>
     </div>
   );
 };

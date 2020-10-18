@@ -8,9 +8,8 @@
     display: block;
     list-style: none;
     overflow-x: scroll;
-    padding: 20px;
-    background-color: rgba(0,0,0,0.5);
-    max-width: 1200px;
+    padding: 2px;
+    background-color: $config-menu-background-color;
     li {
       width: auto;
       display: inline-block;

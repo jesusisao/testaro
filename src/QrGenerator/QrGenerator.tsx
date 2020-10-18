@@ -25,7 +25,7 @@ const QrGenerator: React.FC = () => {
         const canvasElement = canvasRefs[i].current!;
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const context = canvasElement.getContext("2d")!;
-        context.fillStyle = "rgb(128, 128, 128)";
+        context.fillStyle = "rgb(40, 44, 52)";
         context.fillRect(0, 0, canvasElement.height, canvasElement.width);
         continue;
       }
@@ -83,28 +83,30 @@ const QrGenerator: React.FC = () => {
     const items = [];
     for (const [i, code] of codes.entries()) {
       items.push(
-        <ParamBox labelName="QR用文字列" key={i + ""}>
-          <div className="canvas-li">
-            <input
-              type="text"
-              value={code}
-              onChange={(e): void => updateCode(i, e.target.value)}
-            ></input>
-            <button onClick={(): void => removeClicked(i)}>
-              <FontAwesomeIcon icon={faTimes} className="icon" />
-            </button>
-            <button onClick={(): void => generateAndDownload(i)}>
-              <FontAwesomeIcon icon={faFileDownload} className="icon" />
-            </button>
-            <canvas
-              ref={canvasRefs[i]}
-              key={i + ""}
-              className="qr-canvas"
-              width={116}
-              height={116}
-            ></canvas>
-          </div>
-        </ParamBox>
+        <div className="qr-li">
+          <ParamBox labelName="QR用文字列" key={i + ""}>
+            <div className="canvas-li">
+              <input
+                type="text"
+                value={code}
+                onChange={(e): void => updateCode(i, e.target.value)}
+              ></input>
+              <button onClick={(): void => removeClicked(i)}>
+                <FontAwesomeIcon icon={faTimes} className="icon" />
+              </button>
+              <button onClick={(): void => generateAndDownload(i)}>
+                <FontAwesomeIcon icon={faFileDownload} className="icon" />
+              </button>
+              <canvas
+                ref={canvasRefs[i]}
+                key={i + ""}
+                className="qr-canvas"
+                width={116}
+                height={116}
+              ></canvas>
+            </div>
+          </ParamBox>
+        </div>
       );
     }
     return <div>{items}</div>;
@@ -113,20 +115,22 @@ const QrGenerator: React.FC = () => {
   return (
     <div className="QrGenerator">
       <h1 className="page-title">QRコード生成</h1>
-      <div>
-        {inputList()}
-
-        <ParamBox>
-          <button className="testaro-button" onClick={add}>
-            項目追加
-          </button>
-        </ParamBox>
-
-        <ParamBox>
-          <button className="testaro-button" onClick={generate}>
-            生成
-          </button>
-        </ParamBox>
+      <div className="params-container">
+        <div className="param-container">
+          {inputList()}
+  
+          <ParamBox>
+            <button className="testaro-button" onClick={add}>
+              項目追加
+            </button>
+          </ParamBox>
+  
+          <ParamBox>
+            <button className="testaro-button" onClick={generate}>
+              生成
+            </button>
+          </ParamBox>
+        </div>
       </div>
     </div>
   );

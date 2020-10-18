@@ -45,41 +45,43 @@ const PptxGenerator: React.FC = () => {
       <p>
         ダミーのパワポをたくさん生成できます。
       </p>
-      <div>
-        <ParamBox labelName="中身の文字">
-          <input
-            type="text"
-            defaultValue={pptxContent}
-            disabled={downloading}
-            onChange={(e): void => setPptxContent(e.target.value)}
-          ></input>
-        </ParamBox>
-        <ParamBox labelName="ファイル名">
-          <input
-            type="text"
-            defaultValue={fileName}
-            disabled={downloading}
-            onChange={(e): void => setFileName(e.target.value)}
-          ></input>
-        </ParamBox>
-        <ParamBox labelName="出力枚数">
-          <input
-            type="number"
-            defaultValue={genNum}
-            disabled={downloading}
-            onChange={(e): void => setGenNum(parseInt(e.target.value))}
-          ></input>
-        </ParamBox>
-        <ParamBox>
-          <button
-            className="testaro-button"
-            disabled={downloading}
-            onClick={generate}
-          >
-            生成してダウンロード
-            <FontAwesomeIcon icon={faFileDownload} className="icon" />
-          </button>
-        </ParamBox>
+      <div className="params-container">
+        <div className="param-container">
+          <ParamBox labelName="中身の文字">
+            <input
+              type="text"
+              defaultValue={pptxContent}
+              disabled={downloading}
+              onChange={(e): void => setPptxContent(e.target.value)}
+            ></input>
+          </ParamBox>
+          <ParamBox labelName="ファイル名">
+            <input
+              type="text"
+              defaultValue={fileName}
+              disabled={downloading}
+              onChange={(e): void => setFileName(e.target.value)}
+            ></input>
+          </ParamBox>
+          <ParamBox labelName="出力枚数">
+            <input
+              type="number"
+              defaultValue={genNum}
+              disabled={downloading}
+              onChange={(e): void => setGenNum(parseInt(e.target.value))}
+            ></input>
+          </ParamBox>
+          <ParamBox>
+            <button
+              className="testaro-button"
+              disabled={downloading}
+              onClick={generate}
+            >
+              生成してダウンロード
+              <FontAwesomeIcon icon={faFileDownload} className="icon" />
+            </button>
+          </ParamBox>
+        </div>
       </div>
     </div>
   );

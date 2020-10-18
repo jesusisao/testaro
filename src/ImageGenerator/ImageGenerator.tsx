@@ -106,9 +106,9 @@ const ImageGenerator: React.FC = () => {
       <p>
         出力枚数を指定することで、大量のダミー画像を一括でダウンロード可能です。
       </p>
-      <div className="paras-container">
-        <div>
-          <h2>画像パラメータ</h2>
+      <div className="params-container">
+        <div className="param-container">
+          <span className="param-label">画像パラメータ</span>
           <ParamBox labelName="幅">
             <input
               className="text-right"
@@ -209,8 +209,8 @@ const ImageGenerator: React.FC = () => {
           </ParamBox>
         </div>
 
-        <div>
-          <h2>ファイルパラメータ</h2>
+        <div className="param-container">
+          <span className="param-label">ファイルパラメータ</span>
           <ParamBox labelName="ファイル名">
             <input
               type="text"
@@ -253,10 +253,14 @@ const ImageGenerator: React.FC = () => {
         </div>
       </div>
 
-      <label className="canvasLabel" htmlFor="canvas">
-        ファイル名（プレビュー）: {createFileFullName(1)}
-      </label>
-      <canvas id="canvas" ref={canvasRef} width={width} height={height} />
+      <div className="outputs-container">
+        <div className="output-container">
+          <label className="canvasLabel" htmlFor="canvas">
+            ファイル名（プレビュー）: {createFileFullName(1)}
+          </label>
+          <canvas id="canvas" ref={canvasRef} width={width} height={height} />
+        </div>
+      </div>
     </div>
   );
 };
