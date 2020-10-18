@@ -31,7 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "eslint": "eslint src --ext .ts,.tsx"
+    "eslint": "eslint src --ext .ts,.tsx",
+    "create:addressJson": "node tool/csvToJson.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -55,6 +56,7 @@
     "@types/webfontloader": "^1.6.29",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
+    "csv-parse": "^4.12.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",

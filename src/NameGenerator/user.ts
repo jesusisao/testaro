@@ -2,6 +2,7 @@ import moment from "moment";
 import { createNumroInstances } from "./numro";
 import { createRandomUserInstances } from "./human";
 import { arrayToCsv } from "../Common/util";
+import { Address } from "./address";
 
 export type FamilyName = {
   familyName: string;
@@ -15,7 +16,7 @@ export type GivenName = {
 };
 export type Sex = "female" | "male";
 export type Human = FamilyName & GivenName & { sex: Sex; birthday: Date };
-export type User = Human & { email: string };
+export type User = Human & { email: string } & Address;
 
 export const createUsers = (genNum: number, useNumro: boolean): User[] => {
   return useNumro ? createNumroInstances(genNum) : createRandomUserInstances(genNum);
@@ -23,17 +24,22 @@ export const createUsers = (genNum: number, useNumro: boolean): User[] => {
 
 const usersToStringArray = (users: User[]): Array<Array<string>> => {
   const items: Array<Array<string>> = [];
-  for (const [i, instance] of users.entries()) {
+  for (const [i, user] of users.entries()) {
     items.push([
       (i + 1).toString(),
-      instance.familyName + "　" + instance.givenName,
-      instance.familyName,
-      instance.givenName,
-      instance.familyNameKana + "　" + instance.givenNameKana,
-      instance.familyNameKana,
-      instance.givenNameKana,
-      instance.sex,
-      moment(instance.birthday).format("YYYY/MM/DD")
+      user.familyName + "　" + user.givenName,
+      user.familyName,
+      user.givenName,
+      user.familyNameKana + "　" + user.givenNameKana,
+      user.familyNameKana,
+      user.givenNameKana,
+      user.sex,
+      moment(user.birthday).format("YYYY/MM/DD"),
+      user.postalCode,
+      user.prefecture,
+      user.city,
+      user.townArea,
+      user.houseNumber
     ])
   }
   return items

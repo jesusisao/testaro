@@ -30,14 +30,14 @@ const generateUserTable = (users: User[]): JSX.Element => {
           }
         />
         <input
-          style={{ width: 100 }}
+          style={{ width: 80 }}
           readOnly
           type="text"
           value={instance.familyName}
           onClick={(): void => copyToClipboard(instance.familyName)}
         />
         <input
-          style={{ width: 100 }}
+          style={{ width: 80 }}
           readOnly
           type="text"
           value={instance.givenName}
@@ -69,7 +69,7 @@ const generateUserTable = (users: User[]): JSX.Element => {
           onClick={(): void => copyToClipboard(instance.givenNameKana)}
         />
         <input
-          style={{ width: 100 }}
+          style={{ width: 80 }}
           readOnly
           type="text"
           value={instance.sex}
@@ -90,6 +90,41 @@ const generateUserTable = (users: User[]): JSX.Element => {
           type="text"
           value={instance.email}
           onClick={(): void => copyToClipboard(instance.email)}
+        />
+        <input
+          style={{ width: 80 }}
+          readOnly
+          type="text"
+          value={instance.postalCode}
+          onClick={(): void => copyToClipboard(instance.postalCode)}
+        />
+        <input
+          style={{ width: 80 }}
+          readOnly
+          type="text"
+          value={instance.prefecture}
+          onClick={(): void => copyToClipboard(instance.prefecture)}
+        />
+        <input
+          style={{ width: 120 }}
+          readOnly
+          type="text"
+          value={instance.city}
+          onClick={(): void => copyToClipboard(instance.city)}
+        />
+        <input
+          style={{ width: 120 }}
+          readOnly
+          type="text"
+          value={instance.townArea}
+          onClick={(): void => copyToClipboard(instance.townArea)}
+        />
+        <input
+          style={{ width: 100 }}
+          readOnly
+          type="text"
+          value={instance.houseNumber}
+          onClick={(): void => copyToClipboard(instance.houseNumber)}
         />
       </li>
     );
@@ -128,6 +163,7 @@ const NameGenerator: React.FC = () => {
             className="text-right"
             type="number"
             defaultValue={genNum}
+            max="1000"
             onChange={(e): void => setGenNum(parseInt(e.target.value))}
           ></input>
         </ParamBox>
@@ -148,10 +184,10 @@ const NameGenerator: React.FC = () => {
           ></input>
         </ParamBox>
         <ParamBox>
-          <button className="testaro-button" onClick={generate} style={{ marginRight: 5 }}>
+          <button className="testaro-button" onClick={generate}>
             再生成
           </button>
-          <button className="testaro-button" onClick={downloadCsv}>
+          <button className="testaro-button" onClick={downloadCsv} style={{ marginLeft: 5 }}>
             CSVダウンロード
             <FontAwesomeIcon icon={faFileDownload} className="icon" />
           </button>

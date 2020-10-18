@@ -1,5 +1,6 @@
 import { FamilyName, GivenName, Sex, User } from "./user";
 import { createRandomDate, dateToString } from "../Common/util";
+import { generateRandomAddress } from "./address";
 
 const HumanFamilyNames: Array<FamilyName> = [
   {
@@ -657,7 +658,8 @@ export const createUserInstance = (): User => {
     birthday: birthday,
     email: `${givenName.givenNameRome}.${
       familyName.familyNameRome
-    }${dateToString(birthday)}@testaro.com`
+    }${dateToString(birthday)}@testaro.com`,
+    ...generateRandomAddress()
   };
 };
 

@@ -1,6 +1,7 @@
 import { FamilyName, GivenName, User, Sex } from "./user";
 import { dateToString } from "../Common/util";
 import { numbersToKanji, numKanjiToKana, numKanjiToRome } from "./kanjiNum";
+import { generateRandomAddress } from "./address";
 
 const createNumro = (num: number): GivenName => {
   const numKanji = numbersToKanji(num);
@@ -70,7 +71,8 @@ export const createNumroInstances = (num: number): Array<User> => {
       birthday: birthday,
       email: `${Numros[givenNameIndex].givenNameRome}.${
         familyName.familyNameRome
-      }${dateToString(birthday)}@testaro.com`
+      }${dateToString(birthday)}@testaro.com`,
+      ...generateRandomAddress()
     });
   }
   return result;
