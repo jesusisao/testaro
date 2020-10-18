@@ -5,6 +5,8 @@ import "../Common/common.scss";
 import ParamBox from "../Common/ParamBox";
 import { copyToClipboard, downloadAsCsv } from "../Common/util";
 import { User, createUsers, userToCsvText } from "./user";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 
 const generateUserTable = (users: User[]): JSX.Element => {
   const items = [];
@@ -151,6 +153,7 @@ const NameGenerator: React.FC = () => {
           </button>
           <button className="testaro-button" onClick={downloadCsv}>
             CSVダウンロード
+            <FontAwesomeIcon icon={faFileDownload} className="icon" />
           </button>
         </ParamBox>
       </div>
