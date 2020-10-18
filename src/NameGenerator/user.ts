@@ -178,6 +178,7 @@ const usersToStringArray = (users: User[]): Array<Array<string>> => {
   for (const user of displayUsers) {
     const item: Array<string> = []
     for (const key of sortedUserKeys) {
+      if (!(userDisplayInfo[key]["display"])) continue;
       item.push(user[key])
     }
     items.push(item)

@@ -29,6 +29,7 @@ const generateUserTable = (users: User[]): JSX.Element => {
 const generateUserRow = (index: number, user: DisplayUser): JSX.Element => {
   const items = [];
   for (const key of sortedUserKeys) {
+    if (!(userDisplayInfo[key]["display"])) continue;
     items.push(
       <input
         style={{ width: userDisplayInfo[key]["width"] }}
