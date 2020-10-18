@@ -3,9 +3,8 @@ import moment from "moment";
 import "./NameGenerator.scss";
 import "../Common/common.scss";
 import ParamBox from "../Common/ParamBox";
-import { copyToClipboard } from "../Common/util";
+import { copyToClipboard, downloadAsCsv } from "../Common/util";
 import { User, createUsers, userToCsvText } from "./user";
-import { download } from "./download"
 
 const generateUserTable = (users: User[]): JSX.Element => {
   const items = [];
@@ -112,7 +111,7 @@ const NameGenerator: React.FC = () => {
   const users = createUsers(genNum, useNumro);
 
   const downloadCsv = (): void => {
-    download(userToCsvText(users), "users")
+    downloadAsCsv(userToCsvText(users), "users")
   }
 
   return (
