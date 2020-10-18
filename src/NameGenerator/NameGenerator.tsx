@@ -47,8 +47,6 @@ const generateUserRow = (index: number, user: DisplayUser): JSX.Element => {
 }
 
 const NameGenerator: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [pattern, setPattern] = useState("人名");
   const [genNum, setGenNum] = useState(20);
   const [useNumro, setUseNumro] = useState(false);
 
@@ -80,15 +78,6 @@ const NameGenerator: React.FC = () => {
             max="1000"
             onChange={(e): void => setGenNum(parseInt(e.target.value))}
           ></input>
-        </ParamBox>
-        <ParamBox labelName="パターン">
-          <select
-            name="pattern"
-            id="pattern"
-            onChange={(e): void => setPattern(e.target.value)}
-          >
-            <option value="人">人</option>
-          </select>
         </ParamBox>
         <ParamBox labelName="一条太郎方式">
           <input
