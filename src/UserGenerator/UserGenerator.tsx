@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./NameGenerator.scss";
+import "./UserGenerator.scss";
 import "../Common/common.scss";
 import ParamBox from "../Common/ParamBox";
 import { copyToClipboard, downloadAsCsv } from "../Common/util";
@@ -46,7 +46,7 @@ const generateUserRow = (index: number, user: DisplayUser): JSX.Element => {
   </li>
 }
 
-const NameGenerator: React.FC = () => {
+const UserGenerator: React.FC = () => {
   const [genNum, setGenNum] = useState(20);
   const [useNumro, setUseNumro] = useState(false);
 
@@ -64,8 +64,8 @@ const NameGenerator: React.FC = () => {
   }
 
   return (
-    <div className="NameGenerator">
-      <h1 className="page-title">ダミーレコード生成</h1>
+    <div className="UserGenerator">
+      <h1 className="page-title">ダミーユーザー生成</h1>
       <p>
         セルをクリックすると、中の値が勝手にクリップボードにコピーされます。
       </p>
@@ -101,4 +101,4 @@ const NameGenerator: React.FC = () => {
   );
 };
 
-export default NameGenerator;
+export default UserGenerator;

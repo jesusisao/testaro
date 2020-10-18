@@ -9,7 +9,7 @@ import ImageGenerator from "./ImageGenerator/ImageGenerator";
 import PptxGenerator from "./PptxGenerator/PptxGenerator";
 import QrGenerator from "./QrGenerator/QrGenerator";
 import Loading from "./Common/Loading";
-const LazyNameGenerator = lazy(() => import("./NameGenerator/NameGenerator"));
+const LazyUserGenerator = lazy(() => import("./UserGenerator/UserGenerator"));
 const LazyPdfGenerator = lazy(() => import("./PdfGenerator/PdfGenerator"));
 
 const App: React.FC = () => {
@@ -23,7 +23,7 @@ const App: React.FC = () => {
             <Route exact path="/" component={About} />
             <Route exact path="/about" component={About} />
             <Route exact path="/strgen" component={StringGenerator} />
-            <Route path="/namegen" component={LazyNameGenerator} />
+            <Route path="/usergen" component={LazyUserGenerator} />
             <Route path="/imggen" component={ImageGenerator} />
             <Route path="/pdfgen" component={LazyPdfGenerator} />
             <Route path="/pptxgen" component={PptxGenerator} />

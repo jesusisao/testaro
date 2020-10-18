@@ -30,9 +30,9 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link to="/namegen" className="link">
+          <Link to="/usergen" className="link">
             <FontAwesomeIcon icon={faMale} className="icon" />
-            ダミーレコード
+            ダミーユーザー
           </Link>
         </li>
         <li>
