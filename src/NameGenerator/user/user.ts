@@ -142,6 +142,12 @@ export const sortedUserKeys: Array<DisplayUserKey> = (Object.keys(userDisplayInf
     }
   ) as Array<DisplayUserKey>
 
+const sortedUserKeysDisplay: Array<DisplayUserKey> = sortedUserKeys.filter(
+  (key) => {
+    return userDisplayInfo[key]["display"]
+  }
+)
+
 export const usersDisplayHashArray = (users: User[]): Array<DisplayUser> => {
   const items: Array<DisplayUser> = [];
   for (const [i, user] of users.entries()) {
@@ -174,7 +180,7 @@ export const usersDisplayHashArray = (users: User[]): Array<DisplayUser> => {
 // 主にCSV用。
 const usersToStringArray = (users: User[]): Array<Array<string>> => {
   const displayUsers = usersDisplayHashArray(users)
-  const items: Array<Array<string>> = [];
+  const items: Array<Array<string>> = [sortedUserKeysDisplay];
   for (const user of displayUsers) {
     const item: Array<string> = []
     for (const key of sortedUserKeys) {
