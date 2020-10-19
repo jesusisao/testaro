@@ -8,6 +8,7 @@ import StringGenerator from "./StringGenerator/StringGenerator";
 import ImageGenerator from "./ImageGenerator/ImageGenerator";
 import PptxGenerator from "./PptxGenerator/PptxGenerator";
 import QrGenerator from "./QrGenerator/QrGenerator";
+import RecommendedBooks from "./RecommendedBooks/RecommendedBooks";
 import Loading from "./Common/Loading";
 const LazyUserGenerator = lazy(() => import("./UserGenerator/UserGenerator"));
 const LazyPdfGenerator = lazy(() => import("./PdfGenerator/PdfGenerator"));
@@ -28,6 +29,7 @@ const App: React.FC = () => {
             <Route path="/pdfgen" component={LazyPdfGenerator} />
             <Route path="/pptxgen" component={PptxGenerator} />
             <Route path="/qrgen" component={QrGenerator} />
+            <Route path="/recobooks" component={RecommendedBooks} />
           </Suspense>
 
           {/* 開発用 */}
