@@ -15,6 +15,9 @@
       display: inline-block;
       input {
         border-radius: 0;
+        border: none;
+        border-left: solid rgba(0, 0, 0, 0.4) 1px;
+        border-right: solid rgba(0, 0, 0, 0.4) 1px;
       }
     }
   }

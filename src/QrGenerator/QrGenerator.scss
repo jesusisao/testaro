@@ -5,13 +5,17 @@
   min-width: 100%;
   overflow: hidden;
   .qr-li {
-    background-color: rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
     padding: 3px;
     margin: 2px;
     .canvas-li {
       display: flex;
       align-items: center;
+      input {
+        border-bottom: solid rgba(255, 255, 255, 0.4) 2px;
+        border-radius: 0;
+        padding: 0;
+      }
       .qr-canvas {
         margin-left: 15px;
         background-color: $config-menu-background-color;

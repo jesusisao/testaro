@@ -198,15 +198,15 @@ const ImageGenerator: React.FC = () => {
               ></input>
             </ParamBox>
           )}
-          <ParamBox>
-            <button
-              className="testaro-button"
-              disabled={downloading}
-              onClick={(): void => draw()}
-            >
-              再生成
-            </button>
-          </ParamBox>
+
+          <button
+            className="testaro-button"
+            disabled={downloading}
+            onClick={(): void => draw()}
+          >
+            再生成
+          </button>
+
         </div>
 
         <div className="param-container">
@@ -240,16 +240,14 @@ const ImageGenerator: React.FC = () => {
               onChange={(e): void => setGenNum(parseInt(e.target.value))}
             ></input>
           </ParamBox>
-          <ParamBox>
-            <button
-              className="testaro-button"
-              disabled={downloading}
-              onClick={downloadsImage}
-            >
-              生成してダウンロード
-              <FontAwesomeIcon icon={faFileDownload} className="icon" />
-            </button>
-          </ParamBox>
+          <button
+            className="testaro-button"
+            disabled={downloading}
+            onClick={downloadsImage}
+          >
+            生成してダウンロード
+            <FontAwesomeIcon icon={faFileDownload} className="icon" />
+          </button>
         </div>
       </div>
 

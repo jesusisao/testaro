@@ -94,15 +94,15 @@ const UserGenerator: React.FC = () => {
               onChange={(e): void => setGenNum(parseInt(e.target.value))}
             ></input>
           </ParamBox>
-          <ParamBox>
-            <button className="testaro-button" onClick={generate}>
-              再生成
-            </button>
-            <button className="testaro-button" onClick={downloadCsv} style={{ marginLeft: 5 }}>
-              CSVダウンロード
-              <FontAwesomeIcon icon={faFileDownload} className="icon" />
-            </button>
-          </ParamBox>
+
+          <button className="testaro-button" onClick={generate}>
+            再生成
+          </button>
+          <button className="testaro-button" onClick={downloadCsv} style={{ marginLeft: 5 }}>
+            CSVダウンロード
+            <FontAwesomeIcon icon={faFileDownload} className="icon" />
+          </button>
+
         </div>
       </div>
       <div className="outputs-container" style={{ display: "block"}}>

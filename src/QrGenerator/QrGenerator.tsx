@@ -119,17 +119,15 @@ const QrGenerator: React.FC = () => {
         <div className="param-container">
           {inputList()}
   
-          <ParamBox>
-            <button className="testaro-button" onClick={add}>
-              項目追加
-            </button>
-          </ParamBox>
-  
-          <ParamBox>
-            <button className="testaro-button" onClick={generate}>
-              生成
-            </button>
-          </ParamBox>
+
+          <button className="testaro-button" onClick={add}>
+            項目追加
+          </button>
+
+          <button className="testaro-button" onClick={generate} style={{ marginLeft: 5 }}>
+            生成
+          </button>
+
         </div>
       </div>
     </div>

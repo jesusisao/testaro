@@ -71,16 +71,16 @@ const PptxGenerator: React.FC = () => {
               onChange={(e): void => setGenNum(parseInt(e.target.value))}
             ></input>
           </ParamBox>
-          <ParamBox>
-            <button
-              className="testaro-button"
-              disabled={downloading}
-              onClick={generate}
-            >
-              生成してダウンロード
-              <FontAwesomeIcon icon={faFileDownload} className="icon" />
-            </button>
-          </ParamBox>
+
+          <button
+            className="testaro-button"
+            disabled={downloading}
+            onClick={generate}
+          >
+            生成してダウンロード
+            <FontAwesomeIcon icon={faFileDownload} className="icon" />
+          </button>
+
         </div>
       </div>
     </div>

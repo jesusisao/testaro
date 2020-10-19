@@ -33,6 +33,9 @@
       margin: 0 0 10px 0;
       font-size: 1.4em;
     }
+    input, select {
+      background-color: rgba(0, 0, 0, 0.0);
+    }
   }
 }
 
@@ -112,7 +115,7 @@ textarea,
 select {
   background-color: rgba(0, 0, 0, 0.3);
   color: $config-font-color;
-  border: solid rgba(0, 0, 0, 0.4) 1px;
+  border: none;
   border-collapse: collapse;
   border-radius: 15px;
   padding: 0 10px 0 10px;

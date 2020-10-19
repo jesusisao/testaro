@@ -76,11 +76,11 @@ const StringGenerator: React.FC = () => {
               <option value={65536} />
             </datalist>
           </ParamBox>
-          <ParamBox>
-            <button className="testaro-button" onClick={generate}>
-              生成
-            </button>
-          </ParamBox>
+
+          <button className="testaro-button" onClick={generate}>
+            生成
+          </button>
+
         </div>
       </div>
       <div className="outputs-container">
