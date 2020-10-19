@@ -4,7 +4,10 @@ import "./Loading.scss";
 const Loading: React.FC = () => {
   return (
     <div className="loader-wrapper">
-      <div className="loader">Loading...</div>
+      <div className="loader-content">
+        <p>しばらくお待ち下さい…</p>
+        <div className="loader"></div>
+      </div>
     </div>
   );
 };

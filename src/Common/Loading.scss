@@ -2,12 +2,29 @@
 
 .loader-wrapper {
   align-items: center;
-  background-color: #3b414d;
+  background-color: $config-background-color;
   display: flex;
   height: 100%;
   justify-content: center;
   opacity: 0.95;
   width: 100%;
+  flex-direction: column;
+  .loader-content {
+    width: 300px;
+    position: relative;
+    p {
+      left: 65px;
+      top: 85px;
+      display: block;
+      position: absolute;
+      text-align: center;
+      color: $config-button-accent-color;
+      font-size: 1.2em;
+      font-weight: 800;
+      z-index: 10;
+      text-shadow: 1px 1px 0 $config-background-color, -1px 1px 0 $config-background-color, 1px -1px 0 $config-background-color, -1px -1px 0 $config-background-color;
+    }
+  }
 }
 
 .loader,
