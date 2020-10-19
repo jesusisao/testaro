@@ -114,5 +114,8 @@ select {
   color: $config-font-color;
   border: solid rgba(0, 0, 0, 0.4) 1px;
   border-collapse: collapse;
+  border-radius: 15px;
+  padding: 0 10px 0 10px;
   height: 25px;
+  outline: none;
 }

@@ -17,7 +17,7 @@ const labelStyle = {
   backgroundColor: "rgba(255, 255, 255, 0.3)",
   color: "rgb(20, 20, 20)",
   marginRight: "3px",
-  borderRadius: "5px"
+  borderRadius: "15px"
 };
 
 const formItemStyle = {

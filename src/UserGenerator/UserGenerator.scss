@@ -13,6 +13,9 @@
     li {
       width: auto;
       display: inline-block;
+      input {
+        border-radius: 0;
+      }
     }
   }
 }
