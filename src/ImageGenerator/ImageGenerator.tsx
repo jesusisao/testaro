@@ -16,6 +16,42 @@ const generateRandomColor = (): string => {
   return `rgb(${ran1}, ${ran2}, ${ran3})`;
 };
 
+const toRadian = (angle: number) => angle * Math.PI / 180;
+
+type XY = {
+  x: number,
+  y: number
+}
+
+const drawCircle = (
+  ctx: CanvasRenderingContext2D,
+  xy: XY,
+  radius: number,
+  color: string = "rgba(255, 255, 255, 1.0)",
+  strokeColor: string = "rgba(255, 255, 255, 1.0)"
+): void => {
+  ctx.beginPath();
+  ctx.arc(xy.x, xy.y, radius, toRadian(0), toRadian(360), false);
+  ctx.strokeStyle = strokeColor; // 枠線の色
+  ctx.lineWidth = radius / 2;
+  ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+const drawTriangle = (ctx: CanvasRenderingContext2D, xy1: XY, xy2: XY, xy3: XY, color: string = "rgba(255, 255, 255, 1.0)"): void => {
+  ctx.beginPath();
+  ctx.moveTo(xy1.x, xy1.y);
+  ctx.lineTo(xy2.x, xy2.y);
+  ctx.lineTo(xy3.x, xy3.y);
+  ctx.closePath();
+
+  ctx.strokeStyle = "rgba(0, 0, 0, 0.0)"; // 枠線の色
+  ctx.stroke();
+  ctx.fillStyle = color; // 塗りつぶしの色
+  ctx.fill();
+}
+
 const ImageGenerator: React.FC = () => {
   const [width, setWidth] = useState(400);
   const [height, setHeight] = useState(300);
@@ -30,6 +66,11 @@ const ImageGenerator: React.FC = () => {
   const [imageFormat, setImageFormat] = useState("jpg");
   const [genNum, setGenNum] = useState(1);
   const [downloading, setDownloading] = useState(false);
+  const [imageLikeIcon, setImageLikeIcon] = useState(false);
+
+  const widthForDraw = width
+  const heightForDraw = imageLikeIcon ? width : height
+  const iconColor = fontColor;
 
   const canvasRef = useRef(null);
 
@@ -41,26 +82,40 @@ const ImageGenerator: React.FC = () => {
 
   const draw = (count = 1): void => {
     const ctx: CanvasRenderingContext2D = getContext();
+    const randomColor = generateRandomColor();
+    const backgroundColor = useRandomColor ? randomColor : color;
 
-    ctx.fillStyle = useRandomColor ? generateRandomColor() : color;
-    ctx.fillRect(0, 0, width, height);
+    ctx.fillStyle = backgroundColor;
+    ctx.fillRect(0, 0, widthForDraw, heightForDraw);
 
+    if (imageLikeIcon) {
+      // アイコンのやつ
+      const xy1 = { x: widthForDraw / 2, y: heightForDraw * (1 / 3) };
+      const xy2 = { x: widthForDraw / 2 + widthForDraw / 6, y: heightForDraw * 29 / 30 };
+      const xy3 = { x: widthForDraw / 2 - widthForDraw / 6, y: heightForDraw * 29 / 30 };
+      drawTriangle(ctx, xy1, xy2, xy3, iconColor)
+      drawCircle(ctx, { x: widthForDraw / 2, y: heightForDraw / 3 }, widthForDraw / 6, iconColor, backgroundColor);
+      ctx.save();
+      return;
+    }
+
+    // 真ん中に文字書くやつ
     const replacedComment = replaceVariable(comment, count);
-
     // フォントによってtextWidthが変わるので注意
-    // TODO: 使えるフォントもっと増やす
     ctx.font = `${fontSize}px ${font}`;
     const textWidth = ctx.measureText(replacedComment).width;
     const textHeight = fontSize;
-    const fontX = (width - textWidth) / 2;
-    const fontY = (height + textHeight) / 2;
+    const fontX = (widthForDraw - textWidth) / 2;
+    const fontY = (heightForDraw + textHeight) / 2;
     ctx.fillStyle = fontColor;
     ctx.fillText(replacedComment, fontX, fontY);
 
     if (doDrawSize) {
-      ctx.font = `${15}px ${font}`;
-      ctx.fillText(`width: ${width}px`, 10, height - 35);
-      ctx.fillText(`height: ${height}px`, 10, height - 15);
+      // 左下にサイズ書くやつ
+      ctx.font = `15px ${font}`;
+      ctx.fillStyle = fontColor;
+      ctx.fillText(`width: ${widthForDraw}px`, 10, heightForDraw - 35);
+      ctx.fillText(`height: ${heightForDraw}px`, 10, heightForDraw - 15);
     }
     ctx.save();
   };
@@ -109,7 +164,16 @@ const ImageGenerator: React.FC = () => {
       <div className="params-container">
         <div className="param-container">
           <span className="param-label">画像パラメータ</span>
-          <ParamBox labelName="幅">
+          <ParamBox labelName="ユーザーアイコン">
+            <input
+              type="checkbox"
+              defaultChecked={imageLikeIcon}
+              disabled={downloading}
+              onChange={(e): void => setImageLikeIcon(e.target.checked)}
+            ></input>
+          </ParamBox>
+
+          <ParamBox labelName={imageLikeIcon ? "幅と高さ" : "幅"}>
             <input
               className="text-right"
               type="number"
@@ -118,7 +182,8 @@ const ImageGenerator: React.FC = () => {
               onChange={(e): void => setWidth(parseInt(e.target.value))}
             ></input>
           </ParamBox>
-          <ParamBox labelName="高さ">
+
+          {!imageLikeIcon && <ParamBox labelName="高さ">
             <input
               className="text-right"
               type="number"
@@ -126,16 +191,18 @@ const ImageGenerator: React.FC = () => {
               disabled={downloading}
               onChange={(e): void => setHeight(parseInt(e.target.value))}
             ></input>
-          </ParamBox>
-          <ParamBox labelName="画像内の文字">
+          </ParamBox>}
+
+          {!imageLikeIcon && <ParamBox labelName="画像内の文字">
             <input
               type="text"
               defaultValue={comment}
               disabled={downloading}
               onChange={(e): void => setComment(e.target.value)}
             ></input>
-          </ParamBox>
-          <ParamBox labelName="フォント">
+          </ParamBox>}
+
+          {!imageLikeIcon && <ParamBox labelName="フォント">
             <select
               defaultValue={font}
               disabled={downloading}
@@ -145,8 +212,9 @@ const ImageGenerator: React.FC = () => {
               <option value="sans-serif">sans-serif</option>
               <option value="monospace">monospace</option>
             </select>
-          </ParamBox>
-          <ParamBox labelName="文字色">
+          </ParamBox>}
+
+          <ParamBox labelName={imageLikeIcon ? "アイコンの色" : "文字色"}>
             <input
               type="color"
               defaultValue={fontColor}
@@ -154,7 +222,8 @@ const ImageGenerator: React.FC = () => {
               onChange={(e): void => setFontColor(e.target.value)}
             ></input>
           </ParamBox>
-          <ParamBox labelName="文字サイズ">
+
+          {!imageLikeIcon && <ParamBox labelName="文字サイズ">
             <input
               className="text-right"
               type="number"
@@ -171,15 +240,17 @@ const ImageGenerator: React.FC = () => {
               disabled={downloading}
               onChange={(e): void => setFontSize(parseInt(e.target.value))}
             ></input>
-          </ParamBox>
-          <ParamBox labelName="高さと幅を画像に書き込む">
+          </ParamBox>}
+
+          {!imageLikeIcon && <ParamBox labelName="高さと幅を画像に書き込む">
             <input
               type="checkbox"
               defaultChecked={doDrawSize}
               disabled={downloading}
               onChange={(e): void => setDoDrawSize(e.target.checked)}
             ></input>
-          </ParamBox>
+          </ParamBox>}
+
           <ParamBox labelName="背景色をランダムにする">
             <input
               type="checkbox"
@@ -188,16 +259,15 @@ const ImageGenerator: React.FC = () => {
               onChange={(e): void => setUseRandomColor(e.target.checked)}
             ></input>
           </ParamBox>
-          {!useRandomColor && (
-            <ParamBox labelName="背景色">
-              <input
-                type="color"
-                defaultValue={color}
-                disabled={useRandomColor || downloading}
-                onChange={(e): void => setColor(e.target.value)}
-              ></input>
-            </ParamBox>
-          )}
+
+          {!useRandomColor && <ParamBox labelName="背景色">
+            <input
+              type="color"
+              defaultValue={color}
+              disabled={useRandomColor || downloading}
+              onChange={(e): void => setColor(e.target.value)}
+            ></input>
+          </ParamBox>}
 
           <button
             className="testaro-button"
@@ -206,7 +276,6 @@ const ImageGenerator: React.FC = () => {
           >
             再生成
           </button>
-
         </div>
 
         <div className="param-container">
@@ -256,7 +325,7 @@ const ImageGenerator: React.FC = () => {
           <label className="canvasLabel" htmlFor="canvas">
             ファイル名（プレビュー）: {createFileFullName(1)}
           </label>
-          <canvas id="canvas" ref={canvasRef} width={width} height={height} />
+          <canvas id="canvas" ref={canvasRef} width={widthForDraw} height={heightForDraw} />
         </div>
       </div>
     </div>
