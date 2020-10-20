@@ -27,7 +27,7 @@ const Menu: React.FC = () => {
         <li>
           <Link to="/usergen" className="link">
             <FontAwesomeIcon icon={faMale} className="icon" />
-            ダミーユーザー
+            ダミーユーザー情報
           </Link>
         </li>
         <li>

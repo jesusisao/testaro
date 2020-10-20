@@ -66,7 +66,7 @@ const UserGenerator: React.FC = () => {
 
   return (
     <div className="UserGenerator">
-      <h1 className="page-title">ダミーユーザー生成</h1>
+      <h1 className="page-title">ダミーユーザー情報生成</h1>
       <p>
         セルをクリックすると、中の値が勝手にクリップボードにコピーされます。
       </p>
