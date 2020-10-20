@@ -83,8 +83,8 @@ const QrGenerator: React.FC = () => {
     const items = [];
     for (const [i, code] of codes.entries()) {
       items.push(
-        <div className="qr-li">
-          <ParamBox labelName="QR用文字列" key={i + ""}>
+        <div className="qr-li" key={i + ""}>
+          <ParamBox labelName="QR用文字列">
             <div className="canvas-li">
               <input
                 type="text"
@@ -118,7 +118,6 @@ const QrGenerator: React.FC = () => {
       <div className="params-container">
         <div className="param-container">
           {inputList()}
-  
 
           <button className="testaro-button" onClick={add}>
             項目追加

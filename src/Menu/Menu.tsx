@@ -25,12 +25,6 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link to="/strgen" className="link">
-            <FontAwesomeIcon icon={faFont} className="icon" />
-            テスト文字列
-          </Link>
-        </li>
-        <li>
           <Link to="/usergen" className="link">
             <FontAwesomeIcon icon={faMale} className="icon" />
             ダミーユーザー
@@ -58,6 +52,12 @@ const Menu: React.FC = () => {
           <Link to="/qrgen" className="link">
             <FontAwesomeIcon icon={faQrcode} className="icon" />
             QRコード
+          </Link>
+        </li>
+        <li>
+          <Link to="/strgen" className="link">
+            <FontAwesomeIcon icon={faFont} className="icon" />
+            テスト文字列
           </Link>
         </li>
         <li>
