@@ -34,7 +34,7 @@ const PdfGenerator: React.FC = () => {
         font: "KosugiMaru"
       }
     };
-    const createdFileName = replaceVariable(fileName, num);
+    const createdFileName = `${replaceVariable(fileName, num)}.pdf`;
     pdfMake.createPdf(docDefinition).download(createdFileName);
   };
 
