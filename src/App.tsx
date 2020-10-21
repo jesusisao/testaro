@@ -2,14 +2,15 @@ import React, { Suspense, lazy } from "react";
 import { HashRouter, Route } from "react-router-dom";
 import "normalize.css";
 import "./App.scss";
+import Loading from "./Common/Loading";
 import Menu from "./Menu/Menu";
 import About from "./About/About";
-import StringGenerator from "./StringGenerator/StringGenerator";
-import ImageGenerator from "./ImageGenerator/ImageGenerator";
-import PptxGenerator from "./PptxGenerator/PptxGenerator";
-import QrGenerator from "./QrGenerator/QrGenerator";
 import RecommendedBooks from "./RecommendedBooks/RecommendedBooks";
-import Loading from "./Common/Loading";
+
+const LazyStringGenerator = lazy(() => import("./StringGenerator/StringGenerator"));
+const LazyImageGenerator = lazy(() => import("./ImageGenerator/ImageGenerator"));
+const LazyPptxGenerator = lazy(() => import("./PptxGenerator/PptxGenerator"));
+const LazyQrGenerator = lazy(() => import("./QrGenerator/QrGenerator"));
 const LazyUserGenerator = lazy(() => import("./UserGenerator/UserGenerator"));
 const LazyPdfGenerator = lazy(() => import("./PdfGenerator/PdfGenerator"));
 
@@ -23,12 +24,12 @@ const App: React.FC = () => {
           <Suspense fallback={<Loading />}>
             <Route exact path="/" component={About} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/strgen" component={StringGenerator} />
+            <Route exact path="/strgen" component={LazyStringGenerator} />
             <Route path="/usergen" component={LazyUserGenerator} />
-            <Route path="/imggen" component={ImageGenerator} />
+            <Route path="/imggen" component={LazyImageGenerator} />
             <Route path="/pdfgen" component={LazyPdfGenerator} />
-            <Route path="/pptxgen" component={PptxGenerator} />
-            <Route path="/qrgen" component={QrGenerator} />
+            <Route path="/pptxgen" component={LazyPptxGenerator} />
+            <Route path="/qrgen" component={LazyQrGenerator} />
             <Route path="/recobooks" component={RecommendedBooks} />
           </Suspense>
 
