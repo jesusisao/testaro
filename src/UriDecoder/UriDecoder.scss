@@ -1,0 +1,16 @@
+@import '../config.scss';
+
+.UriDecoder {
+  height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+  p {
+    margin: 5px;
+  }
+  textarea {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 500px;
+    height: 150px;
+  }
+}

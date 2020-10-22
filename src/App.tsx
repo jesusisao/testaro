@@ -13,6 +13,7 @@ const LazyPptxGenerator = lazy(() => import("./PptxGenerator/PptxGenerator"));
 const LazyQrGenerator = lazy(() => import("./QrGenerator/QrGenerator"));
 const LazyUserGenerator = lazy(() => import("./UserGenerator/UserGenerator"));
 const LazyPdfGenerator = lazy(() => import("./PdfGenerator/PdfGenerator"));
+const LazyUriDecoder = lazy(() => import("./UriDecoder/UriDecoder"));
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
             <Route exact path="/" component={About} />
             <Route exact path="/about" component={About} />
             <Route exact path="/strgen" component={LazyStringGenerator} />
+            <Route exact path="/uridecode" component={LazyUriDecoder} />
             <Route path="/usergen" component={LazyUserGenerator} />
             <Route path="/imggen" component={LazyImageGenerator} />
             <Route path="/pdfgen" component={LazyPdfGenerator} />
