@@ -1,7 +1,17 @@
 @import "../config.scss";
 
-.site-name {
-  color: $config-link-color;
+.title-container {
+  display: flex;
+  .site-name {
+    color: $config-link-color;
+    margin: 18px 0 10px 0;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+  }
 }
 
 .Menu {

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Menu.scss";
+import logo from "./icon-400x400.png";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,7 +18,10 @@ import {
 const Menu: React.FC = () => {
   return (
     <div className="Menu">
-      <h1 className="site-name">Testaro</h1>
+      <div className="title-container">
+        <img src={logo} className="logo" />
+        <h1 className="site-name">Testaro</h1>
+      </div>
       <ul>
         <li>
           <Link to="/about" className="link">
