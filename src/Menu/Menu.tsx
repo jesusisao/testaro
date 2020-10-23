@@ -19,7 +19,7 @@ const Menu: React.FC = () => {
   return (
     <div className="Menu">
       <div className="title-container">
-        <img src={logo} className="logo" />
+        <img src={logo} className="logo" alt="testaro" />
         <h1 className="site-name">Testaro</h1>
       </div>
       <ul>
