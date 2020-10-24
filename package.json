@@ -5,6 +5,15 @@
   "engines": {
     "node": "14.x"
   },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "eslint": "eslint --ext .ts,.tsx --fix src/",
+    "prettier": "prettier --write **/*.{ts,tsx}",
+    "create:addressJson": "node tool/csvToJson.js"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
@@ -20,30 +29,6 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.2",
     "webfontloader": "^1.6.28"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "eslint": "eslint --ext .ts,.tsx --fix src/",
-    "prettier": "prettier --write **/*.{ts,tsx}",
-    "create:addressJson": "node tool/csvToJson.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -67,5 +52,17 @@
     "lodash.samplesize": "^4.2.0",
     "prettier": "^1.19.1",
     "typescript": "~3.7.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
