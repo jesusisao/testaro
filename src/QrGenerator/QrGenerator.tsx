@@ -29,7 +29,7 @@ const QrGenerator: React.FC = () => {
         context.fillRect(0, 0, canvasElement.height, canvasElement.width);
         continue;
       }
-      QRCode.toCanvas(canvasRefs[i].current, codes[i], function(error) {
+      QRCode.toCanvas(canvasRefs[i].current, codes[i], (error: any) => {
         if (error) console.error(error);
         console.log("success!");
       });
