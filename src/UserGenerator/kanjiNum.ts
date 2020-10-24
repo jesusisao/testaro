@@ -45,7 +45,7 @@ export const numbersToKanji = (num: number): string => {
     "阿僧祇",
     "那由他",
     "不可思議",
-    "無量大数"
+    "無量大数",
   ];
   const exponents = [
     1,
@@ -67,7 +67,7 @@ export const numbersToKanji = (num: number): string => {
     56,
     60,
     64,
-    68
+    68,
   ];
   const exponentsLen = exponents.length;
   for (let i = exponentsLen; i >= 0; --i) {

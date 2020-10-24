@@ -7,11 +7,11 @@ import Menu from "./Menu/Menu";
 import About from "./About/About";
 import RecommendedBooks from "./RecommendedBooks/RecommendedBooks";
 
-const LazyStringGenerator = lazy(() =>
-  import("./StringGenerator/StringGenerator")
+const LazyStringGenerator = lazy(
+  () => import("./StringGenerator/StringGenerator")
 );
-const LazyImageGenerator = lazy(() =>
-  import("./ImageGenerator/ImageGenerator")
+const LazyImageGenerator = lazy(
+  () => import("./ImageGenerator/ImageGenerator")
 );
 const LazyPptxGenerator = lazy(() => import("./PptxGenerator/PptxGenerator"));
 const LazyQrGenerator = lazy(() => import("./QrGenerator/QrGenerator"));

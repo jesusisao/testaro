@@ -4,6 +4,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## link
+
+- [testaro](https://testaro.netlify.app/)
+- [Deploys for testaro](https://app.netlify.com/sites/testaro/deploys)
+
 ## Available Scripts
 
 In the project directory, you can run:

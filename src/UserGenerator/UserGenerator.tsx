@@ -12,7 +12,7 @@ import {
   sortedUserKeys,
   DisplayUser,
   usersDisplayHashArray,
-  userDisplayInfo
+  userDisplayInfo,
 } from "./user/user";
 
 const generateUserRow = (index: number, user: DisplayUser): JSX.Element => {

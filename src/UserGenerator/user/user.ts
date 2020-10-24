@@ -40,103 +40,103 @@ export const userDisplayInfo: Record<DisplayUserKey, Item> = {
   id: {
     sortNum: 1,
     width: 50,
-    display: true
+    display: true,
   },
   joinedName: {
     sortNum: 2,
     width: 120,
-    display: true
+    display: true,
   },
   familyName: {
     sortNum: 3,
     width: 80,
-    display: true
+    display: true,
   },
   givenName: {
     sortNum: 4,
     width: 80,
-    display: true
+    display: true,
   },
   joinedNameKana: {
     sortNum: 5,
     width: 120,
-    display: true
+    display: true,
   },
   familyNameKana: {
     sortNum: 6,
     width: 100,
-    display: true
+    display: true,
   },
   givenNameKana: {
     sortNum: 7,
     width: 100,
-    display: true
+    display: true,
   },
   familyNameRome: {
     sortNum: 8,
     width: 80,
-    display: false
+    display: false,
   },
   givenNameRome: {
     sortNum: 9,
     width: 80,
-    display: false
+    display: false,
   },
   sex: {
     sortNum: 10,
     width: 50,
-    display: true
+    display: true,
   },
   birthday: {
     sortNum: 11,
     width: 100,
-    display: true
+    display: true,
   },
   email: {
     sortNum: 12,
     width: 300,
-    display: true
+    display: true,
   },
   postalCode: {
     sortNum: 13,
     width: 80,
-    display: true
+    display: true,
   },
   prefecture: {
     sortNum: 14,
     width: 80,
-    display: true
+    display: true,
   },
   city: {
     sortNum: 15,
     width: 120,
-    display: true
+    display: true,
   },
   townArea: {
     sortNum: 16,
     width: 120,
-    display: true
+    display: true,
   },
   houseNumber: {
     sortNum: 17,
     width: 100,
-    display: true
+    display: true,
   },
   prefectureKana: {
     sortNum: 18,
     width: 80,
-    display: false
+    display: false,
   },
   cityKana: {
     sortNum: 19,
     width: 80,
-    display: false
+    display: false,
   },
   townAreaKana: {
     sortNum: 20,
     width: 80,
-    display: false
-  }
+    display: false,
+  },
 };
 
 export const sortedUserKeys: Array<DisplayUserKey> = Object.keys(
@@ -156,7 +156,7 @@ export const sortedUserKeys: Array<DisplayUserKey> = Object.keys(
 }) as Array<DisplayUserKey>;
 
 const sortedUserKeysDisplay: Array<DisplayUserKey> = sortedUserKeys.filter(
-  key => {
+  (key) => {
     return userDisplayInfo[key]["display"];
   }
 );
@@ -184,7 +184,7 @@ export const usersDisplayHashArray = (users: User[]): Array<DisplayUser> => {
       houseNumber: user.houseNumber,
       prefectureKana: user.prefectureKana,
       cityKana: user.cityKana,
-      townAreaKana: user.townAreaKana
+      townAreaKana: user.townAreaKana,
     });
   }
   return items;
