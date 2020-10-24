@@ -4,7 +4,6 @@ import logo from "./icon-400x400.png";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faSitemap,
   faFont,
   faMale,
   faImages,
@@ -14,21 +13,18 @@ import {
   faBook,
   faLink,
 } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Menu: React.FC = () => {
   return (
     <div className="Menu">
-      <div className="title-container">
-        <img src={logo} className="logo" alt="testaro" />
-        <h1 className="site-name">Testaro</h1>
-      </div>
+      <Link to="/about">
+        <div className="title-container">
+          <img src={logo} className="logo" alt="testaro" />
+          <h1 className="site-name">Testaro</h1>
+        </div>
+      </Link>
       <ul>
-        <li>
-          <Link to="/about" className="link">
-            <FontAwesomeIcon icon={faSitemap} className="icon" />
-            About
-          </Link>
-        </li>
         <li>
           <Link to="/usergen" className="link">
             <FontAwesomeIcon icon={faMale} className="icon" />
@@ -80,6 +76,15 @@ const Menu: React.FC = () => {
         {/* <li>Hash</li> */}
         {/* <li>バーコード</li> */}
       </ul>
+      <div className="github-link">
+        <a
+          href="https://github.com/jesusisao/testaro"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon={faGithub} />
+        </a>
+      </div>
     </div>
   );
 };
