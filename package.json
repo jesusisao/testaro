@@ -9,9 +9,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "eslint": "eslint --ext .ts,.tsx,.js --fix src/",
-    "prettier": "prettier --write 'src/**/*.{ts,tsx,js}'",
-    "stylelint": "stylelint 'src/**/*.scss' --fix",
+    "lint:allfix": "yarn lint:eslint && yarn lint:prettier && yarn lint:stylelint",
+    "lint:eslint": "eslint --ext .ts,.tsx,.js --fix src/",
+    "lint:prettier": "prettier --write 'src/**/*.{ts,tsx,js}'",
+    "lint:stylelint": "stylelint 'src/**/*.scss' --fix",
     "create:addressJson": "node tool/csvToJson.js"
   },
   "dependencies": {
