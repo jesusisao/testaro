@@ -26,7 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "eslint": "eslint src --ext .ts,.tsx",
+    "eslint": "eslint --ext .ts,.tsx --fix src/",
+    "prettier": "prettier --write **/*.{ts,tsx}",
     "create:addressJson": "node tool/csvToJson.js"
   },
   "eslintConfig": {
@@ -61,7 +62,7 @@
     "csv-parse": "^4.12.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.18.0",
     "lodash.samplesize": "^4.2.0",
     "prettier": "^1.19.1",

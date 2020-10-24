@@ -663,7 +663,10 @@ const createRandomUser = (mailDomain: string): User => {
   };
 };
 
-export const createRandomUsers = (num: number, mailDomain: string): Array<User> => {
+export const createRandomUsers = (
+  num: number,
+  mailDomain: string
+): Array<User> => {
   const result = [];
   for (let i = 1; i <= num; i++) {
     result.push(createRandomUser(mailDomain));

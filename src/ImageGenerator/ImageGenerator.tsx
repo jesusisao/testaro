@@ -16,19 +16,19 @@ const generateRandomColor = (): string => {
   return `rgb(${ran1}, ${ran2}, ${ran3})`;
 };
 
-const toRadian = (angle: number) => angle * Math.PI / 180;
+const toRadian = (angle: number): number => (angle * Math.PI) / 180;
 
 type XY = {
-  x: number,
-  y: number
-}
+  x: number;
+  y: number;
+};
 
 const drawCircle = (
   ctx: CanvasRenderingContext2D,
   xy: XY,
   radius: number,
-  color: string = "rgba(255, 255, 255, 1.0)",
-  strokeColor: string = "rgba(255, 255, 255, 1.0)"
+  color = "rgba(255, 255, 255, 1.0)",
+  strokeColor = "rgba(255, 255, 255, 1.0)"
 ): void => {
   ctx.beginPath();
   ctx.arc(xy.x, xy.y, radius, toRadian(0), toRadian(360), false);
@@ -37,9 +37,15 @@ const drawCircle = (
   ctx.stroke();
   ctx.fillStyle = color;
   ctx.fill();
-}
+};
 
-const drawTriangle = (ctx: CanvasRenderingContext2D, xy1: XY, xy2: XY, xy3: XY, color: string = "rgba(255, 255, 255, 1.0)"): void => {
+const drawTriangle = (
+  ctx: CanvasRenderingContext2D,
+  xy1: XY,
+  xy2: XY,
+  xy3: XY,
+  color = "rgba(255, 255, 255, 1.0)"
+): void => {
   ctx.beginPath();
   ctx.moveTo(xy1.x, xy1.y);
   ctx.lineTo(xy2.x, xy2.y);
@@ -50,7 +56,7 @@ const drawTriangle = (ctx: CanvasRenderingContext2D, xy1: XY, xy2: XY, xy3: XY, 
   ctx.stroke();
   ctx.fillStyle = color; // 塗りつぶしの色
   ctx.fill();
-}
+};
 
 const ImageGenerator: React.FC = () => {
   const [width, setWidth] = useState(400);
@@ -68,8 +74,8 @@ const ImageGenerator: React.FC = () => {
   const [downloading, setDownloading] = useState(false);
   const [imageLikeIcon, setImageLikeIcon] = useState(false);
 
-  const widthForDraw = width
-  const heightForDraw = imageLikeIcon ? width : height
+  const widthForDraw = width;
+  const heightForDraw = imageLikeIcon ? width : height;
   const iconColor = fontColor;
 
   const canvasRef = useRef(null);
@@ -91,10 +97,22 @@ const ImageGenerator: React.FC = () => {
     if (imageLikeIcon) {
       // アイコンのやつ
       const xy1 = { x: widthForDraw / 2, y: heightForDraw * (1 / 3) };
-      const xy2 = { x: widthForDraw / 2 + widthForDraw / 6, y: heightForDraw * 29 / 30 };
-      const xy3 = { x: widthForDraw / 2 - widthForDraw / 6, y: heightForDraw * 29 / 30 };
-      drawTriangle(ctx, xy1, xy2, xy3, iconColor)
-      drawCircle(ctx, { x: widthForDraw / 2, y: heightForDraw / 3 }, widthForDraw / 6, iconColor, backgroundColor);
+      const xy2 = {
+        x: widthForDraw / 2 + widthForDraw / 6,
+        y: (heightForDraw * 29) / 30
+      };
+      const xy3 = {
+        x: widthForDraw / 2 - widthForDraw / 6,
+        y: (heightForDraw * 29) / 30
+      };
+      drawTriangle(ctx, xy1, xy2, xy3, iconColor);
+      drawCircle(
+        ctx,
+        { x: widthForDraw / 2, y: heightForDraw / 3 },
+        widthForDraw / 6,
+        iconColor,
+        backgroundColor
+      );
       ctx.save();
       return;
     }
@@ -183,36 +201,42 @@ const ImageGenerator: React.FC = () => {
             ></input>
           </ParamBox>
 
-          {!imageLikeIcon && <ParamBox labelName="高さ">
-            <input
-              className="text-right"
-              type="number"
-              defaultValue={height}
-              disabled={downloading}
-              onChange={(e): void => setHeight(parseInt(e.target.value))}
-            ></input>
-          </ParamBox>}
+          {!imageLikeIcon && (
+            <ParamBox labelName="高さ">
+              <input
+                className="text-right"
+                type="number"
+                defaultValue={height}
+                disabled={downloading}
+                onChange={(e): void => setHeight(parseInt(e.target.value))}
+              ></input>
+            </ParamBox>
+          )}
 
-          {!imageLikeIcon && <ParamBox labelName="画像内の文字">
-            <input
-              type="text"
-              defaultValue={comment}
-              disabled={downloading}
-              onChange={(e): void => setComment(e.target.value)}
-            ></input>
-          </ParamBox>}
+          {!imageLikeIcon && (
+            <ParamBox labelName="画像内の文字">
+              <input
+                type="text"
+                defaultValue={comment}
+                disabled={downloading}
+                onChange={(e): void => setComment(e.target.value)}
+              ></input>
+            </ParamBox>
+          )}
 
-          {!imageLikeIcon && <ParamBox labelName="フォント">
-            <select
-              defaultValue={font}
-              disabled={downloading}
-              onChange={(e): void => setFont(e.target.value)}
-            >
-              <option value="serif">serif</option>
-              <option value="sans-serif">sans-serif</option>
-              <option value="monospace">monospace</option>
-            </select>
-          </ParamBox>}
+          {!imageLikeIcon && (
+            <ParamBox labelName="フォント">
+              <select
+                defaultValue={font}
+                disabled={downloading}
+                onChange={(e): void => setFont(e.target.value)}
+              >
+                <option value="serif">serif</option>
+                <option value="sans-serif">sans-serif</option>
+                <option value="monospace">monospace</option>
+              </select>
+            </ParamBox>
+          )}
 
           <ParamBox labelName={imageLikeIcon ? "アイコンの色" : "文字色"}>
             <input
@@ -223,33 +247,37 @@ const ImageGenerator: React.FC = () => {
             ></input>
           </ParamBox>
 
-          {!imageLikeIcon && <ParamBox labelName="文字サイズ">
-            <input
-              className="text-right"
-              type="number"
-              value={fontSize}
-              disabled={downloading}
-              onChange={(e): void => setFontSize(parseInt(e.target.value))}
-            ></input>
-            <br />
-            <input
-              type="range"
-              value={fontSize}
-              min="1"
-              max="300"
-              disabled={downloading}
-              onChange={(e): void => setFontSize(parseInt(e.target.value))}
-            ></input>
-          </ParamBox>}
+          {!imageLikeIcon && (
+            <ParamBox labelName="文字サイズ">
+              <input
+                className="text-right"
+                type="number"
+                value={fontSize}
+                disabled={downloading}
+                onChange={(e): void => setFontSize(parseInt(e.target.value))}
+              ></input>
+              <br />
+              <input
+                type="range"
+                value={fontSize}
+                min="1"
+                max="300"
+                disabled={downloading}
+                onChange={(e): void => setFontSize(parseInt(e.target.value))}
+              ></input>
+            </ParamBox>
+          )}
 
-          {!imageLikeIcon && <ParamBox labelName="高さと幅を画像に書き込む">
-            <input
-              type="checkbox"
-              defaultChecked={doDrawSize}
-              disabled={downloading}
-              onChange={(e): void => setDoDrawSize(e.target.checked)}
-            ></input>
-          </ParamBox>}
+          {!imageLikeIcon && (
+            <ParamBox labelName="高さと幅を画像に書き込む">
+              <input
+                type="checkbox"
+                defaultChecked={doDrawSize}
+                disabled={downloading}
+                onChange={(e): void => setDoDrawSize(e.target.checked)}
+              ></input>
+            </ParamBox>
+          )}
 
           <ParamBox labelName="背景色をランダムにする">
             <input
@@ -260,14 +288,16 @@ const ImageGenerator: React.FC = () => {
             ></input>
           </ParamBox>
 
-          {!useRandomColor && <ParamBox labelName="背景色">
-            <input
-              type="color"
-              defaultValue={color}
-              disabled={useRandomColor || downloading}
-              onChange={(e): void => setColor(e.target.value)}
-            ></input>
-          </ParamBox>}
+          {!useRandomColor && (
+            <ParamBox labelName="背景色">
+              <input
+                type="color"
+                defaultValue={color}
+                disabled={useRandomColor || downloading}
+                onChange={(e): void => setColor(e.target.value)}
+              ></input>
+            </ParamBox>
+          )}
 
           <button
             className="testaro-button"
@@ -325,7 +355,12 @@ const ImageGenerator: React.FC = () => {
           <label className="canvasLabel" htmlFor="canvas">
             ファイル名（プレビュー）: {createFileFullName(1)}
           </label>
-          <canvas id="canvas" ref={canvasRef} width={widthForDraw} height={heightForDraw} />
+          <canvas
+            id="canvas"
+            ref={canvasRef}
+            width={widthForDraw}
+            height={heightForDraw}
+          />
         </div>
       </div>
     </div>

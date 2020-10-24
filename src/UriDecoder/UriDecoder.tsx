@@ -9,8 +9,12 @@ const UriDecoder: React.FC = () => {
   const [pattern, setPattern] = useState("decode" as Pattern);
   const [originalUri, setOriginalUri] = useState("");
 
-  const output1 = pattern === "decode" ? decodeURI(originalUri) : encodeURI(originalUri)
-  const output2 = pattern === "decode" ? decodeURIComponent(originalUri) : encodeURIComponent(originalUri)
+  const output1 =
+    pattern === "decode" ? decodeURI(originalUri) : encodeURI(originalUri);
+  const output2 =
+    pattern === "decode"
+      ? decodeURIComponent(originalUri)
+      : encodeURIComponent(originalUri);
 
   return (
     <div className="UriDecoder">

@@ -80,7 +80,6 @@ const StringGenerator: React.FC = () => {
           <button className="testaro-button" onClick={generate}>
             生成
           </button>
-
         </div>
       </div>
       <div className="outputs-container">

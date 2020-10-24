@@ -51,9 +51,7 @@ const PdfGenerator: React.FC = () => {
   return (
     <div className="PdfGenerator">
       <h1 className="page-title">ダミーPDF生成</h1>
-      <p>
-        ダミーのPDFファイルをたくさん生成できます。
-      </p>
+      <p>ダミーのPDFファイルをたくさん生成できます。</p>
       <div className="params-container">
         <div className="param-container">
           <ParamBox labelName="中身の文字">
@@ -89,7 +87,6 @@ const PdfGenerator: React.FC = () => {
             生成してダウンロード
             <FontAwesomeIcon icon={faFileDownload} className="icon" />
           </button>
-
         </div>
       </div>
     </div>
