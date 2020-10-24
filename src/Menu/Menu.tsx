@@ -12,7 +12,7 @@ import {
   faFilePowerpoint,
   faQrcode,
   faBook,
-  faLink
+  faLink,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Menu: React.FC = () => {

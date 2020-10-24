@@ -1,7 +1,7 @@
 import moment from "moment";
 
 export const sleep = (msec: number): Promise<void> =>
-  new Promise(resolve => setTimeout(resolve, msec));
+  new Promise((resolve) => setTimeout(resolve, msec));
 
 export const createRandomDate = (rangeStart: Date, rangeEnd: Date): Date => {
   const unixTimeStampStart = rangeStart.getTime();
@@ -20,7 +20,7 @@ export const replaceVariable = (original: string, num: number): string => {
   const re = /#{.+?}/;
   const matches = original.match(re);
   if (matches === null) return original;
-  const matchesNames = matches.map(str => str.slice(2).slice(0, -1));
+  const matchesNames = matches.map((str) => str.slice(2).slice(0, -1));
   let copied = original.slice();
   for (const match of matchesNames) {
     if (match === "count") {
@@ -42,10 +42,10 @@ export const copyToClipboard = (arg: string | number): void => {
 
 export const arrayToCsv = (arr: Array<Array<string>>): string => {
   return arr
-    .map(row =>
-      row.map(str => '"' + (str ? str.replace(/"/g, '""') : "") + '"')
+    .map((row) =>
+      row.map((str) => '"' + (str ? str.replace(/"/g, '""') : "") + '"')
     )
-    .map(row => row.join(","))
+    .map((row) => row.join(","))
     .join("\n");
 };
 
@@ -74,7 +74,7 @@ export const downloadAsCsv = (data: string, name: string): void => {
 // 半角数字を全角数字へ変換
 export const toFullWidth = (num: number): string => {
   const str = num.toString();
-  return str.replace(/./g, s => {
+  return str.replace(/./g, (s) => {
     return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
   });
 };

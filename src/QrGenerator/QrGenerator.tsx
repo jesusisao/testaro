@@ -11,7 +11,7 @@ const QrGenerator: React.FC = () => {
   const [canvasRefs, setCanvasRefs] = useState([
     createRef<HTMLCanvasElement>(),
     createRef<HTMLCanvasElement>(),
-    createRef<HTMLCanvasElement>()
+    createRef<HTMLCanvasElement>(),
   ]);
 
   const generate = (): void => {

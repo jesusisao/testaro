@@ -99,11 +99,11 @@ const ImageGenerator: React.FC = () => {
       const xy1 = { x: widthForDraw / 2, y: heightForDraw * (1 / 3) };
       const xy2 = {
         x: widthForDraw / 2 + widthForDraw / 6,
-        y: (heightForDraw * 29) / 30
+        y: (heightForDraw * 29) / 30,
       };
       const xy3 = {
         x: widthForDraw / 2 - widthForDraw / 6,
-        y: (heightForDraw * 29) / 30
+        y: (heightForDraw * 29) / 30,
       };
       drawTriangle(ctx, xy1, xy2, xy3, iconColor);
       drawCircle(

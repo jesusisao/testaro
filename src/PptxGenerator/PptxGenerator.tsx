@@ -27,7 +27,7 @@ const PptxGenerator: React.FC = () => {
       x: 1,
       y: 2.5,
       color: "000000",
-      align: "center"
+      align: "center",
     };
     slide.addText(textboxText, textboxOpts);
 

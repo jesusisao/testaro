@@ -16,8 +16,8 @@ pdfMake.fonts = {
     normal: "KosugiMaru-Regular.ttf",
     bold: "KosugiMaru-Regular.ttf",
     italics: "KosugiMaru-Regular.ttf",
-    bolditalics: "KosugiMaru-Regular.ttf"
-  }
+    bolditalics: "KosugiMaru-Regular.ttf",
+  },
 };
 
 const PdfGenerator: React.FC = () => {
@@ -31,8 +31,8 @@ const PdfGenerator: React.FC = () => {
     const docDefinition: TDocumentDefinitions = {
       content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }],
       defaultStyle: {
-        font: "KosugiMaru"
-      }
+        font: "KosugiMaru",
+      },
     };
     const createdFileName = `${replaceVariable(fileName, num)}.pdf`;
     pdfMake.createPdf(docDefinition).download(createdFileName);

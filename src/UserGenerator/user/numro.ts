@@ -8,7 +8,7 @@ const createNumro = (num: number): GivenName => {
   return {
     givenName: `${numKanji}郎`,
     givenNameKana: `${numKanjiToKana(numKanji)}ロウ`,
-    givenNameRome: `${numKanjiToRome(numKanji)}ro`
+    givenNameRome: `${numKanjiToRome(numKanji)}ro`,
   };
 };
 
@@ -20,18 +20,18 @@ let Numros: Record<number, GivenName> = {
   1: {
     givenName: "太郎",
     givenNameKana: "タロウ",
-    givenNameRome: "taro"
+    givenNameRome: "taro",
   },
   2: {
     givenName: "次郎",
     givenNameKana: "ジロウ",
-    givenNameRome: "jiro"
+    givenNameRome: "jiro",
   },
   3: {
     givenName: "三郎",
     givenNameKana: "サブロウ",
-    givenNameRome: "saburo"
-  }
+    givenNameRome: "saburo",
+  },
 };
 
 for (let i = 4; i <= 100; i++) {
@@ -43,7 +43,7 @@ const createNumjo = (num: number): FamilyName => {
   return {
     familyName: `${numKanji}条`,
     familyNameKana: `${numKanjiToKana(numKanji)}ジョウ`,
-    familyNameRome: `${numKanjiToRome(numKanji)}jo`
+    familyNameRome: `${numKanjiToRome(numKanji)}jo`,
   };
 };
 
@@ -63,7 +63,7 @@ const generateAddress = (index1: number, index2: number): Address => {
     prefecture: "東京都",
     city: "千代田区",
     townArea: "千代田",
-    houseNumber: `${toFullWidth(index1)}ー${toFullWidth(index2)}`
+    houseNumber: `${toFullWidth(index1)}ー${toFullWidth(index2)}`,
   };
 };
 
@@ -86,7 +86,7 @@ export const createNumros = (num: number, mailDomain: string): Array<User> => {
       email: `${Numros[givenNameIndex].givenNameRome}.${
         familyName.familyNameRome
       }${dateToString(birthday)}@${mailDomain}`,
-      ...generateAddress(familyNameIndex, givenNameIndex)
+      ...generateAddress(familyNameIndex, givenNameIndex),
     });
   }
   return result;
