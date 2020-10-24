@@ -26,12 +26,6 @@ const Menu: React.FC = () => {
       </Link>
       <ul>
         <li>
-          <Link to="/usergen" className="link">
-            <FontAwesomeIcon icon={faMale} className="icon" />
-            ダミーユーザー情報
-          </Link>
-        </li>
-        <li>
           <Link to="/imggen" className="link">
             <FontAwesomeIcon icon={faImages} className="icon" />
             ダミー画像
@@ -47,6 +41,12 @@ const Menu: React.FC = () => {
           <Link to="/pptxgen" className="link">
             <FontAwesomeIcon icon={faFilePowerpoint} className="icon" />
             ダミーPPTX
+          </Link>
+        </li>
+        <li>
+          <Link to="/usergen" className="link">
+            <FontAwesomeIcon icon={faMale} className="icon" />
+            ダミーユーザー情報
           </Link>
         </li>
         <li>
