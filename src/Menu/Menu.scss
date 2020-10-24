@@ -6,6 +6,7 @@
   color: $config-font-color;
   background-color: $config-menu-background-color;
   display: block;
+  position: sticky;
   height: 100vh;
   overflow: hidden;
   min-width: $config-menu-width;
