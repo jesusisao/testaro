@@ -17,7 +17,13 @@ const About: React.FC = () => {
         </p>
         <p>
           もし機能のご要望等がありましたら、
-          <a href="https://github.com/jesusisao/testaro">GitHub</a>
+          <a
+            href="https://github.com/jesusisao/testaro"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
           にissueとして上げて頂いたり、Qiitaのコメントに書いて貰えれば対応できるかもしれません。
           プルリクエストを送って頂くのも歓迎です。
         </p>
@@ -27,7 +33,13 @@ const About: React.FC = () => {
         </p>
         <p>このページによって、多少の効率化ができたら幸いです。</p>
         <p className="author">
-          <a href="https://qiita.com/jesus_isao">@jesus_isao</a>
+          <a
+            href="https://qiita.com/jesus_isao"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @jesus_isao
+          </a>
         </p>
       </div>
       <div className="text-area">
