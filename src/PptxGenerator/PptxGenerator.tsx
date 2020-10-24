@@ -22,7 +22,13 @@ const PptxGenerator: React.FC = () => {
 
     // 3. Add one or more objects (Tables, Shapes, Images, Text and Media) to the Slide
     const textboxText = replaceVariable(pptxContent, num);
-    const textboxOpts: pptxgen.TextPropsOptions = { fontSize: 48, x: 1, y: 2.5, color: "000000", align: "center" };
+    const textboxOpts: pptxgen.TextPropsOptions = {
+      fontSize: 48,
+      x: 1,
+      y: 2.5,
+      color: "000000",
+      align: "center"
+    };
     slide.addText(textboxText, textboxOpts);
 
     // 4. Save the Presentation
@@ -42,9 +48,7 @@ const PptxGenerator: React.FC = () => {
   return (
     <div className="PptxGenerator">
       <h1 className="page-title">ダミーPPTX生成</h1>
-      <p>
-        ダミーのパワポをたくさん生成できます。
-      </p>
+      <p>ダミーのパワポをたくさん生成できます。</p>
       <div className="params-container">
         <div className="param-container">
           <ParamBox labelName="中身の文字">
@@ -80,7 +84,6 @@ const PptxGenerator: React.FC = () => {
             生成してダウンロード
             <FontAwesomeIcon icon={faFileDownload} className="icon" />
           </button>
-
         </div>
       </div>
     </div>

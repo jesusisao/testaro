@@ -29,6 +29,7 @@ const QrGenerator: React.FC = () => {
         context.fillRect(0, 0, canvasElement.height, canvasElement.width);
         continue;
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       QRCode.toCanvas(canvasRefs[i].current, codes[i], (error: any) => {
         if (error) console.error(error);
         console.log("success!");
@@ -123,10 +124,13 @@ const QrGenerator: React.FC = () => {
             項目追加
           </button>
 
-          <button className="testaro-button" onClick={generate} style={{ marginLeft: 5 }}>
+          <button
+            className="testaro-button"
+            onClick={generate}
+            style={{ marginLeft: 5 }}
+          >
             生成
           </button>
-
         </div>
       </div>
     </div>

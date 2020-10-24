@@ -21,7 +21,7 @@ const labelStyle = {
   backgroundColor: "rgba(255, 255, 255, 0.4)",
   color: "rgb(20, 20, 20)",
   marginRight: "3px",
-  borderRadius: "15px",
+  borderRadius: "15px"
 };
 
 const formItemStyle = {
@@ -31,17 +31,15 @@ const formItemStyle = {
 };
 
 const childStyle = {
-  display: "block",
-}
+  display: "block"
+};
 
 const ParamBox: React.FC<{ labelName?: string }> = props => {
   return (
     <div style={style}>
       <label style={labelStyle}>{props.labelName}</label>
       <div style={formItemStyle}>
-        <div style={childStyle}>
-          {props.children}
-        </div>
+        <div style={childStyle}>{props.children}</div>
       </div>
     </div>
   );

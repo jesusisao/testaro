@@ -63,9 +63,9 @@ const generateAddress = (index1: number, index2: number): Address => {
     prefecture: "東京都",
     city: "千代田区",
     townArea: "千代田",
-    houseNumber: `${toFullWidth(index1)}ー${toFullWidth(index2)}`,
-  }
-}
+    houseNumber: `${toFullWidth(index1)}ー${toFullWidth(index2)}`
+  };
+};
 
 export const createNumros = (num: number, mailDomain: string): Array<User> => {
   const result = [];

@@ -11,13 +11,13 @@
     "@typescript-eslint",
     "react"
   ],
-  "ecmaFeatures": {
-    "jsx": true 
-  },
   "parser": "@typescript-eslint/parser",
   "env": { "browser": true, "node": true, "es6": true },
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true 
+    }
   },
   "rules": {
     // 個別にルールを設定できる

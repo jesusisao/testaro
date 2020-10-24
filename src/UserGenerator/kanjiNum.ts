@@ -9,11 +9,11 @@ export const numbersToKanji = (num: number): string => {
   if (!Number.isSafeInteger(num)) {
     throw new RangeError(
       "数値が " +
-      Number.MIN_SAFE_INTEGER +
-      " ～ " +
-      Number.MAX_SAFE_INTEGER +
-      " の範囲外です。漢数字に変換できませんでした。-> " +
-      num
+        Number.MIN_SAFE_INTEGER +
+        " ～ " +
+        Number.MAX_SAFE_INTEGER +
+        " の範囲外です。漢数字に変換できませんでした。-> " +
+        num
     );
   }
   if (num === 0) {
