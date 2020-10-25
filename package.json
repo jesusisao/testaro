@@ -9,6 +9,7 @@
     "build": "next build",
     "build:static": "next build && next export",
     "start": "next start",
+    "start:static": "serve out",
     "test": "jest",
     "lint:allfix": "yarn lint:eslint && yarn lint:prettier && yarn lint:stylelint",
     "lint:eslint": "eslint --ext .ts,.tsx,.js --fix 'src/' 'pages/'",
@@ -29,6 +30,7 @@
     "qrcode": "^1.4.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "serve": "^11.3.2",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
