@@ -1,11 +1,16 @@
-import React from "react";
+import { NextPage } from "next";
+import Head from "next/head";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 
-const RecommendedBooks: React.FC = () => {
+const RecommendedBooks: NextPage = () => {
+  const title = "おすすめ書籍";
   return (
     <div className={style.page}>
-      <h1 className={commonStyle.pageTitle}>おすすめ書籍</h1>
+      <Head>
+        <title>{title} | Testaro</title>
+      </Head>
+      <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>テスト品質・開発品質を向上させるためのおすすめ書籍です。</p>
 
       <div className={style.textArea}>

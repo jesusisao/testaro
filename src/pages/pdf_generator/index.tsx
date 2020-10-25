@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import dynamic from "next/dynamic";
 import Loading from "src/components/Common/Loading";
 const DynamicComponent = dynamic(
@@ -7,7 +8,15 @@ const DynamicComponent = dynamic(
 );
 
 const PdfGenerator: NextPage = () => {
-  return <DynamicComponent />;
+  const title = "ダミーPDF生成";
+  return (
+    <>
+      <Head>
+        <title>{title} | Testaro</title>
+      </Head>
+      <DynamicComponent />
+    </>
+  );
 };
 
 export default PdfGenerator;

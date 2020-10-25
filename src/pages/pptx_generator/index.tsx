@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { NextPage } from "next";
+import Head from "next/head";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 import { sleep, replaceVariable } from "src/components/Common/util";
@@ -7,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 import pptxgen from "pptxgenjs";
 
-const PptxGenerator: React.FC = () => {
+const PptxGenerator: NextPage = () => {
   const [pptxContent, setPptxContent] = useState("Dummy PPTX #{count}");
   const [fileName, setFileName] = useState("dummy_#{count}");
   const [genNum, setGenNum] = useState(1);
@@ -44,10 +46,14 @@ const PptxGenerator: React.FC = () => {
     }
     setDownloading(false);
   };
+  const title = "ダミーPPTX生成";
 
   return (
     <div className={style.page}>
-      <h1 className={commonStyle.pageTitle}>ダミーPPTX生成</h1>
+      <Head>
+        <title>{title} | Testaro</title>
+      </Head>
+      <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>ダミーのパワポをたくさん生成できます。</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>

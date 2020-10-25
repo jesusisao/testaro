@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { NextPage } from "next";
+import Head from "next/head";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
 
 type Pattern = "decode" | "encode";
 
-const UriDecoder: React.FC = () => {
+const UriDecoder: NextPage = () => {
   const [pattern, setPattern] = useState("decode" as Pattern);
   const [originalUri, setOriginalUri] = useState("");
 
@@ -15,10 +17,14 @@ const UriDecoder: React.FC = () => {
     pattern === "decode"
       ? decodeURIComponent(originalUri)
       : encodeURIComponent(originalUri);
+  const title = "URIデコーダー";
 
   return (
     <div className={style.page}>
-      <h1 className={commonStyle.pageTitle}>URIデコーダー</h1>
+      <Head>
+        <title>{title} | Testaro</title>
+      </Head>
+      <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>「%」が沢山ついたURLなどを解読する時に使えます。</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>

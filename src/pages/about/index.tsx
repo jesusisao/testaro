@@ -1,10 +1,14 @@
 import { NextPage } from "next";
+import Head from "next/head";
 import commonStyle from "styles/common.module.scss";
 import style from "./index.module.scss";
 
 const About: NextPage = () => {
   return (
     <div className={style.page}>
+      <Head>
+        <title>Testaro</title>
+      </Head>
       <h1 className={commonStyle.pageTitle}>About</h1>
       <div className={style.textArea}>
         <h2>Testaroについて</h2>

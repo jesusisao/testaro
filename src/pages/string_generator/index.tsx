@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { NextPage } from "next";
+import Head from "next/head";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 import { copyToClipboard } from "src/components/Common/util";
@@ -18,7 +20,7 @@ export const generateManyChars = (pattern: string, charNum: number): string => {
   return str + pattern.slice(0, lastAddNum);
 };
 
-const StringGenerator: React.FC = () => {
+const StringGenerator: NextPage = () => {
   const [pattern, setPattern] = useState("あアｱｶﾞﾊﾟＡａAa１1亜");
   const [charNum, setCharNum] = useState(128);
   const [genStr, setGenStr] = useState("");
@@ -28,9 +30,13 @@ const StringGenerator: React.FC = () => {
     setGenStr(result);
   };
 
+  const title = "テスト文字列生成";
   return (
     <div className={style.page}>
-      <h1 className={commonStyle.pageTitle}>テスト文字列生成</h1>
+      <Head>
+        <title>{title} | Testaro</title>
+      </Head>
+      <h1 className={commonStyle.pageTitle}>{title}</h1>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
           <ParamBox labelName="パターン">

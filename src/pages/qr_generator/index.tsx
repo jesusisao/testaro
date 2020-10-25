@@ -1,4 +1,6 @@
-import React, { useState, createRef, useEffect } from "react";
+import { useState, createRef, useEffect } from "react";
+import { NextPage } from "next";
+import Head from "next/head";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
@@ -6,7 +8,7 @@ import QRCode from "qrcode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const QrGenerator: React.FC = () => {
+const QrGenerator: NextPage = () => {
   const [codes, setCodes] = useState(["", "", ""]);
   const [canvasRefs, setCanvasRefs] = useState([
     createRef<HTMLCanvasElement>(),
@@ -115,10 +117,14 @@ const QrGenerator: React.FC = () => {
     }
     return <div>{items}</div>;
   };
+  const title = "QRコード生成";
 
   return (
     <div className={style.page}>
-      <h1 className={commonStyle.pageTitle}>QRコード生成</h1>
+      <Head>
+        <title>{title} | Testaro</title>
+      </Head>
+      <h1 className={commonStyle.pageTitle}>{title}</h1>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
           {inputList()}

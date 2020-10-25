@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { NextPage } from "next";
+import Head from "next/head";
 import commonStyle from "styles/common.module.scss";
 import style from "./index.module.scss";
 import { sleep, replaceVariable } from "src/components/Common/util";
@@ -58,7 +60,7 @@ const drawTriangle = (
   ctx.fill();
 };
 
-const ImageGenerator: React.FC = () => {
+const ImageGenerator: NextPage = () => {
   const [width, setWidth] = useState(400);
   const [height, setHeight] = useState(300);
   const [comment, setComment] = useState("Dummy #{count}");
@@ -175,6 +177,9 @@ const ImageGenerator: React.FC = () => {
 
   return (
     <div className={style.page}>
+      <Head>
+        <title>{title} | Testaro</title>
+      </Head>
       <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>
         出力枚数を指定することで、大量のダミー画像を一括でダウンロード可能です。
