@@ -11,6 +11,7 @@
 # builded contents
 /build
 /.next
+/out
 
 # misc
 .DS_Store
