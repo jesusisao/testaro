@@ -5,14 +5,14 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "lint:allfix": "yarn lint:eslint && yarn lint:prettier && yarn lint:stylelint",
-    "lint:eslint": "eslint --ext .ts,.tsx,.js --fix src/",
-    "lint:prettier": "prettier --write 'src/**/*.{ts,tsx,js}'",
-    "lint:stylelint": "stylelint 'src/**/*.scss' --fix",
+    "lint:eslint": "eslint --ext .ts,.tsx,.js --fix 'src/' 'pages/'",
+    "lint:prettier": "prettier --write 'src/**/*.{ts,tsx,js}' 'pages/**/*.{ts,tsx,js}'",
+    "lint:stylelint": "stylelint 'src/**/*.scss' 'styles/**/*.scss' --fix",
     "create:addressJson": "node tool/csvToJson.js"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "moment": "^2.29.1",
+    "next": "^9.5.5",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "pdfmake": "^0.1.68",
