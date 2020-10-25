@@ -4,24 +4,4 @@
   height: 100%;
   min-width: 100%;
   overflow: hidden;
-
-  .instanceRecords {
-    display: block;
-    list-style: none;
-    overflow-x: scroll;
-    padding: 2px;
-    background-color: $config-menu-background-color;
-
-    li {
-      width: auto;
-      display: inline-block;
-
-      input {
-        border-radius: 0;
-        border: none;
-        border-left: solid rgba(0, 0, 0, 0.4) 1px;
-        border-right: solid rgba(0, 0, 0, 0.4) 1px;
-      }
-    }
-  }
 }

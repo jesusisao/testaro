@@ -2,49 +2,11 @@ import React, { useState } from "react";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
-import { copyToClipboard, downloadAsCsv } from "src/components/Common/util";
+import { downloadAsCsv } from "src/components/Common/util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
-import {
-  User,
-  createUsers,
-  userToCsvText,
-  sortedUserKeys,
-  DisplayUser,
-  usersDisplayHashArray,
-  userDisplayInfo,
-} from "src/models/user/user";
-
-const generateUserRow = (index: number, user: DisplayUser): JSX.Element => {
-  const items = [];
-  for (const key of sortedUserKeys) {
-    if (!userDisplayInfo[key]["display"]) continue;
-    items.push(
-      <input
-        style={{ width: userDisplayInfo[key]["width"] }}
-        readOnly
-        key={key}
-        type="text"
-        value={user[key]}
-        onClick={(): void => copyToClipboard(user[key])}
-      />
-    );
-  }
-  return (
-    <li key={"user_" + index} className={commonStyle.nowrap}>
-      {items}
-    </li>
-  );
-};
-
-const generateUserTable = (users: User[]): JSX.Element => {
-  const displayUsers = usersDisplayHashArray(users);
-  const items = [];
-  for (const [i, user] of displayUsers.entries()) {
-    items.push(generateUserRow(i, user));
-  }
-  return <ul className={style.instanceRecords}>{items}</ul>;
-};
+import { createUsers, userToCsvText } from "src/models/user/user";
+import UserTable from "src/components/UserGenerator/UserTable";
 
 const UserGenerator: React.FC = () => {
   const [genNum, setGenNum] = useState(20);
@@ -116,7 +78,7 @@ const UserGenerator: React.FC = () => {
         style={{ display: "block" }}
       >
         <div className={commonStyle.outputContainer}>
-          {generateUserTable(users)}
+          <UserTable users={users} />
         </div>
       </div>
     </div>
