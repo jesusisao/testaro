@@ -1,15 +1,13 @@
-import React, { Suspense, lazy } from "react";
+import { NextPage } from "next";
+import dynamic from "next/dynamic";
 import Loading from "src/components/Common/Loading";
-const LazyComponent = lazy(
-  () => import("src/components/UserGenerator/UserGenerator")
+const DynamicComponent = dynamic(
+  () => import("src/components/UserGenerator/UserGenerator"),
+  { loading: () => <Loading />, ssr: false }
 );
 
-const UserGenerator: React.FC = () => {
-  return (
-    <Suspense fallback={<Loading />}>
-      <LazyComponent />
-    </Suspense>
-  );
+const UserGenerator: NextPage = () => {
+  return <DynamicComponent />;
 };
 
 export default UserGenerator;

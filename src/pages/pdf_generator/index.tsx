@@ -1,15 +1,13 @@
-import React, { Suspense, lazy } from "react";
+import { NextPage } from "next";
+import dynamic from "next/dynamic";
 import Loading from "src/components/Common/Loading";
-const LazyComponent = lazy(
-  () => import("src/components/PdfGenerator/PdfGenerator")
+const DynamicComponent = dynamic(
+  () => import("src/components/PdfGenerator/PdfGenerator"),
+  { loading: () => <Loading />, ssr: false }
 );
 
-const UserGenerator: React.FC = () => {
-  return (
-    <Suspense fallback={<Loading />}>
-      <LazyComponent />
-    </Suspense>
-  );
+const PdfGenerator: NextPage = () => {
+  return <DynamicComponent />;
 };
 
-export default UserGenerator;
+export default PdfGenerator;
