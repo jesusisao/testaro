@@ -1,0 +1,42 @@
+@import "styles/config.scss";
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Noto Sans JP",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Courier New",
+    monospace;
+}
+
+input,
+textarea,
+select {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: $config-font-color;
+  border: none;
+  border-collapse: collapse;
+  border-radius: 15px;
+  padding: 0 10px 0 10px;
+  height: 25px;
+  outline: none;
+}

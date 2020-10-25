@@ -1,0 +1,34 @@
+@import "styles/config.scss";
+
+.app {
+  display: flex;
+  background-color: $config-menu-background-color;
+
+  a {
+    color: $config-link-color;
+  }
+}
+
+.appContainer {
+  width: calc(100% - #{$config-menu-width});
+  background-color: $config-background-color;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: $config-font-color;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 0;
+}
+
+// スマホ対応
+@media only screen and (max-width: 480px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .appContainer {
+    width: 100%;
+  }
+}

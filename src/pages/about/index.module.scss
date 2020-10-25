@@ -1,0 +1,22 @@
+@import "styles/config.scss";
+
+.page {
+  height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+
+  .textArea {
+    max-width: 650px;
+    text-indent: 1em;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    margin: 20px;
+    line-height: 1.8em;
+  }
+
+  .author {
+    text-align: right;
+  }
+}
