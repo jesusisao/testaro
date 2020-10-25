@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
-import { copyToClipboard } from "../../components/Common/util";
-import ParamBox from "../../components/Common/ParamBox";
+import { copyToClipboard } from "src/components/Common/util";
+import ParamBox from "src/components/Common/ParamBox";
 
 // パターンと文字数を入れると、パターンを繰り返して文字数分だけ文字を生成してくれる関数
 export const generateManyChars = (pattern: string, charNum: number): string => {

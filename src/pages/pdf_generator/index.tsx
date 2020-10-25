@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
-import { sleep, replaceVariable } from "../../components/Common/util";
-import ParamBox from "../../components/Common/ParamBox";
+import { sleep, replaceVariable } from "src/components/Common/util";
+import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 // import pdfFonts from "pdfmake/build/vfs_fonts";

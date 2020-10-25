@@ -1,7 +1,7 @@
 import React, { useState, createRef, useEffect } from "react";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
-import ParamBox from "../../components/Common/ParamBox";
+import ParamBox from "src/components/Common/ParamBox";
 import QRCode from "qrcode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload, faTimes } from "@fortawesome/free-solid-svg-icons";

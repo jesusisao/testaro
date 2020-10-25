@@ -1,7 +1,7 @@
 import "normalize.css";
 import "styles/globals.scss";
 import { AppProps } from "next/app";
-import Layout from "../components/Layout/Layout";
+import Layout from "src/components/Layout/Layout";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function App({ Component, pageProps }: AppProps) {

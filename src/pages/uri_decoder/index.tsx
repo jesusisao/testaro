@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
-import ParamBox from "../../components/Common/ParamBox";
+import ParamBox from "src/components/Common/ParamBox";
 
 type Pattern = "decode" | "encode";
 
