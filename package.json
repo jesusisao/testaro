@@ -12,8 +12,8 @@
     "start:static": "serve out",
     "test": "jest",
     "lint:allfix": "yarn lint:eslint && yarn lint:prettier && yarn lint:stylelint",
-    "lint:eslint": "eslint --ext .ts,.tsx,.js --fix 'src/' 'pages/'",
-    "lint:prettier": "prettier --write 'src/**/*.{ts,tsx,js}' 'pages/**/*.{ts,tsx,js}'",
+    "lint:eslint": "eslint --ext .ts,.tsx,.js --fix 'src/'",
+    "lint:prettier": "prettier --write 'src/**/*.{ts,tsx,js}'",
     "lint:stylelint": "stylelint 'src/**/*.scss' 'styles/**/*.scss' --fix",
     "create:addressJson": "node tool/csvToJson.js"
   },

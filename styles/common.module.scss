@@ -9,7 +9,9 @@
 
   @if $opacity == 1 or $opacity == 100% {
     @return unquote("rgba(#{$red},#{$green},#{$blue},#{$alpha})");
-  } @else {
+  }
+
+  @else {
     @return unquote("rgba(#{$red},#{$green},#{$blue},#{$opacity})");
   }
 }

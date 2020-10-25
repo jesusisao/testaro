@@ -25,7 +25,8 @@
       font-weight: 800;
       z-index: 10;
       text-shadow: 1px 1px 0 $config-background-color,
-        -1px 1px 0 $config-background-color, 1px -1px 0 $config-background-color,
+        -1px 1px 0 $config-background-color,
+        1px -1px 0 $config-background-color,
         -1px -1px 0 $config-background-color;
     }
   }
