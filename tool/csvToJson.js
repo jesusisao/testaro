@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 const csvSync = require("csv-parse/lib/sync");
 const sampleSize = require("lodash.samplesize");
