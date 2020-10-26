@@ -15,6 +15,7 @@ function App({ Component, pageProps }: AppProps) {
           content="アプリケーション開発時の手動テストを、少しだけ楽にするためのサービスです。"
         />
         <link rel="icon" href="/favicon-32x32.png" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <noscript>You need to enable JavaScript to run this app.</noscript>
       <Layout>
