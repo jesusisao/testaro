@@ -25,13 +25,14 @@ const UserGenerator: React.FC = () => {
   const downloadCsv = (): void => {
     downloadAsCsv(userToCsvText(users), "users");
   };
+  const title = "ダミーユーザー情報生成";
+  const description =
+    "テスト用のダミーユーザー情報を大量に生成・ダウンロードできます。セルをクリックすると、中の値がクリップボードにコピーされます。";
 
   return (
     <div className={style.page}>
-      <h1 className={commonStyle.pageTitle}>ダミーユーザー情報生成</h1>
-      <p>
-        セルをクリックすると、中の値が勝手にクリップボードにコピーされます。
-      </p>
+      <h1 className={commonStyle.pageTitle}>{title}</h1>
+      <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
           <ParamBox labelName="一条太郎方式">

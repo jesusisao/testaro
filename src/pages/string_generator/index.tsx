@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NextPage } from "next";
-import Head from "next/head";
+import MetaHeader from "src/components/Common/MetaHeader";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 import { copyToClipboard } from "src/components/Common/util";
@@ -31,12 +31,12 @@ const StringGenerator: NextPage = () => {
   };
 
   const title = "テスト文字列生成";
+  const description = "任意の長さの文字列を生成できます。";
   return (
     <div className={style.page}>
-      <Head>
-        <title>{title} | Testaro</title>
-      </Head>
+      <MetaHeader title={title} description={description} />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
+      <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
           <ParamBox labelName="パターン">

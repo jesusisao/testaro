@@ -1,18 +1,17 @@
 import { NextPage } from "next";
-import Head from "next/head";
+import MetaHeader from "src/components/Common/MetaHeader";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 
 const RecommendedBooks: NextPage = () => {
   const title = "おすすめ書籍";
+  const description =
+    "テスト品質・開発品質を向上させるためのおすすめ書籍です。";
   return (
     <div className={style.page}>
-      <Head>
-        <title>{title} | Testaro</title>
-      </Head>
+      <MetaHeader title={title} description={description} />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
-      <p>テスト品質・開発品質を向上させるためのおすすめ書籍です。</p>
-
+      <p>{description}</p>
       <div className={style.textArea}>
         <h2>
           ソフトウェアテストの教科書 品質を決定づけるテスト工程の基本と実践

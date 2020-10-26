@@ -13,8 +13,8 @@ const About: NextPage = () => {
       <div className={style.textArea}>
         <h2>Testaroについて</h2>
         <p>
-          このサービスは業務システム開発の手動テストを多少楽にするために作りました。React
-          + TypeScriptで作られている静的なWebページです。
+          このサービスはWebサービス開発や業務システム開発時の手動テストを多少楽にするために作りました。
+          React + TypeScriptで作られている静的なWebページです。
           inputに入力した内容をサーバーに送信したりはしません。強いて言うならGoogle
           Analyticsを使用している程度です。
           そのため、仕事でも安心してお使い頂けます。

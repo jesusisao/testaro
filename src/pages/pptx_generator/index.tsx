@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NextPage } from "next";
-import Head from "next/head";
+import MetaHeader from "src/components/Common/MetaHeader";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 import { sleep, replaceVariable } from "src/components/Common/util";
@@ -18,10 +18,8 @@ const PptxGenerator: NextPage = () => {
   const generatePptx = (num: number): void => {
     // 1. Create a new Presentation
     const pres = new pptxgen();
-
     // 2. Add a Slide
     const slide = pres.addSlide();
-
     // 3. Add one or more objects (Tables, Shapes, Images, Text and Media) to the Slide
     const textboxText = replaceVariable(pptxContent, num);
     const textboxOpts: pptxgen.TextPropsOptions = {
@@ -47,14 +45,14 @@ const PptxGenerator: NextPage = () => {
     setDownloading(false);
   };
   const title = "ダミーPPTX生成";
+  const description =
+    "異なる文字の書かれたテスト用のパワポを大量に生成できます。";
 
   return (
     <div className={style.page}>
-      <Head>
-        <title>{title} | Testaro</title>
-      </Head>
+      <MetaHeader title={title} description={description} />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
-      <p>ダミーのパワポをたくさん生成できます。</p>
+      <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
           <ParamBox labelName="中身の文字">

@@ -10,6 +10,10 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Testaro</title>
+        <meta
+          name="description"
+          content="アプリケーション開発時の手動テストを、少しだけ楽にするためのサービスです。"
+        />
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
       <noscript>You need to enable JavaScript to run this app.</noscript>

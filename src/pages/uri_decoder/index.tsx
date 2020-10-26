@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NextPage } from "next";
-import Head from "next/head";
+import MetaHeader from "src/components/Common/MetaHeader";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
@@ -18,14 +18,13 @@ const UriDecoder: NextPage = () => {
       ? decodeURIComponent(originalUri)
       : encodeURIComponent(originalUri);
   const title = "URIデコーダー";
+  const description = "「%」が沢山ついたURLなどを解読する時に使えます。";
 
   return (
     <div className={style.page}>
-      <Head>
-        <title>{title} | Testaro</title>
-      </Head>
+      <MetaHeader title={title} description={description} />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
-      <p>「%」が沢山ついたURLなどを解読する時に使えます。</p>
+      <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
           <p>URI入力</p>

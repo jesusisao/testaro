@@ -1,14 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { NextPage } from "next";
-import Head from "next/head";
+import MetaHeader from "src/components/Common/MetaHeader";
 import commonStyle from "styles/common.module.scss";
 import style from "./index.module.scss";
 import { sleep, replaceVariable } from "src/components/Common/util";
 import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
-
-const title = "ダミー画像生成";
 
 const generateRandomColor = (): string => {
   // 255だとデフォルトのフォントのwhiteが見えにくくなることがあるので下げた
@@ -175,15 +173,14 @@ const ImageGenerator: NextPage = () => {
     draw();
   });
 
+  const title = "ダミー画像生成";
+  const description = "任意のサイズのダミー画像を大量に生成できます。";
+
   return (
     <div className={style.page}>
-      <Head>
-        <title>{title} | Testaro</title>
-      </Head>
+      <MetaHeader title={title} description={description} />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
-      <p>
-        出力枚数を指定することで、大量のダミー画像を一括でダウンロード可能です。
-      </p>
+      <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
           <span className={commonStyle.paramLabel}>画像パラメータ</span>

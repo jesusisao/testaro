@@ -48,10 +48,13 @@ const PdfGenerator: React.FC = () => {
     setDownloading(false);
   };
 
+  const title = "ダミーPDF生成";
+  const description = "異なる文字の書かれたテスト用のPDFを大量に生成できます。";
+
   return (
     <div className={style.page}>
-      <h1 className={commonStyle.pageTitle}>ダミーPDF生成</h1>
-      <p>ダミーのPDFファイルをたくさん生成できます。</p>
+      <h1 className={commonStyle.pageTitle}>{title}</h1>
+      <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
           <ParamBox labelName="中身の文字">
