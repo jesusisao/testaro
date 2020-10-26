@@ -1,2 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
+
+sitemap:https://testaro.netlify.app/sitemap.xml
