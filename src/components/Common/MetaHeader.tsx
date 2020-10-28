@@ -4,7 +4,7 @@ import { GA_ID } from "src/lib/gtag";
 
 const siteName = "Testaro";
 const host = "https://testaro.netlify.app";
-const imageUrl = `${host}/icon-400x400.png`;
+const imageUrl = `${host}/icon-ogp.png`;
 
 const defaultDescription =
   "アプリケーション開発時の手動テストを、少しだけ楽にするためのサービスです。";
