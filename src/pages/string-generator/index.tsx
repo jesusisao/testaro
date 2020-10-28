@@ -34,7 +34,11 @@ const StringGenerator: NextPage = () => {
   const description = "任意の長さの文字列を生成できます。";
   return (
     <div className={style.page}>
-      <MetaHeader title={title} description={description} />
+      <MetaHeader
+        title={title}
+        description={description}
+        url="/string-generator"
+      />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>{description}</p>
       <div className={commonStyle.paramsContainer}>

@@ -4,7 +4,10 @@ import dynamic from "next/dynamic";
 import Loading from "src/components/Common/Loading";
 const DynamicComponent = dynamic(
   () => import("src/components/UserGenerator/UserGenerator"),
-  { loading: () => <Loading />, ssr: false }
+  {
+    loading: () => <Loading />,
+    ssr: false,
+  }
 );
 
 const UserGenerator: NextPage = () => {
@@ -13,7 +16,11 @@ const UserGenerator: NextPage = () => {
     "テスト用のダミーユーザー情報を大量に生成・ダウンロードできます。セルをクリックすると、中の値がクリップボードにコピーされます。";
   return (
     <>
-      <MetaHeader title={title} description={description} />
+      <MetaHeader
+        title={title}
+        description={description}
+        url="/user-generator"
+      />
       <DynamicComponent />
     </>
   );

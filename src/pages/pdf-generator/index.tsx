@@ -13,7 +13,11 @@ const PdfGenerator: NextPage = () => {
 
   return (
     <>
-      <MetaHeader title={title} description={description} />
+      <MetaHeader
+        title={title}
+        description={description}
+        url="/pdf-generator"
+      />
       <DynamicComponent />
     </>
   );

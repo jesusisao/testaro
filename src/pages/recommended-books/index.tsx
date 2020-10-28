@@ -9,7 +9,11 @@ const RecommendedBooks: NextPage = () => {
     "テスト品質・開発品質を向上させるためのおすすめ書籍です。";
   return (
     <div className={style.page}>
-      <MetaHeader title={title} description={description} />
+      <MetaHeader
+        title={title}
+        description={description}
+        url="/recommended-books"
+      />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>{description}</p>
       <div className={style.textArea}>

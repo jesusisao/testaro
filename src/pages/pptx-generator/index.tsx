@@ -50,7 +50,11 @@ const PptxGenerator: NextPage = () => {
 
   return (
     <div className={style.page}>
-      <MetaHeader title={title} description={description} />
+      <MetaHeader
+        title={title}
+        description={description}
+        url="/pptx-generator"
+      />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>{description}</p>
       <div className={commonStyle.paramsContainer}>

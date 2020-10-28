@@ -25,7 +25,7 @@ const Menu: React.FC = () => {
 
       <ul>
         <li>
-          <Link href="/image_generator">
+          <Link href="/image-generator">
             <span className={style.link}>
               <FontAwesomeIcon icon={faImages} className={style.icon} />
               ダミー画像
@@ -33,7 +33,7 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/pdf_generator">
+          <Link href="/pdf-generator">
             <span className={style.link}>
               <FontAwesomeIcon icon={faFilePdf} className={style.icon} />
               ダミーPDF
@@ -41,7 +41,7 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/pptx_generator">
+          <Link href="/pptx-generator">
             <span className={style.link}>
               <FontAwesomeIcon icon={faFilePowerpoint} className={style.icon} />
               ダミーPPTX
@@ -49,7 +49,7 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/user_generator">
+          <Link href="/user-generator">
             <span className={style.link}>
               <FontAwesomeIcon icon={faMale} className={style.icon} />
               ダミーユーザー情報
@@ -57,7 +57,7 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/qr_generator">
+          <Link href="/qr-generator">
             <span className={style.link}>
               <FontAwesomeIcon icon={faQrcode} className={style.icon} />
               QRコード
@@ -65,7 +65,7 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/string_generator">
+          <Link href="/string-generator">
             <span className={style.link}>
               <FontAwesomeIcon icon={faFont} className={style.icon} />
               テスト文字列
@@ -73,7 +73,7 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/uri_decoder">
+          <Link href="/uri-decoder">
             <span className={style.link}>
               <FontAwesomeIcon icon={faLink} className={style.icon} />
               URIデコーダー
@@ -81,7 +81,7 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
-          <Link href="/recommended_books">
+          <Link href="/recommended-books">
             <span className={style.link}>
               <FontAwesomeIcon icon={faBook} className={style.icon} />
               おすすめ書籍
