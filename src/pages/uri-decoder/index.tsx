@@ -7,16 +7,35 @@ import ParamBox from "src/components/Common/ParamBox";
 
 type Pattern = "decode" | "encode";
 
+const outputUri1 = (pattern: Pattern, originalUri: string) => {
+  try {
+    return pattern === "decode"
+      ? decodeURI(originalUri)
+      : encodeURI(originalUri);
+  } catch (e) {
+    console.warn(e.message);
+    return "(ERROR)";
+  }
+};
+
+const outputUri2 = (pattern: Pattern, originalUri: string) => {
+  try {
+    return pattern === "decode"
+      ? decodeURIComponent(originalUri)
+      : encodeURIComponent(originalUri);
+  } catch (e) {
+    console.warn(e.message);
+    return "(ERROR)";
+  }
+};
+
 const UriDecoder: NextPage = () => {
   const [pattern, setPattern] = useState("decode" as Pattern);
   const [originalUri, setOriginalUri] = useState("");
 
-  const output1 =
-    pattern === "decode" ? decodeURI(originalUri) : encodeURI(originalUri);
-  const output2 =
-    pattern === "decode"
-      ? decodeURIComponent(originalUri)
-      : encodeURIComponent(originalUri);
+  const output1 = outputUri1(pattern, originalUri);
+  const output2 = outputUri2(pattern, originalUri);
+
   const title = "URIデコーダー";
   const description = "「%」が沢山ついたURLなどを解読する時に使えます。";
 
