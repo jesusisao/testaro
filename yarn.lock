@@ -10403,10 +10403,22 @@ ws@^7.2.3:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.3.1.tgz#d0547bf67f7ce4f12a72dfe31262c68d7dc551c8"
   integrity sha512-D3RuNkynyHmEJIpD2qrgVkc9DQ23OrN/moAwZX4L8DfvszsJxpjQuUq3LMx6HoYji9fbIOBY18XWBsAux1ZZUA==
 
+xml-formatter@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/xml-formatter/-/xml-formatter-2.3.1.tgz#79201637dad4fe4b2e58fbd6bf1524ac830ea505"
+  integrity sha512-jvqmM7aowtzgi05LfvWjXLqajeRNu50/dX6Q26a4jwdpMwuCz6FRYRkvqvPBThe7bordClp35jiR/zxRrtM0NQ==
+  dependencies:
+    xml-parser-xo "^3.1.1"
+
 xml-name-validator@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
   integrity sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==
+
+xml-parser-xo@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/xml-parser-xo/-/xml-parser-xo-3.1.1.tgz#a87d92e44fa8ad3ba7242517df96e6b0893f1f47"
+  integrity sha512-gq1nDlJxjKQpPPZUhLbJ52pghtlB4Rz6LAQULm3SF6xzOYVnUloBglNhJR9vtZB3vIxMN/R3nZTf3qmun+6GCg==
 
 xmlchars@^2.2.0:
   version "2.2.0"

@@ -2,6 +2,7 @@
 const sitemap = require("nextjs-sitemap-generator");
 const path = require("path");
 const fs = require("fs");
+const format = require("xml-formatter");
 
 const generateSitemap = async () => {
   await sitemap({
@@ -13,10 +14,11 @@ const generateSitemap = async () => {
     ignoredExtensions: ["png", "jpg", "scss"],
   });
 
-  // プロジェクトの構造上不要な/indexがついてしまうので除去する
   const filePath = "./out/sitemap.xml";
   const text = fs.readFileSync(filePath, "utf-8");
-  const newText = text.toString().replace(/\/index/g, "");
+  // プロジェクトの構造上不要な/indexがついてしまうので除去する
+  // 生成されるスクリプトはインデントが揃ってないのでformatもする。
+  const newText = format(text.toString().replace(/\/index/g, ""));
 
   fs.writeFile(filePath, newText, (err) => {
     if (err) throw err;
