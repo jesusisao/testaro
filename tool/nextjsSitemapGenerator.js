@@ -16,9 +16,13 @@ const generateSitemap = async () => {
 
   const filePath = "./out/sitemap.xml";
   const text = fs.readFileSync(filePath, "utf-8");
+  // 標準で出力されるurlsetに余計なものが沢山ついているので置き換える
+  const urlset = `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
   // プロジェクトの構造上不要な/indexがついてしまうので除去する
   // 生成されるスクリプトはインデントが揃ってないのでformatもする。
-  const newText = format(text.toString().replace(/\/index/g, ""));
+  const newText = format(
+    text.replace(/<urlset[\s\S]*?>/, urlset).replace(/\/index/g, "")
+  );
 
   fs.writeFile(filePath, newText, (err) => {
     if (err) throw err;
