@@ -8,6 +8,7 @@ import {
   faFilePdf,
   faFilePowerpoint,
   faQrcode,
+  faUnderline,
   faBook,
   faLink,
 } from "@fortawesome/free-solid-svg-icons";
@@ -83,7 +84,7 @@ const Menu: React.FC = () => {
         <li>
           <Link href="/unicode-escape-sequence">
             <span className={style.link}>
-              <FontAwesomeIcon icon={faLink} className={style.icon} />
+              <FontAwesomeIcon icon={faUnderline} className={style.icon} />
               Unicodeエスケープ
             </span>
           </Link>
