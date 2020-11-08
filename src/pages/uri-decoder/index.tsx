@@ -31,7 +31,9 @@ const outputUri2 = (pattern: Pattern, originalUri: string) => {
 
 const UriDecoder: NextPage = () => {
   const [pattern, setPattern] = useState("decode" as Pattern);
-  const [originalUri, setOriginalUri] = useState("");
+  const [originalUri, setOriginalUri] = useState(
+    "https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%BC%E3%82%BB%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0"
+  );
 
   const output1 = outputUri1(pattern, originalUri);
   const output2 = outputUri2(pattern, originalUri);

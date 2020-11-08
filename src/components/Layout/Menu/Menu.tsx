@@ -81,6 +81,14 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
+          <Link href="/unicode-escape-sequence">
+            <span className={style.link}>
+              <FontAwesomeIcon icon={faLink} className={style.icon} />
+              Unicodeエスケープ
+            </span>
+          </Link>
+        </li>
+        <li>
           <Link href="/recommended-books">
             <span className={style.link}>
               <FontAwesomeIcon icon={faBook} className={style.icon} />
@@ -88,8 +96,6 @@ const Menu: React.FC = () => {
             </span>
           </Link>
         </li>
-        {/* <li>Hash</li> */}
-        {/* <li>バーコード</li> */}
       </ul>
       <div className={style.githubLink}>
         <a
