@@ -6,7 +6,7 @@ import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 // import pdfFonts from "pdfmake/build/vfs_fonts";
-import vfs from "../../lib/vfs_fonts";
+import vfs from "src/lib/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
 import { TDocumentDefinitions } from "pdfmake/interfaces";
 
