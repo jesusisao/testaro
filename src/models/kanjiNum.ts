@@ -91,40 +91,58 @@ export const numbersToKanji = (num: number): string => {
   return ret;
 };
 
+const kanaTable: { [key: string]: string } = {
+  一: "イチ",
+  二: "ニ",
+  三: "サン",
+  四: "ヨン",
+  五: "ゴ",
+  六: "ロク",
+  七: "ナナ",
+  八: "ハチ",
+  九: "キュウ",
+  十: "ジュウ",
+  百: "ヒャク",
+  千: "セン",
+  万: "マン",
+  億: "オク",
+};
+
 export const numKanjiToKana = (kanji: string): string => {
   let result = "";
   for (const char of kanji) {
-    if (char === "一") result += "イチ";
-    if (char === "二") result += "ニ";
-    if (char === "三") result += "サン";
-    if (char === "四") result += "ヨン";
-    if (char === "五") result += "ゴ";
-    if (char === "六") result += "ロク";
-    if (char === "七") result += "ナナ";
-    if (char === "八") result += "ハチ";
-    if (char === "九") result += "キュウ";
-    if (char === "十") result += "ジュウ";
-    if (char === "百") result += "ヒャク";
-    if (char === "千") result += "セン";
+    // eslint-disable-next-line no-prototype-builtins
+    if (kanaTable.hasOwnProperty(char)) {
+      result += kanaTable[char];
+    }
   }
   return result;
+};
+
+const romeTable: { [key: string]: string } = {
+  一: "ichi",
+  二: "ni",
+  三: "san",
+  四: "yon",
+  五: "go",
+  六: "roku",
+  七: "nana",
+  八: "hachi",
+  九: "kyu",
+  十: "ju",
+  百: "hyaku",
+  千: "sen",
+  万: "man",
+  億: "oku",
 };
 
 export const numKanjiToRome = (kanji: string): string => {
   let result = "";
   for (const char of kanji) {
-    if (char === "一") result += "ichi";
-    if (char === "二") result += "ni";
-    if (char === "三") result += "san";
-    if (char === "四") result += "yon";
-    if (char === "五") result += "go";
-    if (char === "六") result += "roku";
-    if (char === "七") result += "nana";
-    if (char === "八") result += "hachi";
-    if (char === "九") result += "kyu";
-    if (char === "十") result += "ju";
-    if (char === "百") result += "hyaku";
-    if (char === "千") result += "sen";
+    // eslint-disable-next-line no-prototype-builtins
+    if (romeTable.hasOwnProperty(char)) {
+      result += romeTable[char];
+    }
   }
   return result;
 };

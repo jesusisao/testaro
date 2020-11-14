@@ -1,5 +1,5 @@
 import { FamilyName, GivenName, Sex, User } from "./user";
-import { createRandomDate, dateToString } from "src/components/Common/util";
+import { createRandomDate, dateToString } from "src/models/date";
 import { generateRandomAddress } from "../address";
 
 const HumanFamilyNames: Array<FamilyName> = [
