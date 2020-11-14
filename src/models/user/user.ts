@@ -14,7 +14,7 @@ export type GivenName = {
   givenNameKana: string;
   givenNameRome: string;
 };
-export type Sex = "female" | "male";
+export type Sex = "not known" | "male" | "female" | "not applicable";
 export type Human = FamilyName & GivenName & { sex: Sex; birthday: Date };
 export type User = Human & { email: string } & Address;
 
