@@ -6,7 +6,11 @@ module.exports = {
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
   snapshotSerializers: ["enzyme-to-json/serializer"],
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
+    "^.+\\.(ts|tsx)$": "ts-jest",
+  },
+  moduleNameMapper: {
+    "src(.*)$": "<rootDir>/src/$1",
+    "\\.(css|scss)$": "identity-obj-proxy",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   // https://github.com/zeit/next.js/issues/8663#issue-490553899
@@ -15,7 +19,7 @@ module.exports = {
     // to transform jsx into js rather than leaving it jsx such as the next build requires. you
     // can see this setting in tsconfig.jest.json -> "jsx": "react"
     "ts-jest": {
-      tsconfig: "<rootDir>/test/tsconfig.jest.json"
-    }
-  }
+      tsconfig: "<rootDir>/test/tsconfig.jest.json",
+    },
+  },
 };

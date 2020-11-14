@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { NextPage } from "next";
 import MetaHeader from "src/components/Common/MetaHeader";
 import style from "./index.module.scss";

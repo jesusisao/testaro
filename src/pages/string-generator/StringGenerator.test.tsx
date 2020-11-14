@@ -1,4 +1,4 @@
-import { generateManyChars } from "../src/pages/string_generator/index";
+import { generateManyChars } from "./index";
 
 describe("generateManyChars", () => {
   test("num0", () => {
