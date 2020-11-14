@@ -1,7 +1,7 @@
 import moment from "moment";
 import { createNumros } from "./numro";
 import { createRandomUsers } from "./human";
-import { arrayToCsv } from "src/components/Common/util";
+import { arrayToCsv } from "src/models/util";
 import { Address } from "../address";
 
 export type FamilyName = {

@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import MetaHeader from "src/components/Common/MetaHeader";
 import commonStyle from "styles/common.module.scss";
 import style from "./index.module.scss";
-import { sleep, replaceVariable } from "src/components/Common/util";
+import { sleep, replaceVariable } from "src/models/util";
 import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";

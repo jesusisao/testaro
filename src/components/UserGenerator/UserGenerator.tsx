@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import commonStyle from "styles/common.module.scss";
 import style from "./UserGenerator.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
-import { downloadAsCsv } from "src/components/Common/util";
+import { downloadAsCsv } from "src/models/util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 import { createUsers, userToCsvText } from "src/models/user/user";

@@ -1,5 +1,5 @@
 import { FamilyName, GivenName, User, Sex } from "./user";
-import { toFullWidth } from "src/components/Common/util";
+import { toFullWidth } from "src/models/util";
 import { dateToString } from "src/models/date";
 import { numbersToKanji, numKanjiToKana, numKanjiToRome } from "../kanjiNum";
 import { Address } from "../address";

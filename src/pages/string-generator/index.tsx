@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import MetaHeader from "src/components/Common/MetaHeader";
 import style from "./index.module.scss";
 import commonStyle from "styles/common.module.scss";
-import { copyToClipboard } from "src/components/Common/util";
+import { copyToClipboard } from "src/models/util";
 import ParamBox from "src/components/Common/ParamBox";
 
 // パターンと文字数を入れると、パターンを繰り返して文字数分だけ文字を生成してくれる関数

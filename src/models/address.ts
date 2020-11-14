@@ -1,4 +1,4 @@
-import { toFullWidth } from "src/components/Common/util";
+import { toFullWidth } from "./util";
 import kenData from "src/lib/kenMini.json";
 const kenList = kenData as Array<KenAddress>;
 const kenLength = kenList.length;

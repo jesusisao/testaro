@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./UserTable.module.scss";
 import commonStyle from "styles/common.module.scss";
-import { copyToClipboard } from "src/components/Common/util";
+import { copyToClipboard } from "src/models/util";
 import {
   User,
   sortedUserKeys,
