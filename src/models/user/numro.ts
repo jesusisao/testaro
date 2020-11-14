@@ -48,12 +48,18 @@ const createNumjo = (num: number): FamilyName => {
   };
 };
 
-// ここでキャッシュしておく
-// 100 * 500 == 50000より大きな数で生成しようとするとエラーになるが、そんなに生成する人はいないと仮定する。
-let Numjos: Record<number, FamilyName> = {};
+// ここで五百条さんまでキャッシュしておく
+let NumjosCache: Record<number, FamilyName> = {};
 for (let i = 1; i <= 500; i++) {
-  Numjos = { [i]: createNumjo(i), ...Numjos };
+  NumjosCache = { [i]: createNumjo(i), ...NumjosCache };
 }
+
+const getNumjo = (num: number): FamilyName => {
+  if (num <= 500) {
+    return NumjosCache[num];
+  }
+  return createNumjo(num);
+};
 
 const generateAddress = (index1: number, index2: number): Address => {
   return {
@@ -68,13 +74,18 @@ const generateAddress = (index1: number, index2: number): Address => {
   };
 };
 
-export const createNumros = (num: number, mailDomain: string): Array<User> => {
+export const createNumros = (
+  num: number,
+  mailDomain: string,
+  idOffset: number
+): Array<User> => {
   const result = [];
   const NumroLength = Object.keys(Numros).length;
   for (let i = 0; i < num; i++) {
-    const givenNameIndex = (i % NumroLength) + 1;
-    const familyNameIndex = Math.floor(i / NumroLength) + 1;
-    const familyName = Numjos[familyNameIndex];
+    const count = i + idOffset;
+    const givenNameIndex = (count % NumroLength) + 1;
+    const familyNameIndex = Math.floor(count / NumroLength) + 1;
+    const familyName = getNumjo(familyNameIndex);
     const birthday = new Date(1950 + familyNameIndex, 0, 0);
     birthday.setDate(birthday.getDate() + givenNameIndex);
     result.push({

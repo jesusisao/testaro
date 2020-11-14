@@ -12,6 +12,7 @@ const UserGenerator: React.FC = () => {
   const [genNum, setGenNum] = useState(20);
   const [useNumro, setUseNumro] = useState(false);
   const [mailDomain, setMailDomain] = useState("testaro.somewhere.gq");
+  const [idOffset, setIdOffset] = useState(0);
 
   const generate = (): void => {
     setGenNum(0);
@@ -20,10 +21,10 @@ const UserGenerator: React.FC = () => {
     }, 0);
   };
 
-  const users = createUsers(genNum, useNumro, mailDomain);
+  const users = createUsers(genNum, useNumro, mailDomain, idOffset);
 
   const downloadCsv = (): void => {
-    downloadAsCsv(userToCsvText(users), "users");
+    downloadAsCsv(userToCsvText(users, idOffset), "users");
   };
   const title = "ダミーユーザー情報生成";
   const description =
@@ -57,6 +58,14 @@ const UserGenerator: React.FC = () => {
               onChange={(e): void => setGenNum(parseInt(e.target.value))}
             ></input>
           </ParamBox>
+          <ParamBox labelName="IDのOffset">
+            <input
+              className={commonStyle.textRight}
+              type="number"
+              defaultValue={idOffset}
+              onChange={(e): void => setIdOffset(parseInt(e.target.value))}
+            ></input>
+          </ParamBox>
 
           <button className={commonStyle.testaroButton} onClick={generate}>
             再生成
@@ -79,7 +88,7 @@ const UserGenerator: React.FC = () => {
         style={{ display: "block" }}
       >
         <div className={commonStyle.outputContainer}>
-          <UserTable users={users} />
+          <UserTable users={users} idOffset={idOffset} />
         </div>
       </div>
     </div>

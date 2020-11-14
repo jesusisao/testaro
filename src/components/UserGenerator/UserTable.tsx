@@ -32,17 +32,17 @@ const generateUserRow = (index: number, user: DisplayUser): JSX.Element => {
   );
 };
 
-const generateUserTable = (users: User[]): JSX.Element => {
-  const displayUsers = usersDisplayHashArray(users);
+const generateUserTable = (users: User[], idOffset: number): JSX.Element => {
+  const displayUsers = usersDisplayHashArray(users, idOffset);
   const items = [];
   for (const [i, user] of displayUsers.entries()) {
-    items.push(generateUserRow(i, user));
+    items.push(generateUserRow(i + idOffset, user));
   }
   return <ul className={style.instanceRecords}>{items}</ul>;
 };
 
-const UserTable: React.FC<{ users: User[] }> = (prop) => {
-  return <>{generateUserTable(prop.users)}</>;
+const UserTable: React.FC<{ users: User[]; idOffset: number }> = (prop) => {
+  return <>{generateUserTable(prop.users, prop.idOffset)}</>;
 };
 
 export default UserTable;

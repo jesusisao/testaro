@@ -21,10 +21,11 @@ export type User = Human & { email: string } & Address;
 export const createUsers = (
   genNum: number,
   useNumro: boolean,
-  mailDomain: string
+  mailDomain: string,
+  idOffset: number
 ): User[] => {
   return useNumro
-    ? createNumros(genNum, mailDomain)
+    ? createNumros(genNum, mailDomain, idOffset)
     : createRandomUsers(genNum, mailDomain);
 };
 
@@ -161,11 +162,14 @@ const sortedUserKeysDisplay: Array<DisplayUserKey> = sortedUserKeys.filter(
   }
 );
 
-export const usersDisplayHashArray = (users: User[]): Array<DisplayUser> => {
+export const usersDisplayHashArray = (
+  users: User[],
+  idOffset: number
+): Array<DisplayUser> => {
   const items: Array<DisplayUser> = [];
   for (const [i, user] of users.entries()) {
     items.push({
-      id: (i + 1).toString(),
+      id: (i + 1 + idOffset).toString(),
       joinedName: user.familyName + "　" + user.givenName,
       familyName: user.familyName,
       givenName: user.givenName,
@@ -191,8 +195,11 @@ export const usersDisplayHashArray = (users: User[]): Array<DisplayUser> => {
 };
 
 // 主にCSV用。
-const usersToStringArray = (users: User[]): Array<Array<string>> => {
-  const displayUsers = usersDisplayHashArray(users);
+const usersToStringArray = (
+  users: User[],
+  idOffset: number
+): Array<Array<string>> => {
+  const displayUsers = usersDisplayHashArray(users, idOffset);
   const items: Array<Array<string>> = [sortedUserKeysDisplay];
   for (const user of displayUsers) {
     const item: Array<string> = [];
@@ -205,6 +212,6 @@ const usersToStringArray = (users: User[]): Array<Array<string>> => {
   return items;
 };
 
-export const userToCsvText = (users: User[]): string => {
-  return arrayToCsv(usersToStringArray(users));
+export const userToCsvText = (users: User[], idOffset: number): string => {
+  return arrayToCsv(usersToStringArray(users, idOffset));
 };
