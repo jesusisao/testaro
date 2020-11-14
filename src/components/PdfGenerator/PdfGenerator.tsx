@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import style from "./PdfGenerator.module.scss";
 import commonStyle from "styles/common.module.scss";
-import { sleep, replaceVariable } from "src/models/util";
+import { sleep } from "src/models/util";
+import { replaceVariable } from "src/models/string";
 import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";

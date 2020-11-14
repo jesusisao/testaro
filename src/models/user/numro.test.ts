@@ -1,6 +1,6 @@
 import { createNumros } from "./numro";
 
-test("replaceVariable", () => {
+test("createNumros", () => {
   const results = createNumros(101, "example.com", 0);
   const user1 = results[0];
   expect(user1.familyName).toBe("一条");

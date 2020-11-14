@@ -1,4 +1,11 @@
-import { generateManyChars } from "./index";
+import { generateManyChars } from "./string";
+import { replaceVariable } from "src/models/string";
+
+test("replaceVariable", () => {
+  const original = "テスト画像#{count}番";
+  const result = replaceVariable(original, 1);
+  expect(result).toBe("テスト画像1番");
+});
 
 describe("generateManyChars", () => {
   test("num0", () => {
