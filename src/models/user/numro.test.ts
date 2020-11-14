@@ -1,7 +1,7 @@
 import { createNumros } from "./numro";
 
 test("replaceVariable", () => {
-  const results = createNumros(101, "example.com");
+  const results = createNumros(101, "example.com", 0);
   const user1 = results[0];
   expect(user1.familyName).toBe("一条");
   expect(user1.givenName).toBe("太郎");
