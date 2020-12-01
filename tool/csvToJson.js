@@ -22,7 +22,7 @@ for (const row of res) {
 
 // やりたいことはあくまでランダムに住所を出したいだけ。
 // 全件ファイル出力にするとあまりに重すぎるので一定数のみ抽出する。
-const choosedArray = sampleSize(hashArray, 5000);
+const choosedArray = sampleSize(hashArray, 1000);
 const jsonString = JSON.stringify(choosedArray);
 
 fs.writeFile("tool/kenMini.json", jsonString, (err) => {
