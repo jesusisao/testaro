@@ -118,20 +118,25 @@ const ImageGenerator: NextPage = () => {
       return;
     }
 
-    // 真ん中に文字書くやつ
-    const replacedComment = replaceVariable(comment, count);
-    // フォントによってtextWidthが変わるので注意
-    ctx.font = `${fontSize}px ${font}`;
-    const textWidth = ctx.measureText(replacedComment).width;
-    const textHeight = fontSize;
-    const fontX = (widthForDraw - textWidth) / 2;
-    const fontY = (heightForDraw + textHeight) / 2;
-    ctx.fillStyle = fontColor;
-    ctx.fillText(replacedComment, fontX, fontY);
+    // 真ん中に文字書くやつ。改行に対応
+    const replacedCommentList = replaceVariable(comment, count).split("\n");
+    const lineNum: number = replacedCommentList.length;
+    for (const [index, replacedComment] of replacedCommentList.entries()) {
+      // フォントによってtextWidthが変わるので注意
+      ctx.font = `${fontSize}px ${font}`;
+      const textHeight = fontSize;
+      const fontX = widthForDraw / 2;
+      const fontY =
+        (heightForDraw - textHeight * lineNum) / 2 + (1 + index) * textHeight;
+      ctx.textAlign = "center" as const;
+      ctx.fillStyle = fontColor;
+      ctx.fillText(replacedComment, fontX, fontY);
+    }
 
     if (doDrawSize) {
       // 左下にサイズ書くやつ
       ctx.font = `15px ${font}`;
+      ctx.textAlign = "start" as const;
       ctx.fillStyle = fontColor;
       ctx.fillText(`width: ${widthForDraw}px`, 10, heightForDraw - 35);
       ctx.fillText(`height: ${heightForDraw}px`, 10, heightForDraw - 15);
@@ -222,12 +227,12 @@ const ImageGenerator: NextPage = () => {
 
           {!imageLikeIcon && (
             <ParamBox labelName="画像内の文字">
-              <input
-                type="text"
+              <textarea
                 defaultValue={comment}
                 disabled={downloading}
                 onChange={(e): void => setComment(e.target.value)}
-              ></input>
+                style={{ backgroundColor: "rgba(0,0,0,0)" }}
+              ></textarea>
             </ParamBox>
           )}
 

@@ -21,7 +21,7 @@ export const generateManyChars = (pattern: string, charNum: number): string => {
 };
 
 export const replaceVariable = (original: string, num: number): string => {
-  const re = /#{.+?}/;
+  const re = /#{.+?}/g;
   const matches = original.match(re);
   if (matches === null) return original;
   const matchesNames = matches.map((str) => str.slice(2).slice(0, -1));
