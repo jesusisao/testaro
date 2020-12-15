@@ -59,6 +59,38 @@ const drawTriangle = (
   ctx.fill();
 };
 
+const drawLine = (
+  ctx: CanvasRenderingContext2D,
+  xy1: XY,
+  xy2: XY,
+  color = "rgba(255, 255, 255, 1.0)",
+  lineWidth = 10
+): void => {
+  ctx.beginPath();
+  ctx.moveTo(xy1.x, xy1.y);
+  ctx.lineTo(xy2.x, xy2.y);
+  ctx.closePath();
+
+  ctx.lineWidth = lineWidth;
+  ctx.strokeStyle = color; // 枠線の色
+  ctx.stroke();
+};
+
+const drawSquareLine = (
+  ctx: CanvasRenderingContext2D,
+  xy1: XY,
+  xy2: XY,
+  xy3: XY,
+  xy4: XY,
+  color = "rgba(255, 255, 255, 1.0)",
+  lineWidth = 10
+) => {
+  drawLine(ctx, xy1, xy2, color, lineWidth);
+  drawLine(ctx, xy1, xy3, color, lineWidth);
+  drawLine(ctx, xy3, xy4, color, lineWidth);
+  drawLine(ctx, xy2, xy4, color, lineWidth);
+};
+
 const ImageGenerator: NextPage = () => {
   const [width, setWidth] = useState(400);
   const [height, setHeight] = useState(300);
@@ -69,6 +101,8 @@ const ImageGenerator: NextPage = () => {
   const [doDrawSize, setDoDrawSize] = useState(true);
   const [useRandomColor, setUseRandomColor] = useState(true);
   const [color, setColor] = useState("#009d2d");
+  const [useBorder, setUseBorder] = useState(true);
+
   const [fileName, setFileName] = useState("dummy_#{count}");
   const [imageFormat, setImageFormat] = useState("jpg");
   const [genNum, setGenNum] = useState(1);
@@ -141,6 +175,18 @@ const ImageGenerator: NextPage = () => {
       ctx.fillText(`width: ${widthForDraw}px`, 10, heightForDraw - 35);
       ctx.fillText(`height: ${heightForDraw}px`, 10, heightForDraw - 15);
     }
+
+    if (useBorder) {
+      drawSquareLine(
+        ctx,
+        { x: 0, y: 0 },
+        { x: 0, y: heightForDraw },
+        { x: widthForDraw, y: 0 },
+        { x: widthForDraw, y: heightForDraw },
+        fontColor
+      );
+    }
+
     ctx.save();
   };
 
@@ -310,6 +356,15 @@ const ImageGenerator: NextPage = () => {
               ></input>
             </ParamBox>
           )}
+
+          <ParamBox labelName="枠線をつける">
+            <input
+              type="checkbox"
+              defaultChecked={useBorder}
+              disabled={downloading}
+              onChange={(e): void => setUseBorder(e.target.checked)}
+            ></input>
+          </ParamBox>
 
           <button
             className={commonStyle.testaroButton}
