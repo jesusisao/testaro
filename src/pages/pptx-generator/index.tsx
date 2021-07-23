@@ -33,7 +33,7 @@ const PptxGenerator: NextPage = () => {
     slide.addText(textboxText, textboxOpts);
 
     // 4. Save the Presentation
-    pres.writeFile(replaceVariable(fileName, num));
+    pres.writeFile({ fileName: replaceVariable(fileName, num) });
   };
 
   const generate = async (): Promise<void> => {
