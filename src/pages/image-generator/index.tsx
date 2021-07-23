@@ -129,6 +129,17 @@ const ImageGenerator: NextPage = () => {
     ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, widthForDraw, heightForDraw);
 
+    if (useBorder) {
+      drawSquareLine(
+        ctx,
+        { x: 0, y: 0 },
+        { x: 0, y: heightForDraw },
+        { x: widthForDraw, y: 0 },
+        { x: widthForDraw, y: heightForDraw },
+        fontColor
+      );
+    }
+
     if (imageLikeIcon) {
       // アイコンのやつ
       const xy1 = { x: widthForDraw / 2, y: heightForDraw * (1 / 3) };
@@ -174,17 +185,6 @@ const ImageGenerator: NextPage = () => {
       ctx.fillStyle = fontColor;
       ctx.fillText(`width: ${widthForDraw}px`, 10, heightForDraw - 35);
       ctx.fillText(`height: ${heightForDraw}px`, 10, heightForDraw - 15);
-    }
-
-    if (useBorder) {
-      drawSquareLine(
-        ctx,
-        { x: 0, y: 0 },
-        { x: 0, y: heightForDraw },
-        { x: widthForDraw, y: 0 },
-        { x: widthForDraw, y: heightForDraw },
-        fontColor
-      );
     }
 
     ctx.save();
