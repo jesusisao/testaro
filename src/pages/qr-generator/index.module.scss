@@ -20,6 +20,11 @@
         padding: 0;
       }
 
+      button {
+        width: 2em;
+        height: 2em;
+      }
+
       .qrCanvas {
         margin-left: 15px;
         background-color: $config-menu-background-color;
