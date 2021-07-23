@@ -48,26 +48,7 @@ export const numbersToKanji = (num: number): string => {
     "無量大数",
   ];
   const exponents = [
-    1,
-    2,
-    3,
-    4,
-    8,
-    12,
-    16,
-    20,
-    24,
-    28,
-    32,
-    36,
-    40,
-    44,
-    48,
-    52,
-    56,
-    60,
-    64,
-    68,
+    1, 2, 3, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68,
   ];
   const exponentsLen = exponents.length;
   for (let i = exponentsLen; i >= 0; --i) {
