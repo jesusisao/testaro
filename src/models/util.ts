@@ -26,10 +26,7 @@ export const downloadAsCsv = (data: string, name: string): void => {
   const blob = new Blob([bom, data], { type: "text/csv" });
   const anchor = document.createElement("a");
 
-  if (window.navigator.msSaveBlob) {
-    // ie
-    window.navigator.msSaveBlob(blob, name);
-  } else if (window.URL && anchor.download !== undefined) {
+  if (window.URL && anchor.download !== undefined) {
     // chrome, firefox, etc.
     anchor.download = name;
     anchor.href = window.URL.createObjectURL(blob);

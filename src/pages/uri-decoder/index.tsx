@@ -12,8 +12,10 @@ const outputUri1 = (pattern: Pattern, originalUri: string) => {
     return pattern === "decode"
       ? decodeURI(originalUri)
       : encodeURI(originalUri);
-  } catch (e) {
-    console.warn(e.message);
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      console.warn(e.message);
+    }
     return "(ERROR)";
   }
 };
@@ -23,8 +25,10 @@ const outputUri2 = (pattern: Pattern, originalUri: string) => {
     return pattern === "decode"
       ? decodeURIComponent(originalUri)
       : encodeURIComponent(originalUri);
-  } catch (e) {
-    console.warn(e.message);
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      console.warn(e.message);
+    }
     return "(ERROR)";
   }
 };

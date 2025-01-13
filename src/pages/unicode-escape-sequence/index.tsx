@@ -12,8 +12,10 @@ const change = (pattern: Pattern, original: string) => {
     return pattern === "escape"
       ? toBackSlash(escape(original))
       : unescape(toPercent(original));
-  } catch (e) {
-    console.warn(e.message);
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      console.warn(e.message);
+    }
     return "(ERROR)";
   }
 };
