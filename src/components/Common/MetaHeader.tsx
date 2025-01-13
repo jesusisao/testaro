@@ -3,7 +3,7 @@ import Head from "next/head";
 import { GA_ID } from "src/lib/gtag";
 
 const siteName = "Testaro";
-const host = "https://testaro.somewhere.gq";
+const host = "https://testaro.netlify.app";
 const imageUrl = `${host}/icon-ogp.png`;
 
 const defaultDescription =

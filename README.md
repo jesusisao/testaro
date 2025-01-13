@@ -4,10 +4,10 @@
 
 ## Links
 
-- [Testaro](https://testaro.somewhere.gq/)
+- [Testaro](https://testaro.netlify.app/)
 - [netlify deploys](https://app.netlify.com/sites/testaro/deploys)
 
 ## About
 
-create-react-appで最初は作りましたが、SEO対策のために後からNext.jsに移行しました。
-本番環境では、Next.jsはあくまで静的サイトジェネレーターとして使っています。
+デベロッパーテストを少しだけ楽にするためのアプリケーションです。
+本番環境では、Next.js はあくまで静的サイトジェネレーターとして使っています。
