@@ -4,7 +4,7 @@
 
 ## Links
 
-- [Testaro](https://testaro.somewhere.gq/)
+- [Testaro](https://testaro.netlify.app/)
 - [netlify deploys](https://app.netlify.com/sites/testaro/deploys)
 
 ## About
