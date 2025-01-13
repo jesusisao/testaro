@@ -235,9 +235,6 @@ const ImageGenerator: NextPage = () => {
     const canvas: any = canvasRef.current;
     const link = document.createElement("a");
     link.download = createFileFullName(imageNumber);
-    if ([""].includes(selectedImage)) {
-    } else {
-    }
     link.href = canvas.toDataURL(
       fileType[selectedImage]["type"],
       fileType[selectedImage]["compressionRatio"]
