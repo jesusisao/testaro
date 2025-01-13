@@ -6,7 +6,7 @@ const format = require("xml-formatter");
 
 const generateSitemap = async () => {
   await sitemap({
-    baseUrl: "https://testaro.somewhere.gq",
+    baseUrl: "https://testaro.netlify.app",
     pagesDirectory: path.resolve(__dirname + "/../src/pages"),
     targetDirectory: "out/",
     sitemapFilename: "sitemap.xml",

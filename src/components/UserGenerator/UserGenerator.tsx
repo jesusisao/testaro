@@ -11,7 +11,7 @@ import UserTable from "src/components/UserGenerator/UserTable";
 const UserGenerator: React.FC = () => {
   const [genNum, setGenNum] = useState(20);
   const [useNumro, setUseNumro] = useState(false);
-  const [mailDomain, setMailDomain] = useState("testaro.somewhere.gq");
+  const [mailDomain, setMailDomain] = useState("testaro.netlify.app");
   const [idOffset, setIdOffset] = useState(0);
 
   const generate = (): void => {
