@@ -9,6 +9,39 @@ import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 
+type FileType = {
+  extension: string;
+  type: string;
+  compressionRatio: number;
+};
+
+type FileTypes = {
+  [key: string]: FileType;
+};
+
+const fileType: FileTypes = {
+  jpg: {
+    extension: "jpg",
+    type: "image/jpeg",
+    compressionRatio: 0.8,
+  },
+  jpeg: {
+    extension: "jpeg",
+    type: "image/jpeg",
+    compressionRatio: 0.8,
+  },
+  png: {
+    extension: "png",
+    type: "image/png",
+    compressionRatio: 1,
+  },
+  gif: {
+    extension: "gif",
+    type: "image/gif",
+    compressionRatio: 1,
+  },
+};
+
 const generateRandomColor = (): string => {
   // 255だとデフォルトのフォントのwhiteが見えにくくなることがあるので下げた
   const ran1 = Math.floor(Math.random() * 200);
@@ -104,7 +137,9 @@ const ImageGenerator: NextPage = () => {
   const [useBorder, setUseBorder] = useState(true);
 
   const [fileName, setFileName] = useState("dummy_#{count}");
-  const [imageFormat, setImageFormat] = useState("jpg");
+  const [selectedImage, setSelectedImage] = useState(
+    Object.entries(fileType)[0][0]
+  );
   const [genNum, setGenNum] = useState(1);
   const [downloading, setDownloading] = useState(false);
   const [imageLikeIcon, setImageLikeIcon] = useState(false);
@@ -192,7 +227,7 @@ const ImageGenerator: NextPage = () => {
 
   const createFileFullName = (imageNumber: number): string => {
     const replacedFileName = replaceVariable(fileName, imageNumber);
-    return `${replacedFileName}.${imageFormat}`;
+    return `${replacedFileName}.${fileType[selectedImage]["extension"]}`;
   };
 
   const downloadImage = (imageNumber: number): void => {
@@ -200,7 +235,13 @@ const ImageGenerator: NextPage = () => {
     const canvas: any = canvasRef.current;
     const link = document.createElement("a");
     link.download = createFileFullName(imageNumber);
-    link.href = canvas.toDataURL(`image/${imageFormat}`);
+    if ([""].includes(selectedImage)) {
+    } else {
+    }
+    link.href = canvas.toDataURL(
+      fileType[selectedImage]["type"],
+      fileType[selectedImage]["compressionRatio"]
+    );
     link.click();
   };
 
@@ -220,6 +261,14 @@ const ImageGenerator: NextPage = () => {
     }
     setDownloading(false);
   };
+
+  const imageOptions = Object.keys(fileType).map((key) => {
+    return (
+      <option key={key} value={key}>
+        {key}
+      </option>
+    );
+  });
 
   useEffect(() => {
     draw();
@@ -387,14 +436,11 @@ const ImageGenerator: NextPage = () => {
           </ParamBox>
           <ParamBox labelName="画像の形式">
             <select
-              defaultValue={imageFormat}
+              defaultValue={selectedImage}
               disabled={downloading}
-              onChange={(e): void => setImageFormat(e.target.value)}
+              onChange={(e): void => setSelectedImage(e.target.value)}
             >
-              <option value="jpg">jpg</option>
-              <option value="jpeg">jpeg</option>
-              <option value="png">png</option>
-              <option value="gif">gif</option>
+              {imageOptions}
             </select>
           </ParamBox>
           <ParamBox labelName="出力枚数">
