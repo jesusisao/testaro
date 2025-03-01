@@ -20,7 +20,8 @@
     "noEmit": true,
     "jsx": "preserve",
     "downlevelIteration": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "incremental": true
   },
   "exclude": [
     "node_modules"
