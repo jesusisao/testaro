@@ -6,18 +6,20 @@ import { replaceVariable } from "src/models/string";
 import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
-// import pdfFonts from "pdfmake/build/vfs_fonts";
+// ブラウザでPDFを生成する場合は Virtual file system を使って、その中にフォントのデータが無いといけない
 import vfs from "src/lib/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
 import { TDocumentDefinitions } from "pdfmake/interfaces";
 
+const fontName = "KosugiMaru";
+const fontFileName = `${fontName}-Regular.ttf`;
 pdfMake.vfs = vfs;
 pdfMake.fonts = {
   KosugiMaru: {
-    normal: "KosugiMaru-Regular.ttf",
-    bold: "KosugiMaru-Regular.ttf",
-    italics: "KosugiMaru-Regular.ttf",
-    bolditalics: "KosugiMaru-Regular.ttf",
+    normal: fontFileName,
+    bold: fontFileName,
+    italics: fontFileName,
+    bolditalics: fontFileName,
   },
 };
 
@@ -32,7 +34,7 @@ const PdfGenerator: React.FC = () => {
     const docDefinition: TDocumentDefinitions = {
       content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }],
       defaultStyle: {
-        font: "KosugiMaru",
+        font: fontName,
       },
     };
     const createdFileName = `${replaceVariable(fileName, num)}.pdf`;
