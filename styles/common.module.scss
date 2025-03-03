@@ -9,9 +9,7 @@
 
   @if $opacity == 1 or $opacity == 100% {
     @return unquote("rgba(#{$red},#{$green},#{$blue},#{$alpha})");
-  }
-
-  @else {
+  } @else {
     @return unquote("rgba(#{$red},#{$green},#{$blue},#{$opacity})");
   }
 }
@@ -24,8 +22,14 @@
   opacity: 0.9;
 }
 
+.paramsOutputsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .paramsContainer {
   display: flex;
+  flex-wrap: wrap;
 
   .paramContainer {
     background-color: rgba(0, 0, 0, 0.2);
