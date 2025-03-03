@@ -17,11 +17,9 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 const Menu: React.FC = () => {
   return (
     <div className={style.menu}>
-      <Link href="/about">
-        <div className={style.titleContainer}>
-          <img src="/icon-400x400.png" className={style.logo} alt="testaro" />
-          <h1 className={style.siteName}>Testaro</h1>
-        </div>
+      <Link href="/about" className={style.titleContainer}>
+        <img src="/icon-400x400.png" className={style.logo} alt="testaro" />
+        <h1 className={style.siteName}>Testaro</h1>
       </Link>
 
       <ul>
