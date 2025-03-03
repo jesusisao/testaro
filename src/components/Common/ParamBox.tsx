@@ -1,4 +1,4 @@
-import React from "react";
+import type { ReactNode } from "react";
 
 const style = {
   display: "flex",
@@ -34,7 +34,9 @@ const childStyle = {
   display: "block",
 };
 
-const ParamBox: React.FC<{ labelName?: string }> = (props) => {
+const ParamBox: React.FC<{ labelName?: string; children: ReactNode }> = (
+  props
+) => {
   return (
     <div style={style}>
       <label style={labelStyle}>{props.labelName}</label>
