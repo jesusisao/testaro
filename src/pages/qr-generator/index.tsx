@@ -82,7 +82,7 @@ const QrGenerator: NextPage = () => {
     setCodes(newCodes);
   };
 
-  const inputList = (): JSX.Element => {
+  const inputList = (): React.JSX.Element => {
     const items = [];
     for (const [i, code] of codes.entries()) {
       items.push(
