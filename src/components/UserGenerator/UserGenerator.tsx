@@ -4,7 +4,7 @@ import style from "./UserGenerator.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
 import { downloadAsCsv } from "src/models/util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import { faFileDownload, faRedo } from "@fortawesome/free-solid-svg-icons";
 import { createUsers, userToCsvText } from "src/models/user/user";
 import UserTable from "src/components/UserGenerator/UserTable";
 
@@ -70,6 +70,7 @@ const UserGenerator: React.FC = () => {
 
           <button className={commonStyle.testaroButton} onClick={generate}>
             再生成
+            <FontAwesomeIcon icon={faRedo} className={commonStyle.icon} />
           </button>
           <button
             className={commonStyle.testaroButton}
