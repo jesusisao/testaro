@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useDeferredValue } from "react";
 import style from "./PdfGenerator.module.scss";
 import commonStyle from "styles/common.module.scss";
 import { sleep } from "src/models/util";
@@ -25,43 +25,40 @@ pdfMake.fonts = {
 
 const PdfGenerator: React.FC = () => {
   const [pdfContent, setPdfContent] = useState("Dummy PDF #{count}");
+  const deferredPdfContent = useDeferredValue(pdfContent); // 低優先度で更新
   const [fileName, setFileName] = useState("dummy_#{count}");
   const [genNum, setGenNum] = useState(1);
   const [downloading, setDownloading] = useState(false);
   const [previewSrc, setPreviewSrc] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchPreviewSrc = async () => {
-      const newSrc = await generatePreview();
-      setPreviewSrc(newSrc);
+    const calcPreviewSrc = async () => {
+      const newBase64 = await generatePreview(deferredPdfContent);
+      setPreviewSrc(newBase64);
     };
-    fetchPreviewSrc();
-  }, []);
+    calcPreviewSrc();
+  }, [deferredPdfContent]);
 
   const generatePdf = (num: number): void => {
     const createdPdfContent = replaceVariable(pdfContent, num);
     const docDefinition: TDocumentDefinitions = {
       content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }],
-      defaultStyle: {
-        font: fontName,
-      },
+      defaultStyle: { font: fontName },
     };
     const createdFileName = `${replaceVariable(fileName, num)}.pdf`;
     pdfMake.createPdf(docDefinition).download(createdFileName);
   };
 
-  const generatePreview = (): Promise<string> => {
-    const createdPdfContent = replaceVariable(pdfContent, 1);
+  const generatePreview = (content: string): Promise<string> => {
+    const createdPdfContent = replaceVariable(content, 1);
     const docDefinition: TDocumentDefinitions = {
       content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }],
-      defaultStyle: {
-        font: fontName,
-      },
+      defaultStyle: { font: fontName },
     };
     const pdfDocGenerator = pdfMake.createPdf(docDefinition);
     return new Promise((resolve) => {
       pdfDocGenerator.getBase64((data) => {
-        resolve(`data:application/pdf;base64,${data}`);
+        resolve(data);
       });
     });
   };
@@ -87,12 +84,12 @@ const PdfGenerator: React.FC = () => {
         <div className={commonStyle.paramsContainer}>
           <div className={commonStyle.paramContainer}>
             <ParamBox labelName="中身の文字">
-              <input
-                type="text"
+              <textarea
                 defaultValue={pdfContent}
                 disabled={downloading}
                 onChange={(e): void => setPdfContent(e.target.value)}
-              ></input>
+                style={{ backgroundColor: "rgba(0,0,0,0)" }}
+              ></textarea>
             </ParamBox>
             <ParamBox labelName="ファイル名">
               <input
@@ -100,7 +97,7 @@ const PdfGenerator: React.FC = () => {
                 defaultValue={fileName}
                 disabled={downloading}
                 onChange={(e): void => setFileName(e.target.value)}
-              ></input>
+              />
             </ParamBox>
             <ParamBox labelName="出力枚数">
               <input
@@ -108,7 +105,7 @@ const PdfGenerator: React.FC = () => {
                 defaultValue={genNum}
                 disabled={downloading}
                 onChange={(e): void => setGenNum(parseInt(e.target.value))}
-              ></input>
+              />
             </ParamBox>
 
             <button
@@ -130,12 +127,14 @@ const PdfGenerator: React.FC = () => {
             <label className={style.previewLabel} htmlFor="preview">
               プレビュー
             </label>
-            <embed
-              id="preview"
-              type="application/pdf"
-              src={previewSrc ? previewSrc : ""}
-              className={style.previewPdf}
-            />
+            {previewSrc ? (
+              <embed
+                id="preview"
+                type="application/pdf"
+                src={`data:application/pdf;base64,${previewSrc}`}
+                className={style.previewPdf}
+              />
+            ) : null}
           </div>
         </div>
       </div>
