@@ -72,6 +72,14 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
+          <Link href="/random-chars-generator">
+            <span className={style.link}>
+              <FontAwesomeIcon icon={faFont} className={style.icon} />
+              ランダム文字列
+            </span>
+          </Link>
+        </li>
+        <li>
           <Link href="/uri-decoder">
             <span className={style.link}>
               <FontAwesomeIcon icon={faLink} className={style.icon} />
