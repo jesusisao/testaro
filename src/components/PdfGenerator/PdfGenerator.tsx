@@ -39,14 +39,17 @@ const PdfGenerator: React.FC = () => {
     calcPreviewSrc();
   }, [deferredPdfContent]);
 
+  const createFileFullName = (num: number) => {
+    return `${replaceVariable(fileName, num)}.pdf`;
+  };
+
   const generatePdf = (num: number): void => {
     const createdPdfContent = replaceVariable(pdfContent, num);
     const docDefinition: TDocumentDefinitions = {
       content: [{ text: createdPdfContent, fontSize: 48, alignment: "center" }],
       defaultStyle: { font: fontName },
     };
-    const createdFileName = `${replaceVariable(fileName, num)}.pdf`;
-    pdfMake.createPdf(docDefinition).download(createdFileName);
+    pdfMake.createPdf(docDefinition).download(createFileFullName(num));
   };
 
   const generatePreview = (content: string): Promise<string> => {
@@ -83,12 +86,12 @@ const PdfGenerator: React.FC = () => {
       <div className={commonStyle.paramsOutputsContainer}>
         <div className={commonStyle.paramsContainer}>
           <div className={commonStyle.paramContainer}>
-            <ParamBox labelName="中身の文字">
+            <ParamBox labelName="PDF内の文字">
               <textarea
                 defaultValue={pdfContent}
                 disabled={downloading}
                 onChange={(e): void => setPdfContent(e.target.value)}
-                style={{ backgroundColor: "rgba(0,0,0,0)" }}
+                style={{ backgroundColor: "rgba(0,0,0,0)", paddingTop: "8px" }}
               ></textarea>
             </ParamBox>
             <ParamBox labelName="ファイル名">
@@ -125,7 +128,7 @@ const PdfGenerator: React.FC = () => {
         <div className={commonStyle.outputsContainer}>
           <div className={commonStyle.outputContainer}>
             <label className={style.previewLabel} htmlFor="preview">
-              プレビュー
+              ファイル名（プレビュー）: {createFileFullName(1)}
             </label>
             {previewSrc ? (
               <embed

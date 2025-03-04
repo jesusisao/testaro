@@ -3,10 +3,9 @@ import type { ReactNode } from "react";
 const style = {
   display: "flex",
   width: "100%",
-  margin: "5px 0 5px 0",
+  margin: "1px 0 1px 0",
   lineHeight: "20px",
   backgroundColor: "rgba(0, 0, 0, 0.5)",
-  borderRadius: "15px",
   boxSizing: "border-box" as const,
 };
 
@@ -17,11 +16,9 @@ const labelStyle = {
   textAlign: "right" as const,
   justifyContent: "flex-end",
   alignItems: "center",
-  paddingRight: "5px",
-  backgroundColor: "rgba(255, 255, 255, 0.4)",
-  color: "rgb(20, 20, 20)",
-  marginRight: "3px",
-  borderRadius: "15px",
+  padding: "5px",
+  backgroundColor: "rgb(0, 128, 151)",
+  color: "rgba(255, 255, 255, 0.8)",
 };
 
 const formItemStyle = {

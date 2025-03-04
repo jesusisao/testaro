@@ -43,7 +43,7 @@ const Menu: React.FC = () => {
           <Link href="/pptx-generator">
             <span className={style.link}>
               <FontAwesomeIcon icon={faFilePowerpoint} className={style.icon} />
-              ダミーPPTX
+              ダミーパワポ
             </span>
           </Link>
         </li>

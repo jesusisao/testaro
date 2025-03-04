@@ -45,7 +45,7 @@ const PptxGenerator: NextPage = () => {
     }
     setDownloading(false);
   };
-  const title = "ダミーPPTX生成";
+  const title = "ダミーパワポ生成";
   const description =
     "異なる文字の書かれたテスト用のパワポを大量に生成できます。";
 

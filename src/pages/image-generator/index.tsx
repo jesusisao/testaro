@@ -293,6 +293,7 @@ const ImageGenerator: NextPage = () => {
                 defaultChecked={imageLikeIcon}
                 disabled={downloading}
                 onChange={(e): void => setImageLikeIcon(e.target.checked)}
+                className={commonStyle.checkbox}
               ></input>
             </ParamBox>
 
@@ -324,7 +325,10 @@ const ImageGenerator: NextPage = () => {
                   defaultValue={comment}
                   disabled={downloading}
                   onChange={(e): void => setComment(e.target.value)}
-                  style={{ backgroundColor: "rgba(0,0,0,0)" }}
+                  style={{
+                    backgroundColor: "rgba(0,0,0,0)",
+                    paddingTop: "8px",
+                  }}
                 ></textarea>
               </ParamBox>
             )}
@@ -380,6 +384,7 @@ const ImageGenerator: NextPage = () => {
                   defaultChecked={doDrawSize}
                   disabled={downloading}
                   onChange={(e): void => setDoDrawSize(e.target.checked)}
+                  className={commonStyle.checkbox}
                 ></input>
               </ParamBox>
             )}
@@ -390,6 +395,7 @@ const ImageGenerator: NextPage = () => {
                 defaultChecked={useRandomColor}
                 disabled={downloading}
                 onChange={(e): void => setUseRandomColor(e.target.checked)}
+                className={commonStyle.checkbox}
               ></input>
             </ParamBox>
 
@@ -410,6 +416,7 @@ const ImageGenerator: NextPage = () => {
                 defaultChecked={useBorder}
                 disabled={downloading}
                 onChange={(e): void => setUseBorder(e.target.checked)}
+                className={commonStyle.checkbox}
               ></input>
             </ParamBox>
 
