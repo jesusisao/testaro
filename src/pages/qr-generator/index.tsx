@@ -132,14 +132,6 @@ const QrGenerator: NextPage = () => {
           <button className={commonStyle.testaroButton} onClick={add}>
             項目追加
           </button>
-
-          <button
-            className={commonStyle.testaroButton}
-            onClick={generate}
-            style={{ marginLeft: 5 }}
-          >
-            生成
-          </button>
         </div>
       </div>
     </div>

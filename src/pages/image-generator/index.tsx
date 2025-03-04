@@ -7,7 +7,7 @@ import { sleep } from "src/models/util";
 import { replaceVariable } from "src/models/string";
 import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import { faFileDownload, faRedo } from "@fortawesome/free-solid-svg-icons";
 
 type FileType = {
   extension: string;
@@ -429,6 +429,7 @@ const ImageGenerator: NextPage = () => {
               onClick={(): void => draw()}
             >
               再生成
+              <FontAwesomeIcon icon={faRedo} className={commonStyle.icon} />
             </button>
           </div>
 
