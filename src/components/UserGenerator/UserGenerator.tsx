@@ -41,6 +41,7 @@ const UserGenerator: React.FC = () => {
               type="checkbox"
               defaultChecked={useNumro}
               onChange={(e): void => setUseNumro(e.target.checked)}
+              className={commonStyle.checkbox}
             ></input>
           </ParamBox>
           <ParamBox labelName="メールのドメイン">

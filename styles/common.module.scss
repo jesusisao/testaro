@@ -16,10 +16,11 @@
 
 .pageTitle {
   color: $config-accent-color;
-  border-left: 4px solid $config-accent-color;
+  box-shadow: inset 16px 0px 10px -16px rgba(0, 217, 255, 0.8);
   padding: 15px;
   margin: 0 0 10px 0;
   opacity: 0.9;
+  text-shadow: 0px 0px 4px rgba(0, 217, 255, 0.6);
 }
 
 .paramsOutputsContainer {
@@ -40,7 +41,7 @@
 
     .paramLabel {
       margin: 0 0 10px 0;
-      font-size: 1.4em;
+      font-size: 1.1em;
     }
 
     input,
@@ -69,6 +70,7 @@
 
 .testaroButton {
   position: relative;
+  margin: 5px 0;
   min-height: 45px;
   min-width: 120px;
   color: $config-font-color;
@@ -120,6 +122,33 @@
   }
 }
 
+.checkbox {
+  appearance: none;
+  margin: 8px;
+  background-color: #ffffff !important;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.checkbox:checked {
+  background-color: $config-checkbox-color !important;
+}
+
+.checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 3px;
+  width: 12px;
+  height: 6px;
+  border-bottom: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  transform: rotate(-45deg);
+}
 .textRight {
   text-align: right;
 }

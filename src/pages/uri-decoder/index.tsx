@@ -66,16 +66,26 @@ const UriDecoder: NextPage = () => {
           <textarea
             defaultValue={originalUri}
             onChange={(e): void => setOriginalUri(e.target.value)}
+            style={{ marginTop: "8px" }}
           ></textarea>
         </div>
       </div>
       <div className={commonStyle.outputsContainer}>
         <div className={commonStyle.outputContainer}>
           <p>出力1: {pattern}URI()</p>
-          <textarea readOnly value={output1}></textarea>
-
+          <textarea
+            readOnly
+            value={output1}
+            style={{ marginTop: "8px" }}
+          ></textarea>
+        </div>
+        <div className={commonStyle.outputContainer}>
           <p>出力2: {pattern}URIComponent()</p>
-          <textarea readOnly value={output2}></textarea>
+          <textarea
+            readOnly
+            value={output2}
+            style={{ marginTop: "8px" }}
+          ></textarea>
         </div>
       </div>
     </div>

@@ -60,13 +60,18 @@ const UriDecoder: NextPage = () => {
           <textarea
             defaultValue={originalString}
             onChange={(e): void => setOriginalString(e.target.value)}
+            style={{ marginTop: "8px" }}
           ></textarea>
         </div>
       </div>
       <div className={commonStyle.outputsContainer}>
         <div className={commonStyle.outputContainer}>
           <p>出力</p>
-          <textarea readOnly value={output}></textarea>
+          <textarea
+            readOnly
+            value={output}
+            style={{ marginTop: "8px" }}
+          ></textarea>
         </div>
       </div>
     </div>
