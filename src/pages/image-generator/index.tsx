@@ -373,6 +373,9 @@ const ImageGenerator: NextPage = () => {
                   max="300"
                   disabled={downloading}
                   onChange={(e): void => setFontSize(parseInt(e.target.value))}
+                  style={{
+                    marginLeft: "8px",
+                  }}
                 ></input>
               </ParamBox>
             )}
