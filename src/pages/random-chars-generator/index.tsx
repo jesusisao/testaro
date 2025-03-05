@@ -70,25 +70,27 @@ const RandomStringGenerator: NextPage = () => {
         <div className={commonStyle.paramsContainer}>
           <div className={commonStyle.paramContainer}>
             <ParamBox labelName="文字数">
-              <input
-                className={commonStyle.textRight}
-                type="number"
-                min="1"
-                max="30"
-                value={length}
-                onChange={(e): void => setLength(parseInt(e.target.value))}
-              ></input>
-              <br />
-              <input
-                type="range"
-                value={length}
-                min="1"
-                max="30"
-                onChange={(e): void => setLength(parseInt(e.target.value))}
-                style={{
-                  marginLeft: "8px",
-                }}
-              ></input>
+              <div>
+                <input
+                  className={commonStyle.textRight}
+                  type="number"
+                  min="1"
+                  max="30"
+                  value={length}
+                  onChange={(e): void => setLength(parseInt(e.target.value))}
+                ></input>
+                <br />
+                <input
+                  type="range"
+                  value={length}
+                  min="1"
+                  max="30"
+                  onChange={(e): void => setLength(parseInt(e.target.value))}
+                  style={{
+                    margin: "0 8px",
+                  }}
+                ></input>
+              </div>
             </ParamBox>
 
             <ParamBox labelName="英字（大文字）">

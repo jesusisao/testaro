@@ -9,16 +9,19 @@ const style = {
   boxSizing: "border-box" as const,
 };
 
-const labelStyle = {
-  display: "flex",
-  float: "left" as const,
-  width: "120px",
-  textAlign: "right" as const,
-  justifyContent: "flex-end",
-  alignItems: "center",
-  padding: "5px",
-  backgroundColor: "rgb(0, 128, 151)",
-  color: "rgba(255, 255, 255, 0.8)",
+const labelStyle = (labelWidth: string | undefined) => {
+  const width = labelWidth ? labelWidth : "120px";
+  return {
+    display: "flex",
+    float: "left" as const,
+    width: width,
+    textAlign: "right" as const,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    padding: "5px",
+    backgroundColor: "rgb(0, 128, 151)",
+    color: "rgba(255, 255, 255, 0.8)",
+  };
 };
 
 const formItemStyle = {
@@ -27,19 +30,15 @@ const formItemStyle = {
   verticalAlign: "middle" as const,
 };
 
-const childStyle = {
-  display: "block",
-};
-
-const ParamBox: React.FC<{ labelName?: string; children: ReactNode }> = (
-  props
-) => {
+const ParamBox: React.FC<{
+  labelName?: string;
+  labelWidth?: string;
+  children: ReactNode;
+}> = (props) => {
   return (
     <div style={style}>
-      <label style={labelStyle}>{props.labelName}</label>
-      <div style={formItemStyle}>
-        <div style={childStyle}>{props.children}</div>
-      </div>
+      <label style={labelStyle(props.labelWidth)}>{props.labelName}</label>
+      <div style={formItemStyle}>{props.children}</div>
     </div>
   );
 };

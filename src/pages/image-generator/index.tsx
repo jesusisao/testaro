@@ -358,25 +358,31 @@ const ImageGenerator: NextPage = () => {
 
             {!imageLikeIcon && (
               <ParamBox labelName="文字サイズ">
-                <input
-                  className={commonStyle.textRight}
-                  type="number"
-                  value={fontSize}
-                  disabled={downloading}
-                  onChange={(e): void => setFontSize(parseInt(e.target.value))}
-                ></input>
-                <br />
-                <input
-                  type="range"
-                  value={fontSize}
-                  min="1"
-                  max="300"
-                  disabled={downloading}
-                  onChange={(e): void => setFontSize(parseInt(e.target.value))}
-                  style={{
-                    marginLeft: "8px",
-                  }}
-                ></input>
+                <div>
+                  <input
+                    className={commonStyle.textRight}
+                    type="number"
+                    value={fontSize}
+                    disabled={downloading}
+                    onChange={(e): void =>
+                      setFontSize(parseInt(e.target.value))
+                    }
+                  ></input>
+                  <br />
+                  <input
+                    type="range"
+                    value={fontSize}
+                    min="1"
+                    max="300"
+                    disabled={downloading}
+                    onChange={(e): void =>
+                      setFontSize(parseInt(e.target.value))
+                    }
+                    style={{
+                      margin: "0 8px",
+                    }}
+                  ></input>
+                </div>
               </ParamBox>
             )}
 
