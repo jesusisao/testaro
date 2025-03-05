@@ -49,12 +49,12 @@
 .timeDisplay {
   background-color: $config-disabled-form-color;
   border-radius: 5px;
-  padding: 16px;
+  padding: 8px;
   text-align: center;
   font-size: 18px;
   font-family: monospace;
-}
 
-.errorMessage {
-  text-align: center;
+  p {
+    margin: 8px;
+  }
 }

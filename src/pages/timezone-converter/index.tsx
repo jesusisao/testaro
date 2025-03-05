@@ -77,126 +77,125 @@ const TimezoneConverter: NextPage = () => {
       <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>{description}</p>
 
-      <div className={commonStyle.paramsOutputsContainer}>
-        <div className={commonStyle.paramsContainer}>
-          <div className={commonStyle.paramContainer}>
-            <div className={style.dateTimeInputContainer}>
-              <ParamBox labelName="年" labelWidth="20px">
-                <input
-                  type="number"
-                  value={year}
-                  onChange={(e) => setYear(parseInt(e.target.value))}
-                  className={style.timeInput}
-                />
-              </ParamBox>
+      <div className={commonStyle.paramsContainer}>
+        <div className={commonStyle.paramContainer}>
+          <div className={style.dateTimeInputContainer}>
+            <ParamBox labelName="年" labelWidth="20px">
+              <input
+                type="number"
+                value={year}
+                onChange={(e) => setYear(parseInt(e.target.value))}
+                className={style.timeInput}
+              />
+            </ParamBox>
 
-              <ParamBox labelName="月" labelWidth="20px">
-                <input
-                  type="number"
-                  value={month}
-                  min="1"
-                  max="12"
-                  onChange={(e) => setMonth(parseInt(e.target.value))}
-                  className={style.timeInput}
-                />
-              </ParamBox>
+            <ParamBox labelName="月" labelWidth="20px">
+              <input
+                type="number"
+                value={month}
+                min="1"
+                max="12"
+                onChange={(e) => setMonth(parseInt(e.target.value))}
+                className={style.timeInput}
+              />
+            </ParamBox>
 
-              <ParamBox labelName="日" labelWidth="20px">
-                <input
-                  type="number"
-                  value={day}
-                  min="1"
-                  max="31"
-                  onChange={(e) => setDay(parseInt(e.target.value))}
-                  className={style.timeInput}
-                />
-              </ParamBox>
+            <ParamBox labelName="日" labelWidth="20px">
+              <input
+                type="number"
+                value={day}
+                min="1"
+                max="31"
+                onChange={(e) => setDay(parseInt(e.target.value))}
+                className={style.timeInput}
+              />
+            </ParamBox>
 
-              <ParamBox labelName="時" labelWidth="20px">
-                <input
-                  type="number"
-                  value={hour}
-                  min="0"
-                  max="23"
-                  onChange={(e) => setHour(parseInt(e.target.value))}
-                  className={style.timeInput}
-                />
-              </ParamBox>
+            <ParamBox labelName="時" labelWidth="20px">
+              <input
+                type="number"
+                value={hour}
+                min="0"
+                max="23"
+                onChange={(e) => setHour(parseInt(e.target.value))}
+                className={style.timeInput}
+              />
+            </ParamBox>
 
-              <ParamBox labelName="分" labelWidth="20px">
-                <input
-                  type="number"
-                  value={minute}
-                  min="0"
-                  max="59"
-                  onChange={(e) => setMinute(parseInt(e.target.value))}
-                  className={style.timeInput}
-                />
-              </ParamBox>
-            </div>
+            <ParamBox labelName="分" labelWidth="20px">
+              <input
+                type="number"
+                value={minute}
+                min="0"
+                max="59"
+                onChange={(e) => setMinute(parseInt(e.target.value))}
+                className={style.timeInput}
+              />
+            </ParamBox>
+          </div>
 
-            <div className={style.timezoneContainer}>
-              <ParamBox labelName="元のTZ">
-                <select
-                  value={fromTimezone}
-                  onChange={(e) => setFromTimezone(e.target.value)}
-                >
-                  {timezones.map((tz) => (
-                    <option key={tz} value={tz}>
-                      {tz}
-                    </option>
-                  ))}
-                </select>
-              </ParamBox>
-
-              <button
-                onClick={swapTimezones}
-                className={commonStyle.testaroInlineButton}
-                style={{ width: "80px" }}
-                title="タイムゾーンを入れ替える"
+          <div className={style.timezoneContainer}>
+            <ParamBox labelName="元のTZ">
+              <select
+                value={fromTimezone}
+                onChange={(e) => setFromTimezone(e.target.value)}
               >
-                <FontAwesomeIcon
-                  icon={faExchangeAlt}
-                  className={commonStyle.icon}
-                />
-              </button>
+                {timezones.map((tz) => (
+                  <option key={tz} value={tz}>
+                    {tz}
+                  </option>
+                ))}
+              </select>
+            </ParamBox>
 
-              <ParamBox labelName="変換先TZ">
-                <select
-                  value={toTimezone}
-                  onChange={(e) => setToTimezone(e.target.value)}
-                >
-                  {timezones.map((tz) => (
-                    <option key={tz} value={tz}>
-                      {tz}
-                    </option>
-                  ))}
-                </select>
-              </ParamBox>
-            </div>
+            <button
+              onClick={swapTimezones}
+              className={commonStyle.testaroInlineButton}
+              style={{ width: "80px" }}
+              title="タイムゾーンを入れ替える"
+            >
+              <FontAwesomeIcon
+                icon={faExchangeAlt}
+                className={commonStyle.icon}
+              />
+            </button>
 
-            <div className={style.buttonContainer}>
-              <button
-                className={commonStyle.testaroButton}
-                onClick={setCurrentTime}
+            <ParamBox labelName="変換先TZ">
+              <select
+                value={toTimezone}
+                onChange={(e) => setToTimezone(e.target.value)}
               >
-                現在時刻代入
-                <FontAwesomeIcon icon={faClock} className={commonStyle.icon} />
-              </button>
-            </div>
+                {timezones.map((tz) => (
+                  <option key={tz} value={tz}>
+                    {tz}
+                  </option>
+                ))}
+              </select>
+            </ParamBox>
+          </div>
+
+          <div className={style.buttonContainer}>
+            <button
+              className={commonStyle.testaroButton}
+              onClick={setCurrentTime}
+            >
+              現在時刻代入
+              <FontAwesomeIcon icon={faClock} className={commonStyle.icon} />
+            </button>
           </div>
         </div>
+      </div>
 
-        <div className={commonStyle.outputsContainer}>
-          <div className={commonStyle.outputContainer}>
-            <p>入力</p>
-            <div className={style.timeDisplay}>
-              <p>{inputTime().format("YYYY-MM-DD HH:mm:ss z")}</p>
-            </div>
-            <p>変換後</p>
-            <div className={style.timeDisplay}>
-              <p>{convertedTime().format("YYYY-MM-DD HH:mm:ss z")}</p>
-            </div>
+      <div className={commonStyle.outputsContainer}>
+        <div className={commonStyle.outputContainer}>
+          <p className={commonStyle.outputLabel}>入力</p>
+          <div className={style.timeDisplay}>
+            <p>{inputTime().format("YYYY-MM-DD HH:mm:ss z")}</p>
+          </div>
+          <br />
+          <p className={commonStyle.outputLabel}>変換後</p>
+          <div className={style.timeDisplay}>
+            <p>{convertedTime().format("YYYY-MM-DD HH:mm:ss z")}</p>
           </div>
         </div>
       </div>

@@ -81,6 +81,7 @@ const StringGenerator: NextPage = () => {
       </div>
       <div className={commonStyle.outputsContainer}>
         <div className={commonStyle.outputContainer}>
+          <p className={commonStyle.outputLabel}>出力</p>
           <textarea
             className={style.outputArea}
             readOnly

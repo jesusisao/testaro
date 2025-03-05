@@ -127,9 +127,9 @@ const PdfGenerator: React.FC = () => {
 
         <div className={commonStyle.outputsContainer}>
           <div className={commonStyle.outputContainer}>
-            <label className={style.previewLabel} htmlFor="preview">
+            <p className={commonStyle.outputLabel}>
               ファイル名（プレビュー）: {createFileFullName(1)}
-            </label>
+            </p>
             {previewSrc ? (
               <embed
                 id="preview"

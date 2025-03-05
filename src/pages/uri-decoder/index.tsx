@@ -52,7 +52,6 @@ const UriDecoder: NextPage = () => {
       <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
-          <p>URI入力</p>
           <ParamBox labelName="パターン">
             <select
               name="pattern"
@@ -66,12 +65,13 @@ const UriDecoder: NextPage = () => {
           <textarea
             defaultValue={originalUri}
             onChange={(e): void => setOriginalUri(e.target.value)}
+            style={{ marginTop: "8px" }}
           ></textarea>
         </div>
       </div>
       <div className={commonStyle.outputsContainer}>
         <div className={commonStyle.outputContainer}>
-          <p>出力1: {pattern}URI()</p>
+          <p className={commonStyle.outputLabel}>出力1: {pattern}URI()</p>
           <textarea
             readOnly
             className={style.disabledTextarea}
@@ -79,7 +79,9 @@ const UriDecoder: NextPage = () => {
           ></textarea>
         </div>
         <div className={commonStyle.outputContainer}>
-          <p>出力2: {pattern}URIComponent()</p>
+          <p className={commonStyle.outputLabel}>
+            出力2: {pattern}URIComponent()
+          </p>
           <textarea
             readOnly
             className={style.disabledTextarea}

@@ -287,147 +287,149 @@ const ImageGenerator: NextPage = () => {
         <div className={commonStyle.paramsContainer}>
           <div className={commonStyle.paramContainer}>
             <span className={commonStyle.paramLabel}>画像パラメータ</span>
-            <ParamBox labelName="ユーザーアイコン">
-              <input
-                type="checkbox"
-                defaultChecked={imageLikeIcon}
-                disabled={downloading}
-                onChange={(e): void => setImageLikeIcon(e.target.checked)}
-                className={commonStyle.checkbox}
-              ></input>
-            </ParamBox>
-
-            <ParamBox labelName={imageLikeIcon ? "幅と高さ" : "幅"}>
-              <input
-                className={commonStyle.textRight}
-                type="number"
-                defaultValue={width}
-                disabled={downloading}
-                onChange={(e): void => setWidth(parseInt(e.target.value))}
-              ></input>
-            </ParamBox>
-
-            {!imageLikeIcon && (
-              <ParamBox labelName="高さ">
-                <input
-                  className={commonStyle.textRight}
-                  type="number"
-                  defaultValue={height}
-                  disabled={downloading}
-                  onChange={(e): void => setHeight(parseInt(e.target.value))}
-                ></input>
-              </ParamBox>
-            )}
-
-            {!imageLikeIcon && (
-              <ParamBox labelName="画像内の文字">
-                <textarea
-                  defaultValue={comment}
-                  disabled={downloading}
-                  onChange={(e): void => setComment(e.target.value)}
-                  style={{
-                    backgroundColor: "rgba(0,0,0,0)",
-                    paddingTop: "8px",
-                  }}
-                ></textarea>
-              </ParamBox>
-            )}
-
-            {!imageLikeIcon && (
-              <ParamBox labelName="フォント">
-                <select
-                  defaultValue={font}
-                  disabled={downloading}
-                  onChange={(e): void => setFont(e.target.value)}
-                >
-                  <option value="serif">serif</option>
-                  <option value="sans-serif">sans-serif</option>
-                  <option value="monospace">monospace</option>
-                </select>
-              </ParamBox>
-            )}
-
-            <ParamBox labelName={imageLikeIcon ? "アイコンの色" : "文字色"}>
-              <input
-                type="color"
-                defaultValue={fontColor}
-                disabled={downloading}
-                onChange={(e): void => setFontColor(e.target.value)}
-              ></input>
-            </ParamBox>
-
-            {!imageLikeIcon && (
-              <ParamBox labelName="文字サイズ">
-                <div>
-                  <input
-                    className={commonStyle.textRight}
-                    type="number"
-                    value={fontSize}
-                    disabled={downloading}
-                    onChange={(e): void =>
-                      setFontSize(parseInt(e.target.value))
-                    }
-                  ></input>
-                  <br />
-                  <input
-                    type="range"
-                    value={fontSize}
-                    min="1"
-                    max="300"
-                    disabled={downloading}
-                    onChange={(e): void =>
-                      setFontSize(parseInt(e.target.value))
-                    }
-                    style={{
-                      margin: "0 8px",
-                    }}
-                  ></input>
-                </div>
-              </ParamBox>
-            )}
-
-            {!imageLikeIcon && (
-              <ParamBox labelName="高さと幅を画像に書き込む">
+            <div style={{ marginTop: "8px" }}>
+              <ParamBox labelName="ユーザーアイコン">
                 <input
                   type="checkbox"
-                  defaultChecked={doDrawSize}
+                  defaultChecked={imageLikeIcon}
                   disabled={downloading}
-                  onChange={(e): void => setDoDrawSize(e.target.checked)}
+                  onChange={(e): void => setImageLikeIcon(e.target.checked)}
                   className={commonStyle.checkbox}
                 ></input>
               </ParamBox>
-            )}
 
-            <ParamBox labelName="背景色をランダムにする">
-              <input
-                type="checkbox"
-                defaultChecked={useRandomColor}
-                disabled={downloading}
-                onChange={(e): void => setUseRandomColor(e.target.checked)}
-                className={commonStyle.checkbox}
-              ></input>
-            </ParamBox>
-
-            {!useRandomColor && (
-              <ParamBox labelName="背景色">
+              <ParamBox labelName={imageLikeIcon ? "幅と高さ" : "幅"}>
                 <input
-                  type="color"
-                  defaultValue={color}
-                  disabled={useRandomColor || downloading}
-                  onChange={(e): void => setColor(e.target.value)}
+                  className={commonStyle.textRight}
+                  type="number"
+                  defaultValue={width}
+                  disabled={downloading}
+                  onChange={(e): void => setWidth(parseInt(e.target.value))}
                 ></input>
               </ParamBox>
-            )}
 
-            <ParamBox labelName="枠線をつける">
-              <input
-                type="checkbox"
-                defaultChecked={useBorder}
-                disabled={downloading}
-                onChange={(e): void => setUseBorder(e.target.checked)}
-                className={commonStyle.checkbox}
-              ></input>
-            </ParamBox>
+              {!imageLikeIcon && (
+                <ParamBox labelName="高さ">
+                  <input
+                    className={commonStyle.textRight}
+                    type="number"
+                    defaultValue={height}
+                    disabled={downloading}
+                    onChange={(e): void => setHeight(parseInt(e.target.value))}
+                  ></input>
+                </ParamBox>
+              )}
+
+              {!imageLikeIcon && (
+                <ParamBox labelName="画像内の文字">
+                  <textarea
+                    defaultValue={comment}
+                    disabled={downloading}
+                    onChange={(e): void => setComment(e.target.value)}
+                    style={{
+                      backgroundColor: "rgba(0,0,0,0)",
+                      paddingTop: "8px",
+                    }}
+                  ></textarea>
+                </ParamBox>
+              )}
+
+              {!imageLikeIcon && (
+                <ParamBox labelName="フォント">
+                  <select
+                    defaultValue={font}
+                    disabled={downloading}
+                    onChange={(e): void => setFont(e.target.value)}
+                  >
+                    <option value="serif">serif</option>
+                    <option value="sans-serif">sans-serif</option>
+                    <option value="monospace">monospace</option>
+                  </select>
+                </ParamBox>
+              )}
+
+              <ParamBox labelName={imageLikeIcon ? "アイコンの色" : "文字色"}>
+                <input
+                  type="color"
+                  defaultValue={fontColor}
+                  disabled={downloading}
+                  onChange={(e): void => setFontColor(e.target.value)}
+                ></input>
+              </ParamBox>
+
+              {!imageLikeIcon && (
+                <ParamBox labelName="文字サイズ">
+                  <div>
+                    <input
+                      className={commonStyle.textRight}
+                      type="number"
+                      value={fontSize}
+                      disabled={downloading}
+                      onChange={(e): void =>
+                        setFontSize(parseInt(e.target.value))
+                      }
+                    ></input>
+                    <br />
+                    <input
+                      type="range"
+                      value={fontSize}
+                      min="1"
+                      max="300"
+                      disabled={downloading}
+                      onChange={(e): void =>
+                        setFontSize(parseInt(e.target.value))
+                      }
+                      style={{
+                        margin: "0 8px",
+                      }}
+                    ></input>
+                  </div>
+                </ParamBox>
+              )}
+
+              {!imageLikeIcon && (
+                <ParamBox labelName="高さと幅を画像に書き込む">
+                  <input
+                    type="checkbox"
+                    defaultChecked={doDrawSize}
+                    disabled={downloading}
+                    onChange={(e): void => setDoDrawSize(e.target.checked)}
+                    className={commonStyle.checkbox}
+                  ></input>
+                </ParamBox>
+              )}
+
+              <ParamBox labelName="背景色をランダムにする">
+                <input
+                  type="checkbox"
+                  defaultChecked={useRandomColor}
+                  disabled={downloading}
+                  onChange={(e): void => setUseRandomColor(e.target.checked)}
+                  className={commonStyle.checkbox}
+                ></input>
+              </ParamBox>
+
+              {!useRandomColor && (
+                <ParamBox labelName="背景色">
+                  <input
+                    type="color"
+                    defaultValue={color}
+                    disabled={useRandomColor || downloading}
+                    onChange={(e): void => setColor(e.target.value)}
+                  ></input>
+                </ParamBox>
+              )}
+
+              <ParamBox labelName="枠線をつける">
+                <input
+                  type="checkbox"
+                  defaultChecked={useBorder}
+                  disabled={downloading}
+                  onChange={(e): void => setUseBorder(e.target.checked)}
+                  className={commonStyle.checkbox}
+                ></input>
+              </ParamBox>
+            </div>
 
             <button
               className={commonStyle.testaroButton}
@@ -441,32 +443,34 @@ const ImageGenerator: NextPage = () => {
 
           <div className={commonStyle.paramContainer}>
             <span className={commonStyle.paramLabel}>ファイルパラメータ</span>
-            <ParamBox labelName="ファイル名">
-              <input
-                type="text"
-                defaultValue={fileName}
-                disabled={downloading}
-                onChange={(e): void => setFileName(e.target.value)}
-              ></input>
-            </ParamBox>
-            <ParamBox labelName="画像の形式">
-              <select
-                defaultValue={selectedImage}
-                disabled={downloading}
-                onChange={(e): void => setSelectedImage(e.target.value)}
-              >
-                {imageOptions}
-              </select>
-            </ParamBox>
-            <ParamBox labelName="出力枚数">
-              <input
-                className={commonStyle.textRight}
-                type="number"
-                defaultValue={genNum}
-                disabled={downloading}
-                onChange={(e): void => setGenNum(parseInt(e.target.value))}
-              ></input>
-            </ParamBox>
+            <div style={{ marginTop: "8px" }}>
+              <ParamBox labelName="ファイル名">
+                <input
+                  type="text"
+                  defaultValue={fileName}
+                  disabled={downloading}
+                  onChange={(e): void => setFileName(e.target.value)}
+                ></input>
+              </ParamBox>
+              <ParamBox labelName="画像の形式">
+                <select
+                  defaultValue={selectedImage}
+                  disabled={downloading}
+                  onChange={(e): void => setSelectedImage(e.target.value)}
+                >
+                  {imageOptions}
+                </select>
+              </ParamBox>
+              <ParamBox labelName="出力枚数">
+                <input
+                  className={commonStyle.textRight}
+                  type="number"
+                  defaultValue={genNum}
+                  disabled={downloading}
+                  onChange={(e): void => setGenNum(parseInt(e.target.value))}
+                ></input>
+              </ParamBox>
+            </div>
             <button
               className={commonStyle.testaroButton}
               disabled={downloading}
@@ -483,9 +487,9 @@ const ImageGenerator: NextPage = () => {
 
         <div className={commonStyle.outputsContainer}>
           <div className={commonStyle.outputContainer}>
-            <label className={style.canvasLabel} htmlFor="canvas">
+            <p className={commonStyle.outputLabel}>
               ファイル名（プレビュー）: {createFileFullName(1)}
-            </label>
+            </p>
             <canvas
               id="canvas"
               ref={canvasRef}

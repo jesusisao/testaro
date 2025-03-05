@@ -40,8 +40,9 @@
     margin: 10px;
 
     .paramLabel {
+      color: rgba(255, 255, 255, 0.7);
       margin: 0 0 10px 0;
-      font-size: 1.1em;
+      font-size: 1em;
     }
 
     input,
@@ -62,8 +63,9 @@
     margin: 10px;
 
     .outputLabel {
+      color: rgba(255, 255, 255, 0.7);
       margin: 0 0 10px 0;
-      font-size: 1.4em;
+      font-size: 1em;
     }
   }
 }

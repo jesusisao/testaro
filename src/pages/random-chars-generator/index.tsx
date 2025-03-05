@@ -66,92 +66,92 @@ const RandomStringGenerator: NextPage = () => {
       />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>{description}</p>
-      <div className={commonStyle.paramsOutputsContainer}>
-        <div className={commonStyle.paramsContainer}>
-          <div className={commonStyle.paramContainer}>
-            <ParamBox labelName="文字数">
-              <div>
-                <input
-                  className={commonStyle.textRight}
-                  type="number"
-                  min="1"
-                  max="30"
-                  value={length}
-                  onChange={(e): void => setLength(parseInt(e.target.value))}
-                ></input>
-                <br />
-                <input
-                  type="range"
-                  value={length}
-                  min="1"
-                  max="30"
-                  onChange={(e): void => setLength(parseInt(e.target.value))}
-                  style={{
-                    margin: "0 8px",
-                  }}
-                ></input>
-              </div>
-            </ParamBox>
 
-            <ParamBox labelName="英字（大文字）">
+      <div className={commonStyle.paramsContainer}>
+        <div className={commonStyle.paramContainer}>
+          <ParamBox labelName="文字数">
+            <div>
               <input
-                type="checkbox"
-                checked={useUppercase}
-                onChange={(e): void => setUseUppercase(e.target.checked)}
-                className={commonStyle.checkbox}
+                className={commonStyle.textRight}
+                type="number"
+                min="1"
+                max="30"
+                value={length}
+                onChange={(e): void => setLength(parseInt(e.target.value))}
               ></input>
-            </ParamBox>
-
-            <ParamBox labelName="英字（小文字）">
+              <br />
               <input
-                type="checkbox"
-                checked={useLowercase}
-                onChange={(e): void => setUseLowercase(e.target.checked)}
-                className={commonStyle.checkbox}
+                type="range"
+                value={length}
+                min="1"
+                max="30"
+                onChange={(e): void => setLength(parseInt(e.target.value))}
+                style={{
+                  margin: "0 8px",
+                }}
               ></input>
-            </ParamBox>
-
-            <ParamBox labelName="数字">
-              <input
-                type="checkbox"
-                checked={useNumbers}
-                onChange={(e): void => setUseNumbers(e.target.checked)}
-                className={commonStyle.checkbox}
-              ></input>
-            </ParamBox>
-
-            <ParamBox labelName="記号">
-              <input
-                type="checkbox"
-                checked={useSymbols}
-                onChange={(e): void => setUseSymbols(e.target.checked)}
-                className={commonStyle.checkbox}
-              ></input>
-            </ParamBox>
-
-            <button
-              className={commonStyle.testaroButton}
-              onClick={generateStrings}
-            >
-              再生成
-              <FontAwesomeIcon icon={faRedo} className={commonStyle.icon} />
-            </button>
-          </div>
-        </div>
-
-        <div className={commonStyle.outputsContainer}>
-          <div className={commonStyle.outputContainer}>
-            <div className={style.stringGrid}>
-              {generatedStrings.map((str, index) => (
-                <div
-                  key={index}
-                  className={style.stringItem}
-                  onClick={() => copyToClipboard(str)}
-                >
-                  <span>{str}</span>
-                </div>
-              ))}
             </div>
+          </ParamBox>
+
+          <ParamBox labelName="数字">
+            <input
+              type="checkbox"
+              checked={useNumbers}
+              onChange={(e): void => setUseNumbers(e.target.checked)}
+              className={commonStyle.checkbox}
+            ></input>
+          </ParamBox>
+
+          <ParamBox labelName="英字（小文字）">
+            <input
+              type="checkbox"
+              checked={useLowercase}
+              onChange={(e): void => setUseLowercase(e.target.checked)}
+              className={commonStyle.checkbox}
+            ></input>
+          </ParamBox>
+
+          <ParamBox labelName="英字（大文字）">
+            <input
+              type="checkbox"
+              checked={useUppercase}
+              onChange={(e): void => setUseUppercase(e.target.checked)}
+              className={commonStyle.checkbox}
+            ></input>
+          </ParamBox>
+
+          <ParamBox labelName="記号">
+            <input
+              type="checkbox"
+              checked={useSymbols}
+              onChange={(e): void => setUseSymbols(e.target.checked)}
+              className={commonStyle.checkbox}
+            ></input>
+          </ParamBox>
+
+          <button
+            className={commonStyle.testaroButton}
+            onClick={generateStrings}
+          >
+            再生成
+            <FontAwesomeIcon icon={faRedo} className={commonStyle.icon} />
+          </button>
+        </div>
+      </div>
+
+      <div className={commonStyle.outputsContainer}>
+        <div className={commonStyle.outputContainer}>
+          <p className={commonStyle.outputLabel}>出力</p>
+          <div className={style.stringGrid}>
+            {generatedStrings.map((str, index) => (
+              <div
+                key={index}
+                className={style.stringItem}
+                onClick={() => copyToClipboard(str)}
+              >
+                <span>{str}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
