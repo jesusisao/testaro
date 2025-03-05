@@ -11,6 +11,7 @@ import {
   faUnderline,
   faBook,
   faLink,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -82,7 +83,7 @@ const Menu: React.FC = () => {
         <li>
           <Link href="/timezone-converter">
             <span className={style.link}>
-              <FontAwesomeIcon icon={faFont} className={style.icon} />
+              <FontAwesomeIcon icon={faClock} className={style.icon} />
               タイムゾーン変換
             </span>
           </Link>
