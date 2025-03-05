@@ -80,6 +80,14 @@ const Menu: React.FC = () => {
           </Link>
         </li>
         <li>
+          <Link href="/timezone-converter">
+            <span className={style.link}>
+              <FontAwesomeIcon icon={faFont} className={style.icon} />
+              タイムゾーン変換
+            </span>
+          </Link>
+        </li>
+        <li>
           <Link href="/uri-decoder">
             <span className={style.link}>
               <FontAwesomeIcon icon={faLink} className={style.icon} />

@@ -60,7 +60,6 @@ const UriDecoder: NextPage = () => {
           <textarea
             defaultValue={originalString}
             onChange={(e): void => setOriginalString(e.target.value)}
-            style={{ marginTop: "8px" }}
           ></textarea>
         </div>
       </div>
@@ -69,8 +68,8 @@ const UriDecoder: NextPage = () => {
           <p>出力</p>
           <textarea
             readOnly
+            className={style.disabledTextarea}
             value={output}
-            style={{ marginTop: "8px" }}
           ></textarea>
         </div>
       </div>

@@ -1,6 +1,6 @@
 @import "styles/config.scss";
 
-// hexとopacityからrgbaを作る関数
+// hexとopacityからrgbaを作る関数
 @function hexAndOpavityToRgba($hexcolor, $opacity) {
   $red: red($hexcolor);
   $green: green($hexcolor);
@@ -101,6 +101,57 @@
     opacity: 0.4;
     z-index: 1;
     transform: scale(0, 1);
+    box-shadow: 0 3px 20px 0 $config-button-accent-color;
+  }
+
+  &:hover::before {
+    transform: scale(1, 1);
+  }
+
+  &:active::before {
+    background-color: $config-button-clicked-color;
+    box-shadow: 0 3px 20px 0 $config-button-clicked-color;
+    opacity: 0.7;
+  }
+
+  .icon {
+    margin-left: 5px;
+    opacity: 0.3;
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.testaroInlineButton {
+  position: relative;
+  min-height: 30px;
+  min-width: 30px;
+  color: $config-font-color;
+  background-color: $config-button-color;
+  border: 0;
+  box-sizing: border-box;
+  transition: 0.2s;
+  outline: none;
+  box-shadow: 0 0 10px 3px #101010 inset;
+
+  &:hover {
+    background-color: lighten($config-button-color, 15%);
+    box-shadow: none;
+  }
+
+  &::before {
+    content: "";
+    pointer-events: none;
+    transition: all 0.1s, transform 0.2s;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $config-button-accent-color;
+    opacity: 0.4;
+    z-index: 1;
+    transform: scale(1, 0);
     box-shadow: 0 3px 20px 0 $config-button-accent-color;
   }
 

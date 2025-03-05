@@ -1,0 +1,60 @@
+@import "styles/config.scss";
+
+.page {
+  height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+}
+
+.dateTimeInputContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-bottom: 8px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
+}
+
+.timeInput {
+  width: 100%;
+  min-width: 100px;
+  text-align: right;
+  padding: 0;
+}
+
+.timezoneContainer {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  gap: 4px;
+  margin-bottom: 16px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+}
+
+.timeDisplay {
+  background-color: $config-disabled-form-color;
+  border-radius: 5px;
+  padding: 16px;
+  text-align: center;
+  font-size: 18px;
+  font-family: monospace;
+}
+
+.errorMessage {
+  text-align: center;
+}
