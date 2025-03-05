@@ -10,9 +10,16 @@
   }
 
   textarea {
+    margin-top: 8px;
+    border-radius: 8px;
+    background-color: $config-enabled-form-color;
     padding-top: 5px;
     padding-bottom: 5px;
     width: 500px;
     height: 150px;
+  }
+
+  .disabledTextarea {
+    background-color: $config-disabled-form-color;
   }
 }

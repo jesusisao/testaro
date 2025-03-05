@@ -11,6 +11,7 @@ import {
   faUnderline,
   faBook,
   faLink,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -76,6 +77,14 @@ const Menu: React.FC = () => {
             <span className={style.link}>
               <FontAwesomeIcon icon={faFont} className={style.icon} />
               ランダム文字列
+            </span>
+          </Link>
+        </li>
+        <li>
+          <Link href="/timezone-converter">
+            <span className={style.link}>
+              <FontAwesomeIcon icon={faClock} className={style.icon} />
+              タイムゾーン変換
             </span>
           </Link>
         </li>

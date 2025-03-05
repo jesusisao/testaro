@@ -18,9 +18,8 @@
 }
 
 .stringItem {
-  background-color: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  background-color: $config-disabled-form-color;
+  border-radius: 5px;
   padding: 12px;
   cursor: pointer;
   display: flex;
