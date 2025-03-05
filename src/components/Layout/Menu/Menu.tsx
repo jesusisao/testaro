@@ -99,7 +99,7 @@ const Menu: React.FC = () => {
         <li>
           <Link href="/base64-decoder">
             <span className={style.link}>
-              <FontAwesomeIcon icon={faLink} className={style.icon} />
+              <FontAwesomeIcon icon={faFont} className={style.icon} />
               Base64デコーダー
             </span>
           </Link>
