@@ -10,8 +10,8 @@ type Pattern = "escape" | "unescape";
 const change = (pattern: Pattern, original: string) => {
   try {
     return pattern === "escape"
-      ? toBackSlash(escape(original))
-      : unescape(toPercent(original));
+      ? JSON.stringify(original).slice(1, -1)
+      : JSON.parse(`"${original}"`);
   } catch (e: unknown) {
     if (e instanceof Error) {
       console.warn(e.message);
@@ -19,10 +19,6 @@ const change = (pattern: Pattern, original: string) => {
     return "(ERROR)";
   }
 };
-
-const toBackSlash = (str: string) => str.replace(/%/g, "\\");
-
-const toPercent = (str: string) => str.replace(/\\/g, "%");
 
 const UriDecoder: NextPage = () => {
   const [pattern, setPattern] = useState("unescape" as Pattern);

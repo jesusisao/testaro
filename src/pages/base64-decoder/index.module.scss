@@ -1,0 +1,24 @@
+@import "styles/config.scss";
+
+.page {
+  height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+
+  p {
+    margin: 5px;
+  }
+
+  textarea {
+    border-radius: 8px;
+    background-color: $config-enabled-form-color;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 500px;
+    height: 150px;
+  }
+
+  .disabledTextarea {
+    background-color: $config-disabled-form-color;
+  }
+}
