@@ -4,11 +4,24 @@ import commonStyle from "styles/common.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import { sleep } from "src/models/util";
 // ブラウザでPDFを生成する場合は Virtual file system を使って、その中にフォントのデータが無いといけない
 // @ts-expect-error - vfs_fontsが大きすぎてモジュールとして解釈できない
 import vfs from "src/lib/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
 import { TDocumentDefinitions, Content } from "pdfmake/interfaces";
+
+// arrをn個の配列（以下result）に分割する。
+// 例えば、n=2の時、arrの1番目は1つ目のresultに、arrの2番目は2つ目のresultにローテーションで格納され、arrの3番目は1つ目のresultに格納される。
+// arr = [1, 2, 3, 4]でn = 2の時、resultは[[1, 3], [2, 4]]になる
+function distributeIntoSlices<T>(arr: T[], n: number): T[][] {
+  if (n <= 0) throw new Error("n must be greater than 0");
+  const result: T[][] = Array.from({ length: n }, () => []);
+  arr.forEach((item, index) => {
+    result[index % n].push(item);
+  });
+  return result;
+}
 
 const fontName = "KosugiMaru";
 const fontFileName = `${fontName}-Regular.ttf`;
@@ -36,10 +49,15 @@ const QrPdfGenerator: React.FC<QrPdfGeneratorProps> = ({
   const [previewSrc, setPreviewSrc] = useState<string | null>(null);
 
   // 有効なQRコードのみをフィルタリング
-  const validQrCodes = useMemo(() => {
-    return qrCodes.filter(
-      (code, index) => code !== "" && canvasRefs[index].current
-    );
+  const validQrCodeAndIndexes = useMemo(() => {
+    return qrCodes
+      .map((code, index) => {
+        return { code, index };
+      })
+      .filter(
+        (codeIndexHash) =>
+          codeIndexHash.code !== "" && canvasRefs[codeIndexHash.index].current
+      );
   }, [qrCodes, canvasRefs]);
 
   // PDFのコンテンツを作成する関数
@@ -54,55 +72,32 @@ const QrPdfGenerator: React.FC<QrPdfGeneratorProps> = ({
       margin: [0, 0, 0, 20],
     });
 
+    if (validQrCodeAndIndexes.length === 0) return content;
+
     // QRコードを2列で表示するためのテーブルを作成
     const tableBody = [];
-    for (let i = 0; i < validQrCodes.length; i += 2) {
-      const row = [];
 
-      // 1列目
-      if (i < validQrCodes.length && canvasRefs[i].current) {
-        const qrDataUrl = canvasRefs[i].current!.toDataURL("image/png");
-        row.push({
-          stack: [
-            { image: qrDataUrl, width: 150, alignment: "center" },
-            {
-              text: validQrCodes[i],
-              fontSize: 10,
-              alignment: "center",
-              margin: [0, 5, 0, 15],
-            },
-          ],
-          margin: [0, 10, 10, 0],
-        });
-      } else {
-        row.push({});
-      }
-
-      // 2列目
-      if (i + 1 < validQrCodes.length && canvasRefs[i + 1].current) {
-        const qrDataUrl = canvasRefs[i + 1].current!.toDataURL("image/png");
-        row.push({
-          stack: [
-            { image: qrDataUrl, width: 150, alignment: "center" },
-            {
-              text: validQrCodes[i + 1],
-              fontSize: 10,
-              alignment: "center",
-              margin: [0, 5, 0, 15],
-            },
-          ],
-          margin: [0, 10, 0, 0],
-        });
-      } else {
-        row.push({});
-      }
-
-      tableBody.push(row);
+    const row = [];
+    for (const qrCodeAndIndex of validQrCodeAndIndexes) {
+      const canvasCurrentRef = canvasRefs[qrCodeAndIndex.index].current;
+      if (!canvasCurrentRef) continue;
+      const qrDataUrl = canvasCurrentRef.toDataURL("image/png");
+      row.push({
+        stack: [
+          { image: qrDataUrl, width: 150, alignment: "center" },
+          {
+            text: qrCodeAndIndex.code,
+            fontSize: 10,
+            alignment: "center",
+          },
+        ],
+      });
     }
+    tableBody.push(distributeIntoSlices(row, 2));
 
     content.push({
       table: {
-        widths: ["*", "*"],
+        widths: [250, 250],
         body: tableBody,
       },
       layout: "noBorders",
@@ -117,13 +112,14 @@ const QrPdfGenerator: React.FC<QrPdfGeneratorProps> = ({
       content: createPdfContent(),
       defaultStyle: { font: fontName },
       pageSize: "A4",
-      pageMargins: [40, 40, 40, 40],
+      pageMargins: [20, 20, 20, 20],
     };
   };
 
   // プレビュー用のPDFを生成する関数
   const generatePreview = async (): Promise<string> => {
-    if (validQrCodes.length === 0) return "";
+    // 少し待ってcanvasの描画が完了するのを待つ
+    await sleep(500);
 
     const docDefinition = createDocDefinition();
     const pdfDocGenerator = pdfMake.createPdf(docDefinition);
@@ -138,21 +134,20 @@ const QrPdfGenerator: React.FC<QrPdfGeneratorProps> = ({
   // QRコードが変更されたらプレビューを更新
   useEffect(() => {
     const updatePreview = async () => {
-      if (validQrCodes.length > 0) {
-        const newBase64 = await generatePreview();
-        setPreviewSrc(newBase64);
-      } else {
-        setPreviewSrc(null);
-      }
+      const newBase64 = await generatePreview();
+      setPreviewSrc(newBase64);
     };
 
     updatePreview();
-  }, [validQrCodes]);
+  }, [validQrCodeAndIndexes]);
 
-  const generatePdf = (): void => {
+  const generatePdf = async (): Promise<void> => {
     setDownloading(true);
 
     try {
+      // 少し待ってcanvasの描画が完了するのを待つ
+      await sleep(500);
+
       // PDFドキュメントの定義
       const docDefinition = createDocDefinition();
 
@@ -171,18 +166,21 @@ const QrPdfGenerator: React.FC<QrPdfGeneratorProps> = ({
       <div className={commonStyle.paramsOutputsContainer}>
         <div className={commonStyle.paramsContainer}>
           <div className={commonStyle.paramContainer}>
-            <ParamBox labelName="PDFファイル名">
-              <input
-                type="text"
-                value={fileName}
-                disabled={downloading}
-                onChange={(e): void => setFileName(e.target.value)}
-              />
-            </ParamBox>
+            <span className={commonStyle.paramLabel}>ファイルパラメータ</span>
+            <div style={{ marginTop: "8px" }}>
+              <ParamBox labelName="PDFファイル名">
+                <input
+                  type="text"
+                  value={fileName}
+                  disabled={downloading}
+                  onChange={(e): void => setFileName(e.target.value)}
+                />
+              </ParamBox>
+            </div>
 
             <button
               className={commonStyle.testaroButton}
-              disabled={downloading || validQrCodes.length === 0}
+              disabled={downloading || validQrCodeAndIndexes.length === 0}
               onClick={generatePdf}
             >
               PDFでダウンロード
@@ -194,23 +192,21 @@ const QrPdfGenerator: React.FC<QrPdfGeneratorProps> = ({
           </div>
         </div>
 
-        {validQrCodes.length > 0 && (
-          <div className={commonStyle.outputsContainer}>
-            <div className={commonStyle.outputContainer}>
-              <p className={commonStyle.outputLabel}>
-                プレビュー: {`${fileName}.pdf`}
-              </p>
-              {previewSrc ? (
-                <embed
-                  id="preview"
-                  type="application/pdf"
-                  src={`data:application/pdf;base64,${previewSrc}`}
-                  className={style.previewPdf}
-                />
-              ) : null}
-            </div>
+        <div className={commonStyle.outputsContainer}>
+          <div className={commonStyle.outputContainer}>
+            <p className={commonStyle.outputLabel}>
+              プレビュー: {`${fileName}.pdf`}
+            </p>
+            {previewSrc ? (
+              <embed
+                id="preview"
+                type="application/pdf"
+                src={`data:application/pdf;base64,${previewSrc}`}
+                className={style.previewPdf}
+              />
+            ) : null}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
