@@ -24,8 +24,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "eslint-config-next": "^14.2.24",
-    "moment": "^2.30.1",
-    "moment-timezone": "^0.5.47",
+    "luxon": "^3.5.0",
     "next": "^14.2.24",
     "normalize.css": "^8.0.1",
     "pdfmake": "^0.2.18",
@@ -38,6 +37,7 @@
   "devDependencies": {
     "@types/gtag.js": "^0.0.3",
     "@types/jest": "^26.0.15",
+    "@types/luxon": "^3.4.2",
     "@types/node": "22",
     "@types/pdfmake": "^0.2.11",
     "@types/qrcode": "^1.5.5",
