@@ -5,6 +5,11 @@
   min-width: 100%;
   overflow: hidden;
 
+  .pdfGeneratorContainer {
+    flex: 1;
+    min-width: 500px;
+  }
+
   .qrList {
     box-sizing: border-box;
     padding: 3px;

@@ -7,6 +7,13 @@ import ParamBox from "src/components/Common/ParamBox";
 import QRCode from "qrcode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload, faTimes } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
+import Loading from "src/components/Common/Loading";
+
+const DynamicQrPdfGenerator = dynamic(
+  () => import("src/components/PdfGenerator/QrPdfGenerator"),
+  { loading: () => <Loading />, ssr: false }
+);
 
 const QrGenerator: NextPage = () => {
   const [codes, setCodes] = useState(["", "", ""]);
@@ -125,13 +132,19 @@ const QrGenerator: NextPage = () => {
       <MetaHeader title={title} description={description} url="/qr-generator" />
       <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>{description}</p>
-      <div className={commonStyle.paramsContainer}>
-        <div className={commonStyle.paramContainer}>
-          {inputList()}
+      <div className={commonStyle.paramsOutputsContainer}>
+        <div className={commonStyle.paramsContainer}>
+          <div className={commonStyle.paramContainer}>
+            {inputList()}
 
-          <button className={commonStyle.testaroButton} onClick={add}>
-            項目追加
-          </button>
+            <button className={commonStyle.testaroButton} onClick={add}>
+              項目追加
+            </button>
+          </div>
+        </div>
+
+        <div className={style.pdfGeneratorContainer}>
+          <DynamicQrPdfGenerator qrCodes={codes} canvasRefs={canvasRefs} />
         </div>
       </div>
     </div>
