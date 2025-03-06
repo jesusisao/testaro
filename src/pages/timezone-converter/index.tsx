@@ -12,13 +12,17 @@ import commonStyle from "styles/common.module.scss";
 import style from "./index.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExchangeAlt, faClock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faExchangeAlt,
+  faClock,
+  faGlobeAmericas,
+} from "@fortawesome/free-solid-svg-icons";
 
 const TimezoneConverter: NextPage = () => {
-  const now = DateTime.now();
+  const now = DateTime.utc();
 
   const [year, setYear] = useState(now.year);
-  const [month, setMonth] = useState(now.month); // luxonは1から始まるため調整不要
+  const [month, setMonth] = useState(now.month);
   const [day, setDay] = useState(now.day);
   const [hour, setHour] = useState(now.hour);
   const [minute, setMinute] = useState(now.minute);
@@ -40,7 +44,10 @@ const TimezoneConverter: NextPage = () => {
   ];
 
   const inputTime = () => {
-    return DateTime.local(year, month, day, hour, minute).setZone(fromTimezone);
+    return DateTime.fromObject(
+      { year, month, day, hour, minute },
+      { zone: fromTimezone }
+    );
   };
 
   const convertedTime = () => {
@@ -60,6 +67,15 @@ const TimezoneConverter: NextPage = () => {
     setDay(now.day);
     setHour(now.hour);
     setMinute(now.minute);
+  };
+
+  const setCurrentUTCTime = () => {
+    const nowUTC = DateTime.utc();
+    setYear(nowUTC.year);
+    setMonth(nowUTC.month);
+    setDay(nowUTC.day);
+    setHour(nowUTC.hour);
+    setMinute(nowUTC.minute);
   };
 
   const title = "タイムゾーン変換";
@@ -183,8 +199,18 @@ const TimezoneConverter: NextPage = () => {
               className={commonStyle.testaroButton}
               onClick={setCurrentTime}
             >
-              現在時刻代入
+              ローカル現在時刻代入
               <FontAwesomeIcon icon={faClock} className={commonStyle.icon} />
+            </button>
+            <button
+              className={commonStyle.testaroButton}
+              onClick={setCurrentUTCTime}
+            >
+              UTC現在時刻代入
+              <FontAwesomeIcon
+                icon={faGlobeAmericas}
+                className={commonStyle.icon}
+              />
             </button>
           </div>
         </div>

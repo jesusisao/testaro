@@ -9,8 +9,7 @@
 .dateTimeInputContainer {
   display: flex;
   justify-content: flex-end;
-  gap: 4px;
-  margin-bottom: 8px;
+  gap: 1px;
 
   @media (max-width: 768px) {
     flex-wrap: wrap;
@@ -28,8 +27,8 @@
   display: flex;
   align-items: center;
   vertical-align: middle;
-  gap: 4px;
-  margin-bottom: 16px;
+  gap: 1px;
+  margin-top: 8px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -38,12 +37,8 @@
 
 .buttonContainer {
   display: flex;
-  gap: 16px;
-  margin-top: 16px;
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-  }
+  gap: 5px;
+  margin-top: 8px;
 }
 
 .timeDisplay {
