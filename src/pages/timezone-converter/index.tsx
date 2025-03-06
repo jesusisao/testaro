@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { NextPage } from "next";
-import moment from "moment-timezone";
+import {
+  DateTime,
+  MonthNumbers,
+  DayNumbers,
+  HourNumbers,
+  SecondNumbers,
+} from "luxon";
 import MetaHeader from "src/components/Common/MetaHeader";
 import commonStyle from "styles/common.module.scss";
 import style from "./index.module.scss";
@@ -9,13 +15,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExchangeAlt, faClock } from "@fortawesome/free-solid-svg-icons";
 
 const TimezoneConverter: NextPage = () => {
-  const now = moment();
+  const now = DateTime.now();
 
-  const [year, setYear] = useState(now.year());
-  const [month, setMonth] = useState(now.month() + 1); // momentは0から始まるため
-  const [day, setDay] = useState(now.date());
-  const [hour, setHour] = useState(now.hour());
-  const [minute, setMinute] = useState(now.minute());
+  const [year, setYear] = useState(now.year);
+  const [month, setMonth] = useState(now.month); // luxonは1から始まるため調整不要
+  const [day, setDay] = useState(now.day);
+  const [hour, setHour] = useState(now.hour);
+  const [minute, setMinute] = useState(now.minute);
 
   const [fromTimezone, setFromTimezone] = useState("UTC");
   const [toTimezone, setToTimezone] = useState("Asia/Tokyo");
@@ -34,19 +40,11 @@ const TimezoneConverter: NextPage = () => {
   ];
 
   const inputTime = () => {
-    return moment.tz(
-      {
-        year: year,
-        month: month - 1, // momentは0から始まるため調整
-        date: day,
-        hour: hour,
-        minute: minute,
-      },
-      fromTimezone
-    );
+    return DateTime.local(year, month, day, hour, minute).setZone(fromTimezone);
   };
+
   const convertedTime = () => {
-    return inputTime().tz(toTimezone);
+    return inputTime().setZone(toTimezone);
   };
 
   const swapTimezones = () => {
@@ -56,12 +54,12 @@ const TimezoneConverter: NextPage = () => {
   };
 
   const setCurrentTime = () => {
-    const now = moment();
-    setYear(now.year());
-    setMonth(now.month() + 1);
-    setDay(now.date());
-    setHour(now.hour());
-    setMinute(now.minute());
+    const now = DateTime.now();
+    setYear(now.year);
+    setMonth(now.month);
+    setDay(now.day);
+    setHour(now.hour);
+    setMinute(now.minute);
   };
 
   const title = "タイムゾーン変換";
@@ -95,7 +93,9 @@ const TimezoneConverter: NextPage = () => {
                 value={month}
                 min="1"
                 max="12"
-                onChange={(e) => setMonth(parseInt(e.target.value))}
+                onChange={(e) =>
+                  setMonth(parseInt(e.target.value) as MonthNumbers)
+                }
                 className={style.timeInput}
               />
             </ParamBox>
@@ -106,7 +106,7 @@ const TimezoneConverter: NextPage = () => {
                 value={day}
                 min="1"
                 max="31"
-                onChange={(e) => setDay(parseInt(e.target.value))}
+                onChange={(e) => setDay(parseInt(e.target.value) as DayNumbers)}
                 className={style.timeInput}
               />
             </ParamBox>
@@ -117,7 +117,9 @@ const TimezoneConverter: NextPage = () => {
                 value={hour}
                 min="0"
                 max="23"
-                onChange={(e) => setHour(parseInt(e.target.value))}
+                onChange={(e) =>
+                  setHour(parseInt(e.target.value) as HourNumbers)
+                }
                 className={style.timeInput}
               />
             </ParamBox>
@@ -128,7 +130,9 @@ const TimezoneConverter: NextPage = () => {
                 value={minute}
                 min="0"
                 max="59"
-                onChange={(e) => setMinute(parseInt(e.target.value))}
+                onChange={(e) =>
+                  setMinute(parseInt(e.target.value) as SecondNumbers)
+                }
                 className={style.timeInput}
               />
             </ParamBox>
@@ -185,17 +189,21 @@ const TimezoneConverter: NextPage = () => {
           </div>
         </div>
       </div>
-
       <div className={commonStyle.outputsContainer}>
         <div className={commonStyle.outputContainer}>
-          <p className={commonStyle.outputLabel}>入力</p>
+          <p className={commonStyle.outputLabel}>
+            {/* https://moment.github.io/luxon/#/formatting?id=table-of-tokens */}
+            入力内容（{inputTime().toFormat("z, Z")}）
+          </p>
           <div className={style.timeDisplay}>
-            <p>{inputTime().format("YYYY-MM-DD HH:mm:ss z")}</p>
+            <p>{inputTime().toFormat("yyyy-MM-dd HH:mm")}</p>
           </div>
           <br />
-          <p className={commonStyle.outputLabel}>変換後</p>
+          <p className={commonStyle.outputLabel}>
+            変換後（{convertedTime().toFormat("z, Z")}）
+          </p>
           <div className={style.timeDisplay}>
-            <p>{convertedTime().format("YYYY-MM-DD HH:mm:ss z")}</p>
+            <p>{convertedTime().toFormat("yyyy-MM-dd HH:mm")}</p>
           </div>
         </div>
       </div>

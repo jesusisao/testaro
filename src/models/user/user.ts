@@ -1,4 +1,4 @@
-import moment from "moment";
+import { DateTime } from "luxon";
 import { createNumros } from "./numro";
 import { createRandomUsers } from "./human";
 import { arrayToCsv } from "src/models/util";
@@ -179,7 +179,7 @@ export const usersDisplayHashArray = (
       familyNameRome: user.familyNameRome,
       givenNameRome: user.givenNameRome,
       sex: user.sex,
-      birthday: moment(user.birthday).format("YYYY/MM/DD"),
+      birthday: DateTime.fromJSDate(user.birthday).toFormat("yyyy/MM/dd"),
       email: user.email,
       postalCode: user.postalCode,
       prefecture: user.prefecture,
