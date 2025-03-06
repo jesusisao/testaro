@@ -7,6 +7,7 @@ import ParamBox from "src/components/Common/ParamBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 // ブラウザでPDFを生成する場合は Virtual file system を使って、その中にフォントのデータが無いといけない
+// @ts-expect-error - vfs_fontsが大きすぎてモジュールとして解釈できない
 import vfs from "src/lib/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
 import { TDocumentDefinitions } from "pdfmake/interfaces";
