@@ -39,6 +39,12 @@ const MetaHeader: React.FC<Prop> = (prop) => {
       <meta name="twitter:site" content="@jesus_isao" />
       {/* その他 */}
       <link rel="icon" href="/favicon-32x32.png" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=M+PLUS+Rounded+1c&display=swap"
+        rel="stylesheet"
+      />
       <link rel="manifest" href="/manifest.json" />
       {/* Google Analytics */}
       <script
