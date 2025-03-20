@@ -31,4 +31,11 @@ describe("generateManyChars", () => {
     const result = generateManyChars(pattern, 10);
     expect(result).toBe("");
   });
+
+  test("emoji pattern", () => {
+    const pattern = "🤔😂😊";
+    const result = generateManyChars(pattern, 5);
+    expect(result).toBe("🤔😂😊🤔😂");
+    expect(Array.from(result).length).toBe(5); // 絵文字が5文字あることを確認
+  });
 });

@@ -7,12 +7,41 @@ import { copyToClipboard } from "src/models/util";
 import ParamBox from "src/components/Common/ParamBox";
 import { generateManyChars } from "src/models/string";
 
+// パターンの定義
+const patterns = [
+  { value: "あアｱｶﾞﾊﾟＡａAa１1亜" },
+  { value: "0123456789" },
+  { value: "０１２３４５６７８９" },
+  { value: "ぜんかくひらがな" },
+  { value: "ゼンカクカタカナ" },
+  { value: "ﾊﾝｶｸｶﾀｶﾅﾀﾞｸﾃﾝｲﾘ" },
+  { value: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", label: "ABCDEFG..." },
+  { value: "abcdefghijklmnopqrstuvwxyz", label: "abcdefg..." },
+  {
+    value: "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ",
+    label: "ＡＢＣＤＥＦＧ...",
+  },
+  {
+    value: "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ",
+    label: "ａｂｃｄｅｆｇ...",
+  },
+  { value: "亜唖娃阿哀愛挨姶逢葵" },
+  { value: "XXXXXXXXX*" },
+  { value: "○○○○○○○○○●" },
+  { value: "🤔😂😊😭😇💪👊✋🙏👏", label: "絵文字（🤔😂😊...）" },
+  {
+    value:
+      "𠀋𡈽𡌛𡑮𡢽𠮟𡚴𡸴𣇄𣗄𣜿𣝣𣳾𤟱𥒎𥔎𥝱𥧄𥶡𦫿𦹀𧃴𧚄𨉷𨏍𪆐𠂉𠂢𠂤𠆢𠈓𠌫𠎁𠍱𠏹𠑊𠔉𠗖𠘨𠝏𠠇𠠺𠢹𠥼𠦝𠫓𠬝𠵅𠷡𠺕𠹭𠹤𠽟𡈁𡉕𡉻𡉴𡋤𡋗𡋽𡌶𡍄𡏄𡑭𡗗𦰩𡙇𡜆𡝂𡧃𡱖𡴭𡵅𡵸𡵢𡶡𡶜𡶒𡶷𡷠𡸳𡼞𡽶𡿺𢅻𢌞𢎭𢛳𢡛𢢫𢦏𢪸𢭏𢭐𢭆𢰝𢮦𢰤𢷡𣇃𣇵𣆶𣍲𣏓𣏒𣏐𣏤𣏕𣏚𣏟𣑊𣑑𣑋𣑥𣓤𣕚𣖔𣘹𣙇𣘸𣘺𣜜𣜌𣝤𣟿𣟧𣠤𣠽𣪘𣱿𣴀𣵀𣷺𣷹𣷓𣽾𤂖𤄃𤇆𤇾𤎼𤘩𤚥𤢖𤩍𤭖𤭯𤰖𤴔𤸎𤸷𤹪𤺋𥁊𥁕𥄢𥆩𥇥𥇍𥈞𥉌𥐮𥓙𥖧𥞩𥞴𥧔𥫤𥫣𥫱𥮲𥱋𥱤𥸮𥹖𥹥𥹢𥻘𥻂𥻨𥼣𥽜𥿠𥿔𦀌𥿻𦀗𦁠𦃭𦉰𦊆𦍌𣴎𦐂𦙾𦚰𦜝𦣝𦣪𦥑𦥯𦧝𦨞𦩘𦪌𦪷𦱳𦳝𦹥𦾔𦿸𦿶𦿷𧄍𧄹𧏛𧏚𧏾𧐐𧑉𧘕𧘔𧘱𧚓𧜎𧜣𧝒𧦅𧪄𧮳𧮾𧯇𧲸𧶠𧸐𧾷𨂊𨂻𨊂𨋳𨐌𨑕𨕫𨗈𨗉𨛗𨛺𨥉𨥆𨥫𨦇𨦈𨦺𨦻𨨞𨨩𨩱𨩃𨪙𨫍𨫤𨫝𨯁𨯯𨴐𨵱𨷻𨸟𨸶𨺉𨻫𨼲𨿸𩊠𩊱𩒐𩗏𩙿𩛰𩜙𩝐𩣆𩩲𩷛𩸽𩸕𩺊𩹉𩻄𩻩𩻛𩿎𪀯𪀚𪃹𪂂𢈘𪎌𪐷𪗱𪘂𪘚𪚲",
+    label: "UTF-8の4byte漢字（𠀋𠮷𩸽...）",
+  },
+];
+
 const StringGenerator: NextPage = () => {
-  const [pattern, setPattern] = useState("あアｱｶﾞﾊﾟＡａAa１1亜");
+  const [pattern, setPattern] = useState(patterns[0].value);
   const [charNum, setCharNum] = useState(500);
   const [genStr, setGenStr] = useState("");
   const [customPattern, setCustomPattern] = useState(false);
-  const [patternInput, setPatternInput] = useState("あアｱｶﾞﾊﾟＡａAa１1亜");
+  const [patternInput, setPatternInput] = useState(patterns[0].value);
 
   const generate = (): void => {
     const patternToUse = customPattern ? patternInput : pattern;
@@ -67,26 +96,11 @@ const StringGenerator: NextPage = () => {
                 value={pattern}
                 onChange={(e): void => setPattern(e.target.value)}
               >
-                <option value="あアｱｶﾞﾊﾟＡａAa１1亜">
-                  あアｱｶﾞﾊﾟＡａAa１1亜
-                </option>
-                <option value="0123456789">0123456789</option>
-                <option value="０１２３４５６７８９">
-                  ０１２３４５６７８９
-                </option>
-                <option value="ぜんかくひらがな">ぜんかくひらがな</option>
-                <option value="ゼンカクカタカナ">ゼンカクカタカナ</option>
-                <option value="ﾊﾝｶｸｶﾀｶﾅﾀﾞｸﾃﾝｲﾘ">ﾊﾝｶｸｶﾀｶﾅﾀﾞｸﾃﾝｲﾘ</option>
-                <option value="ABCDEFG">ABCDEFG</option>
-                <option value="abcdefg">abcdefg</option>
-                <option value="ＡＢＣＤＥＦＧ">ＡＢＣＤＥＦＧ</option>
-                <option value="ａｂｃｄｅｆｇ">ａｂｃｄｅｆｇ</option>
-                <option value="亜唖娃阿哀愛挨姶逢葵">
-                  亜唖娃阿哀愛挨姶逢葵
-                </option>
-                <option value="XXXXXXXXX*">XXXXXXXXX*</option>
-                <option value="○○○○○○○○○●">○○○○○○○○○●</option>
-                {/* <option value="🤔😂😊😭😇💪👊✋🙏👏">よく使う絵文字</option> */}
+                {patterns.map((p) => (
+                  <option key={p.value} value={p.value}>
+                    {p.label || p.value}
+                  </option>
+                ))}
               </select>
             </ParamBox>
           )}

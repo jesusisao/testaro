@@ -8,16 +8,21 @@ export const toFullWidth = (num: number): string => {
 
 // パターンと文字数を入れると、パターンを繰り返して文字数分だけ文字を生成してくれる関数
 export const generateManyChars = (pattern: string, charNum: number): string => {
-  const patternLength = pattern.length;
   if (charNum === 0) return "";
+  // Array.fromを使用して正しくUnicode文字（絵文字含む）をカウント
+  const patternChars = Array.from(pattern);
+  const patternLength = patternChars.length;
   if (patternLength === 0) return "";
+
   const loopNum = Math.floor(charNum / patternLength);
   const lastAddNum = charNum % patternLength;
   let str = "";
   for (let i = 0; i < loopNum; i++) {
     str += pattern;
   }
-  return str + pattern.slice(0, lastAddNum);
+
+  // 残りの文字を追加（sliceではなくArray.fromで分割した配列から取得）
+  return str + patternChars.slice(0, lastAddNum).join("");
 };
 
 export const replaceVariable = (original: string, num: number): string => {
