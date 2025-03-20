@@ -56,7 +56,8 @@ const StringGenerator: NextPage = () => {
   }, [pattern, customPattern]);
 
   const title = "テスト文字列生成";
-  const description = "任意の長さの文字列を生成できます。";
+  const description =
+    "任意の長さの文字列を生成できます。半角カタカナの濁点・半濁点はそれぞれ1文字として数えられる仕様です。";
   return (
     <div className={style.page}>
       <MetaHeader
