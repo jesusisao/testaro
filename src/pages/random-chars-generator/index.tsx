@@ -9,11 +9,11 @@ import { faRedo } from "@fortawesome/free-solid-svg-icons";
 import { copyToClipboard } from "src/models/util";
 
 const RandomStringGenerator: NextPage = () => {
-  const [length, setLength] = useState(16);
+  const [length, setLength] = useState(20);
   const [useNumbers, setUseNumbers] = useState(true);
   const [useLowercase, setUseLowercase] = useState(true);
   const [useUppercase, setUseUppercase] = useState(true);
-  const [useSymbols, setUseSymbols] = useState(false);
+  const [useSymbols, setUseSymbols] = useState(true);
   const [generatedStrings, setGeneratedStrings] = useState<string[]>([]);
 
   const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -33,9 +33,13 @@ const RandomStringGenerator: NextPage = () => {
       chars = lowercaseChars; // デフォルトで小文字を使用
     }
 
+    // crypto.getRandomValues を使用して暗号学的に安全な乱数を生成
+    const randomValues = new Uint32Array(len);
+    crypto.getRandomValues(randomValues);
+
     let result = "";
     for (let i = 0; i < len; i++) {
-      const randomIndex = Math.floor(Math.random() * chars.length);
+      const randomIndex = randomValues[i] % chars.length;
       result += chars[randomIndex];
     }
     return result;
