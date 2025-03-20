@@ -36,9 +36,10 @@ const generateUserRow = (
 
 const generateUserTable = (
   users: User[],
-  idOffset: number
+  idOffset: number,
+  nameSeparator = " "
 ): React.JSX.Element => {
-  const displayUsers = usersDisplayHashArray(users, idOffset);
+  const displayUsers = usersDisplayHashArray(users, idOffset, nameSeparator);
   const items = [];
   for (const [i, user] of displayUsers.entries()) {
     items.push(generateUserRow(i + idOffset, user));
@@ -46,8 +47,14 @@ const generateUserTable = (
   return <ul className={style.instanceRecords}>{items}</ul>;
 };
 
-const UserTable: React.FC<{ users: User[]; idOffset: number }> = (prop) => {
-  return <>{generateUserTable(prop.users, prop.idOffset)}</>;
+const UserTable: React.FC<{
+  users: User[];
+  idOffset: number;
+  nameSeparator?: string;
+}> = (prop) => {
+  return (
+    <>{generateUserTable(prop.users, prop.idOffset, prop.nameSeparator)}</>
+  );
 };
 
 export default UserTable;

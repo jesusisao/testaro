@@ -13,6 +13,7 @@ const UserGenerator: React.FC = () => {
   const [useNumro, setUseNumro] = useState(false);
   const [mailDomain, setMailDomain] = useState("testaro.netlify.app");
   const [idOffset, setIdOffset] = useState(0);
+  const [nameSeparator, setNameSeparator] = useState(" ");
 
   const generate = (): void => {
     setGenNum(0);
@@ -24,7 +25,7 @@ const UserGenerator: React.FC = () => {
   const users = createUsers(genNum, useNumro, mailDomain, idOffset);
 
   const downloadCsv = (): void => {
-    downloadAsCsv(userToCsvText(users, idOffset), "users");
+    downloadAsCsv(userToCsvText(users, idOffset, nameSeparator), "users");
   };
   const title = "ダミーユーザー情報生成";
   const description =
@@ -67,6 +68,13 @@ const UserGenerator: React.FC = () => {
               onChange={(e): void => setIdOffset(parseInt(e.target.value))}
             ></input>
           </ParamBox>
+          <ParamBox labelName="名前用スペーサー">
+            <input
+              type="text"
+              defaultValue={nameSeparator}
+              onChange={(e): void => setNameSeparator(e.target.value)}
+            ></input>
+          </ParamBox>
 
           <button className={commonStyle.testaroButton} onClick={generate}>
             再生成
@@ -91,7 +99,11 @@ const UserGenerator: React.FC = () => {
       >
         <div className={commonStyle.outputContainer}>
           <p className={commonStyle.outputLabel}>出力</p>
-          <UserTable users={users} idOffset={idOffset} />
+          <UserTable
+            users={users}
+            idOffset={idOffset}
+            nameSeparator={nameSeparator}
+          />
         </div>
       </div>
     </div>

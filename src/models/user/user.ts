@@ -164,16 +164,17 @@ const sortedUserKeysDisplay: Array<DisplayUserKey> = sortedUserKeys.filter(
 
 export const usersDisplayHashArray = (
   users: User[],
-  idOffset: number
+  idOffset: number,
+  nameSeparator = " "
 ): Array<DisplayUser> => {
   const items: Array<DisplayUser> = [];
   for (const [i, user] of users.entries()) {
     items.push({
       id: (i + 1 + idOffset).toString(),
-      joinedName: user.familyName + "　" + user.givenName,
+      joinedName: user.familyName + nameSeparator + user.givenName,
       familyName: user.familyName,
       givenName: user.givenName,
-      joinedNameKana: user.familyNameKana + "　" + user.givenNameKana,
+      joinedNameKana: user.familyNameKana + nameSeparator + user.givenNameKana,
       familyNameKana: user.familyNameKana,
       givenNameKana: user.givenNameKana,
       familyNameRome: user.familyNameRome,
@@ -197,9 +198,10 @@ export const usersDisplayHashArray = (
 // 主にCSV用。
 const usersToStringArray = (
   users: User[],
-  idOffset: number
+  idOffset: number,
+  nameSeparator = " "
 ): Array<Array<string>> => {
-  const displayUsers = usersDisplayHashArray(users, idOffset);
+  const displayUsers = usersDisplayHashArray(users, idOffset, nameSeparator);
   const items: Array<Array<string>> = [sortedUserKeysDisplay];
   for (const user of displayUsers) {
     const item: Array<string> = [];
@@ -212,6 +214,10 @@ const usersToStringArray = (
   return items;
 };
 
-export const userToCsvText = (users: User[], idOffset: number): string => {
-  return arrayToCsv(usersToStringArray(users, idOffset));
+export const userToCsvText = (
+  users: User[],
+  idOffset: number,
+  nameSeparator = " "
+): string => {
+  return arrayToCsv(usersToStringArray(users, idOffset, nameSeparator));
 };
