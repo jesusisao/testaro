@@ -28,12 +28,13 @@ const patterns = [
   { value: "亜唖娃阿哀愛挨姶逢葵" },
   { value: "XXXXXXXXX*" },
   { value: "○○○○○○○○○●" },
-  { value: "🤔😂😊😭😇💪👊✋🙏👏", label: "絵文字（🤔😂😊...）" },
+  { value: "a", label: "URL形式 (https://testaro.netlify.app/?a=aaa...)" },
   {
     value:
       "𠀋𡈽𡌛𡑮𡢽𠮟𡚴𡸴𣇄𣗄𣜿𣝣𣳾𤟱𥒎𥔎𥝱𥧄𥶡𦫿𦹀𧃴𧚄𨉷𨏍𪆐𠂉𠂢𠂤𠆢𠈓𠌫𠎁𠍱𠏹𠑊𠔉𠗖𠘨𠝏𠠇𠠺𠢹𠥼𠦝𠫓𠬝𠵅𠷡𠺕𠹭𠹤𠽟𡈁𡉕𡉻𡉴𡋤𡋗𡋽𡌶𡍄𡏄𡑭𡗗𦰩𡙇𡜆𡝂𡧃𡱖𡴭𡵅𡵸𡵢𡶡𡶜𡶒𡶷𡷠𡸳𡼞𡽶𡿺𢅻𢌞𢎭𢛳𢡛𢢫𢦏𢪸𢭏𢭐𢭆𢰝𢮦𢰤𢷡𣇃𣇵𣆶𣍲𣏓𣏒𣏐𣏤𣏕𣏚𣏟𣑊𣑑𣑋𣑥𣓤𣕚𣖔𣘹𣙇𣘸𣘺𣜜𣜌𣝤𣟿𣟧𣠤𣠽𣪘𣱿𣴀𣵀𣷺𣷹𣷓𣽾𤂖𤄃𤇆𤇾𤎼𤘩𤚥𤢖𤩍𤭖𤭯𤰖𤴔𤸎𤸷𤹪𤺋𥁊𥁕𥄢𥆩𥇥𥇍𥈞𥉌𥐮𥓙𥖧𥞩𥞴𥧔𥫤𥫣𥫱𥮲𥱋𥱤𥸮𥹖𥹥𥹢𥻘𥻂𥻨𥼣𥽜𥿠𥿔𦀌𥿻𦀗𦁠𦃭𦉰𦊆𦍌𣴎𦐂𦙾𦚰𦜝𦣝𦣪𦥑𦥯𦧝𦨞𦩘𦪌𦪷𦱳𦳝𦹥𦾔𦿸𦿶𦿷𧄍𧄹𧏛𧏚𧏾𧐐𧑉𧘕𧘔𧘱𧚓𧜎𧜣𧝒𧦅𧪄𧮳𧮾𧯇𧲸𧶠𧸐𧾷𨂊𨂻𨊂𨋳𨐌𨑕𨕫𨗈𨗉𨛗𨛺𨥉𨥆𨥫𨦇𨦈𨦺𨦻𨨞𨨩𨩱𨩃𨪙𨫍𨫤𨫝𨯁𨯯𨴐𨵱𨷻𨸟𨸶𨺉𨻫𨼲𨿸𩊠𩊱𩒐𩗏𩙿𩛰𩜙𩝐𩣆𩩲𩷛𩸽𩸕𩺊𩹉𩻄𩻩𩻛𩿎𪀯𪀚𪃹𪂂𢈘𪎌𪐷𪗱𪘂𪘚𪚲",
     label: "UTF-8の4byte漢字（𠀋𠮷𩸽...）",
   },
+  { value: "🤔😂😊😭😇💪👊✋🙏👏", label: "絵文字（🤔😂😊...）" },
 ];
 
 const StringGenerator: NextPage = () => {
@@ -43,10 +44,24 @@ const StringGenerator: NextPage = () => {
   const [customPattern, setCustomPattern] = useState(false);
   const [patternInput, setPatternInput] = useState(patterns[0].value);
 
+  // URL形式かを判定するための苦しい処理
+  const isUrlPattern = (customPattern: boolean, pattern: string): boolean => {
+    return !customPattern && pattern === "a";
+  };
+
   const generate = (): void => {
-    const patternToUse = customPattern ? patternInput : pattern;
-    const result = generateManyChars(patternToUse, charNum);
-    setGenStr(result);
+    if (isUrlPattern(customPattern, pattern)) {
+      const baseStr = "https://testaro.netlify.app/?a=";
+      // 文字数からベースURLの長さを引いた数のaを生成
+      // ただし最低1文字は生成する
+      const aCount = Math.max(1, charNum - baseStr.length);
+      const aString = "a".repeat(aCount);
+      setGenStr(baseStr + aString);
+    } else {
+      const patternToUse = customPattern ? patternInput : pattern;
+      const result = generateManyChars(patternToUse, charNum);
+      setGenStr(result);
+    }
   };
 
   useEffect(() => {
