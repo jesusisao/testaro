@@ -6,12 +6,14 @@
 
 - [Testaro](https://testaro.netlify.app/)
 
-## Links
-
-- http://localhost:3000/
-- [netlify deploys](https://app.netlify.com/sites/testaro/deploys)
-
 ## About
 
 デベロッパーテストを少しだけ楽にするためのアプリケーションです。
 本番環境では、Next.js はあくまで静的サイトジェネレーターとして使っています。
+
+https://github.com/user-attachments/assets/5a00e939-7146-4777-89f1-c732e5ff8d9e
+
+## Links
+
+- http://localhost:3000/
+- [netlify deploys](https://app.netlify.com/sites/testaro/deploys)
