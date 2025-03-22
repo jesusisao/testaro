@@ -1,7 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Script from "next/script";
-import { GA_ID } from "src/lib/gtag";
 
 const siteName = "Testaro";
 const host = "https://testaro.netlify.app";
@@ -39,28 +37,7 @@ const MetaHeader: React.FC<Prop> = (prop) => {
         {/* Twitterカード */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@jesus_isao" />
-        {/* その他 */}
-        <link rel="icon" href="/favicon-32x32.png" />
-        <link rel="manifest" href="/manifest.json" />
       </Head>
-      {/* Google Analytics */}
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', {
-                  page_path: window.location.pathname,
-                });`,
-        }}
-      />
     </>
   );
 };
