@@ -37,60 +37,67 @@ const UserGenerator: React.FC = () => {
       <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
-          <ParamBox labelName="一条太郎方式">
-            <input
-              type="checkbox"
-              defaultChecked={useNumro}
-              onChange={(e): void => setUseNumro(e.target.checked)}
-              className={commonStyle.checkbox}
-            ></input>
-          </ParamBox>
-          <ParamBox labelName="メールのドメイン">
-            <input
-              type="text"
-              defaultValue={mailDomain}
-              onChange={(e): void => setMailDomain(e.target.value)}
-            ></input>
-          </ParamBox>
-          <ParamBox labelName="生成数">
-            <input
-              className={commonStyle.textRight}
-              type="number"
-              defaultValue={genNum}
-              onChange={(e): void => setGenNum(parseInt(e.target.value))}
-            ></input>
-          </ParamBox>
-          <ParamBox labelName="IDのOffset">
-            <input
-              className={commonStyle.textRight}
-              type="number"
-              defaultValue={idOffset}
-              onChange={(e): void => setIdOffset(parseInt(e.target.value))}
-            ></input>
-          </ParamBox>
-          <ParamBox labelName="名前用スペーサー">
-            <input
-              type="text"
-              defaultValue={nameSeparator}
-              onChange={(e): void => setNameSeparator(e.target.value)}
-            ></input>
-          </ParamBox>
-
-          <button className={commonStyle.testaroButton} onClick={generate}>
-            再生成
-            <FontAwesomeIcon icon={faRedo} className={commonStyle.icon} />
-          </button>
-          <button
-            className={commonStyle.testaroButton}
-            onClick={downloadCsv}
-            style={{ marginLeft: 5 }}
-          >
-            CSVダウンロード
-            <FontAwesomeIcon
-              icon={faFileDownload}
-              className={commonStyle.icon}
-            />
-          </button>
+          <span className={commonStyle.paramLabel}>ユーザーパラメータ</span>
+          <div style={{ marginTop: "8px" }}>
+            <ParamBox labelName="一条太郎方式">
+              <input
+                type="checkbox"
+                defaultChecked={useNumro}
+                onChange={(e): void => setUseNumro(e.target.checked)}
+                className={commonStyle.checkbox}
+              ></input>
+            </ParamBox>
+            <ParamBox labelName="メールのドメイン">
+              <input
+                type="text"
+                defaultValue={mailDomain}
+                onChange={(e): void => setMailDomain(e.target.value)}
+              ></input>
+            </ParamBox>
+            <ParamBox labelName="名前用スペーサー">
+              <input
+                type="text"
+                defaultValue={nameSeparator}
+                onChange={(e): void => setNameSeparator(e.target.value)}
+              ></input>
+            </ParamBox>
+          </div>
+        </div>
+        <div className={commonStyle.paramContainer}>
+          <span className={commonStyle.paramLabel}>出力パラメータ</span>
+          <div style={{ marginTop: "8px" }}>
+            <ParamBox labelName="生成数">
+              <input
+                className={commonStyle.textRight}
+                type="number"
+                defaultValue={genNum}
+                onChange={(e): void => setGenNum(parseInt(e.target.value))}
+              ></input>
+            </ParamBox>
+            <ParamBox labelName="Offset">
+              <input
+                className={commonStyle.textRight}
+                type="number"
+                defaultValue={idOffset}
+                onChange={(e): void => setIdOffset(parseInt(e.target.value))}
+              ></input>
+            </ParamBox>
+            <button className={commonStyle.testaroButton} onClick={generate}>
+              再生成
+              <FontAwesomeIcon icon={faRedo} className={commonStyle.icon} />
+            </button>
+            <button
+              className={commonStyle.testaroButton}
+              onClick={downloadCsv}
+              style={{ marginLeft: 5 }}
+            >
+              CSVダウンロード
+              <FontAwesomeIcon
+                icon={faFileDownload}
+                className={commonStyle.icon}
+              />
+            </button>
+          </div>
         </div>
       </div>
       <div
