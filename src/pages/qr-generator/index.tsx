@@ -6,7 +6,11 @@ import commonStyle from "styles/common.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
 import QRCode from "qrcode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileDownload, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileDownload,
+  faTimes,
+  faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import dynamic from "next/dynamic";
 import Loading from "src/components/Common/Loading";
 
@@ -94,31 +98,41 @@ const QrGenerator: NextPage = () => {
     for (const [i, code] of codes.entries()) {
       items.push(
         <div className={style.qrList} key={i + ""}>
-          <ParamBox labelName="QR用文字列">
-            <div className={style.canvasList}>
-              <input
-                type="text"
-                value={code}
-                onChange={(e): void => updateCode(i, e.target.value)}
-              ></input>
-              <button onClick={(): void => removeClicked(i)}>
-                <FontAwesomeIcon icon={faTimes} className={commonStyle.icon} />
-              </button>
-              <button onClick={(): void => generateAndDownload(i)}>
-                <FontAwesomeIcon
-                  icon={faFileDownload}
-                  className={commonStyle.icon}
-                />
-              </button>
-              <canvas
-                ref={canvasRefs[i]}
-                key={i + ""}
-                className={style.qrCanvas}
-                width={116}
-                height={116}
-              ></canvas>
-            </div>
-          </ParamBox>
+          <div className={style.qrParamBoxContainer}>
+            <button
+              title="項目を削除"
+              className={style.clearButton}
+              onClick={(): void => removeClicked(i)}
+            >
+              <FontAwesomeIcon icon={faTimes} className={commonStyle.icon} />
+            </button>
+            <button
+              title="QR画像をダウンロード"
+              className={style.downloadButton}
+              onClick={(): void => generateAndDownload(i)}
+            >
+              <FontAwesomeIcon
+                icon={faFileDownload}
+                className={commonStyle.icon}
+              />
+            </button>
+            <ParamBox labelName="QR用文字列">
+              <div className={style.canvasList}>
+                <textarea
+                  className={style.inputArea}
+                  value={code}
+                  onChange={(e): void => updateCode(i, e.target.value)}
+                ></textarea>
+                <canvas
+                  ref={canvasRefs[i]}
+                  key={i + ""}
+                  className={style.qrCanvas}
+                  width={116}
+                  height={116}
+                ></canvas>
+              </div>
+            </ParamBox>
+          </div>
         </div>
       );
     }
@@ -139,6 +153,10 @@ const QrGenerator: NextPage = () => {
 
             <button className={commonStyle.testaroButton} onClick={add}>
               項目追加
+              <FontAwesomeIcon
+                icon={faPlusCircle}
+                className={commonStyle.icon}
+              />
             </button>
           </div>
         </div>
