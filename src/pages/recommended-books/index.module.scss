@@ -14,17 +14,17 @@
     margin: 20px;
     line-height: 1.8em;
 
-    p {
-      margin: 0 0 16px 0;
-      text-indent: 1em;
-    }
-
     .articleTitle {
       margin: 0 0 16px 0;
     }
 
     .articleBody {
       display: flex;
+
+      p {
+        margin: 0 0 16px 0;
+        text-indent: 1em;
+      }
     }
 
     .image {
