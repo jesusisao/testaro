@@ -40,13 +40,16 @@ const generateHeaderRow = (
   for (const key of sortedUserKeys) {
     if (!displayColumns[key]) continue;
     items.push(
-      <div
+      <span
         className={style.headerCell}
-        style={{ width: userDisplayInfo[key]["width"] }}
+        style={{
+          minWidth: userDisplayInfo[key]["width"],
+          maxWidth: userDisplayInfo[key]["width"],
+        }}
         key={`header_${key}`}
       >
         {headerLabels[key] || key}
-      </div>
+      </span>
     );
   }
   return (
@@ -66,7 +69,10 @@ const generateUserRow = (
     if (!displayColumns[key]) continue;
     items.push(
       <input
-        style={{ width: userDisplayInfo[key]["width"] }}
+        style={{
+          minWidth: userDisplayInfo[key]["width"],
+          maxWidth: userDisplayInfo[key]["width"],
+        }}
         readOnly
         key={key}
         type="text"
