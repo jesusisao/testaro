@@ -5,15 +5,13 @@ import ParamBox from "src/components/Common/ParamBox";
 import { downloadAsCsv } from "src/models/util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload, faRedo } from "@fortawesome/free-solid-svg-icons";
-import {
-  createUsers,
+import { createUsers } from "src/models/user/user";
+import UserTable, {
+  headerLabels,
+  DisplayUserKey,
   userToCsvText,
   sortedUserKeys,
   userDisplayInfo,
-  DisplayUserKey,
-} from "src/models/user/user";
-import UserTable, {
-  headerLabels,
 } from "src/components/UserGenerator/UserTable";
 
 const UserGenerator: React.FC = () => {
