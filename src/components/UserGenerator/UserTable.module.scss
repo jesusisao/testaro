@@ -1,6 +1,7 @@
 @import "styles/config.scss";
 
 .instanceRecords {
+  margin: 0;
   display: block;
   list-style: none;
   overflow-x: scroll;
@@ -18,4 +19,16 @@
       border-right: solid rgba(0, 0, 0, 0.4) 1px;
     }
   }
+}
+
+.headerCell {
+  padding: 2px 8px 4px 8px;
+  text-align: center;
+  border-left: solid rgba(0, 0, 0, 0.4) 1px;
+  border-right: solid rgba(0, 0, 0, 0.4) 1px;
+  background-color: $config-label-color;
+  color: $config-font-color;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
