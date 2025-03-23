@@ -1,6 +1,7 @@
-import { FamilyName, GivenName, Sex, User } from "./user";
+import { FamilyName, GivenName, Sex, User } from "src/models/user/user";
 import { createRandomDate, dateToString } from "src/models/date";
-import { generateRandomAddress } from "../address";
+import { generateRandomAddress } from "src/models/address";
+import { pluck, extractDuplicateItem } from "src/models/array";
 
 const HumanFamilyNames: Array<FamilyName> = [
   {
@@ -1100,28 +1101,6 @@ const HumanFamilyNames: Array<FamilyName> = [
   },
 ];
 
-function extractDuplicateItem<T>(data: Array<T>): Array<T> {
-  const seen = new Set<T>();
-  const duplicates = new Set<T>();
-  for (const name of data) {
-    if (seen.has(name)) {
-      duplicates.add(name);
-    }
-    seen.add(name);
-  }
-  return [...duplicates];
-}
-
-const kanjiFamilyNames = HumanFamilyNames.map(
-  (familyName) => familyName.familyName
-);
-
-const dupFamilyNames = extractDuplicateItem<string>(kanjiFamilyNames);
-if (dupFamilyNames.length !== 0) {
-  console.warn("マスタに名字が重複して登録されています");
-  console.warn(dupFamilyNames);
-}
-
 const HumanGivenNamesMale: Array<GivenName> = [
   { givenName: "翔太", givenNameKana: "ショウタ", givenNameRome: "shota" },
   { givenName: "蓮", givenNameKana: "レン", givenNameRome: "ren" },
@@ -1241,6 +1220,18 @@ const HumanGivenNamesFemale: Array<GivenName> = [
   { givenName: "香織", givenNameKana: "カオリ", givenNameRome: "kaori" },
   { givenName: "麻美", givenNameKana: "アサミ", givenNameRome: "asami" },
 ];
+
+function checkForDuplicates<T>(data: T[], typeName: string): void {
+  const dupItems = extractDuplicateItem<T>(data);
+  if (dupItems.length !== 0) {
+    console.warn(`マスタに${typeName}が重複して登録されています`);
+    console.warn(dupItems);
+  }
+}
+
+checkForDuplicates(pluck(HumanFamilyNames, "familyName"), "名字");
+checkForDuplicates(pluck(HumanGivenNamesMale, "givenName"), "名前(男性)");
+checkForDuplicates(pluck(HumanGivenNamesFemale, "givenName"), "名前(女性)");
 
 const createRandomIndex = <T>(arr: Array<T>): number => {
   return Math.floor(Math.random() * arr.length);
