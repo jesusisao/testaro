@@ -1,0 +1,28 @@
+@import "styles/config.scss";
+
+.container {
+  display: flex;
+  width: 100%;
+  margin: 1px 0 1px 0;
+  line-height: 20px;
+  background-color: $config-enabled-form-color;
+  box-sizing: border-box;
+}
+
+.label {
+  display: flex;
+  float: left;
+  width: 120px; // Default width, will be overridden if specified in props
+  text-align: right;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px;
+  background-color: $config-label-color;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.formItem {
+  display: flex;
+  float: right;
+  vertical-align: middle;
+}
