@@ -105,7 +105,6 @@ const UserGenerator: React.FC = () => {
         style={{ display: "block" }}
       >
         <div className={commonStyle.outputContainer}>
-          <p className={commonStyle.outputLabel}>出力</p>
           <UserTable
             users={users}
             idOffset={idOffset}
