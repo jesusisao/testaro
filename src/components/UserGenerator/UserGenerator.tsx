@@ -63,7 +63,7 @@ const UserGenerator: React.FC = () => {
       <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
         <div className={commonStyle.paramContainer}>
-          <span className={commonStyle.paramLabel}>表示カラム</span>
+          <span className={commonStyle.paramLabel}>出力カラム</span>
           <div className={style.columnCheckboxes}>
             {sortedUserKeys.map((key) => (
               <label key={key} className={style.columnCheckbox}>
