@@ -34,12 +34,44 @@ export type DisplayUserKey =
   | "joinedName"
   | "joinedNameKana"
   | "joinedNameRome"
-  | "id";
+  | "id"
+  | "sexJa"
+  | "sexIso";
 export type DisplayUser = Record<DisplayUserKey, string>;
 type Item = {
   sortNum: number;
   width: number;
-  defaultDisplay: boolean; // Default display setting for each column
+  defaultDisplay: boolean;
+};
+
+export const sexToJapanese = (sex: Sex): string => {
+  switch (sex) {
+    case "male":
+      return "男";
+    case "female":
+      return "女";
+    case "not known":
+      return "不明";
+    case "not applicable":
+      return "適用外";
+    default:
+      return "";
+  }
+};
+
+export const sexToIso5218 = (sex: Sex): string => {
+  switch (sex) {
+    case "not known":
+      return "0";
+    case "male":
+      return "1";
+    case "female":
+      return "2";
+    case "not applicable":
+      return "9";
+    default:
+      return "";
+  }
 };
 
 export const userDisplayInfo: Record<DisplayUserKey, Item> = {
@@ -95,56 +127,66 @@ export const userDisplayInfo: Record<DisplayUserKey, Item> = {
   },
   sex: {
     sortNum: 11,
-    width: 50,
-    defaultDisplay: true,
+    width: 60,
+    defaultDisplay: false,
+  },
+  sexJa: {
+    sortNum: 12,
+    width: 60,
+    defaultDisplay: false,
+  },
+  sexIso: {
+    sortNum: 13,
+    width: 100,
+    defaultDisplay: false,
   },
   birthday: {
-    sortNum: 12,
+    sortNum: 14,
     width: 100,
     defaultDisplay: true,
   },
   email: {
-    sortNum: 13,
+    sortNum: 15,
     width: 300,
     defaultDisplay: true,
   },
   postalCode: {
-    sortNum: 14,
-    width: 80,
+    sortNum: 16,
+    width: 70,
     defaultDisplay: true,
   },
   prefecture: {
-    sortNum: 15,
-    width: 80,
+    sortNum: 17,
+    width: 60,
     defaultDisplay: true,
   },
   city: {
-    sortNum: 16,
+    sortNum: 18,
     width: 120,
     defaultDisplay: true,
   },
   townArea: {
-    sortNum: 17,
+    sortNum: 19,
     width: 120,
     defaultDisplay: true,
   },
   houseNumber: {
-    sortNum: 18,
+    sortNum: 20,
     width: 100,
     defaultDisplay: true,
   },
   prefectureKana: {
-    sortNum: 19,
+    sortNum: 21,
     width: 80,
     defaultDisplay: false,
   },
   cityKana: {
-    sortNum: 20,
+    sortNum: 22,
     width: 80,
     defaultDisplay: false,
   },
   townAreaKana: {
-    sortNum: 21,
+    sortNum: 23,
     width: 80,
     defaultDisplay: false,
   },
@@ -185,6 +227,8 @@ export const usersDisplayHashArray = (
       familyNameRome: user.familyNameRome,
       givenNameRome: user.givenNameRome,
       sex: user.sex,
+      sexJa: sexToJapanese(user.sex),
+      sexIso: sexToIso5218(user.sex),
       birthday: DateTime.fromJSDate(user.birthday).toFormat("yyyy/MM/dd"),
       email: user.email,
       postalCode: user.postalCode,
