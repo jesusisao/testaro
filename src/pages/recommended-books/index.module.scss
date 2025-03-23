@@ -5,14 +5,36 @@
   min-width: 100%;
   overflow: hidden;
 
-  .textArea {
+  .article {
     max-width: 650px;
-    text-indent: 1em;
     background-color: rgba(0, 0, 0, 0.2);
     padding: 20px;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
     margin: 20px;
     line-height: 1.8em;
+
+    .articleTitle {
+      margin: 0 0 16px 0;
+    }
+
+    .articleBody {
+      display: flex;
+
+      p {
+        margin: 0 0 16px 0;
+        text-indent: 1em;
+      }
+    }
+
+    .image {
+      float: left;
+      margin: 0 16px 16px 0;
+      border: 1px solid rgba(0, 0, 0, 0);
+
+      &:hover {
+        border: 1px solid $config-link-color;
+      }
+    }
   }
 }
