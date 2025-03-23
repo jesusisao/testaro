@@ -9,7 +9,7 @@ import {
   userDisplayInfo,
 } from "src/models/user/user";
 
-const headerLabels: Record<string, string> = {
+export const headerLabels: Record<string, string> = {
   id: "ID",
   joinedName: "氏名",
   familyName: "姓",
@@ -17,6 +17,7 @@ const headerLabels: Record<string, string> = {
   joinedNameKana: "氏名(カナ)",
   familyNameKana: "姓(カナ)",
   givenNameKana: "名(カナ)",
+  joinedNameRome: "氏名(ローマ字)",
   familyNameRome: "姓(ローマ字)",
   givenNameRome: "名(ローマ字)",
   sex: "性別",
@@ -32,10 +33,12 @@ const headerLabels: Record<string, string> = {
   townAreaKana: "町名(カナ)",
 };
 
-const generateHeaderRow = (): React.JSX.Element => {
+const generateHeaderRow = (
+  displayColumns: Record<string, boolean>
+): React.JSX.Element => {
   const items = [];
   for (const key of sortedUserKeys) {
-    if (!userDisplayInfo[key]["display"]) continue;
+    if (!displayColumns[key]) continue;
     items.push(
       <div
         className={style.headerCell}
@@ -55,11 +58,12 @@ const generateHeaderRow = (): React.JSX.Element => {
 
 const generateUserRow = (
   index: number,
-  user: DisplayUser
+  user: DisplayUser,
+  displayColumns: Record<string, boolean>
 ): React.JSX.Element => {
   const items = [];
   for (const key of sortedUserKeys) {
-    if (!userDisplayInfo[key]["display"]) continue;
+    if (!displayColumns[key]) continue;
     items.push(
       <input
         style={{ width: userDisplayInfo[key]["width"] }}
@@ -81,15 +85,16 @@ const generateUserRow = (
 const generateUserTable = (
   users: User[],
   idOffset: number,
-  nameSeparator = " "
+  nameSeparator = " ",
+  displayColumns: Record<string, boolean>
 ): React.JSX.Element => {
   const displayUsers = usersDisplayHashArray(users, idOffset, nameSeparator);
   const items = [];
 
-  items.push(generateHeaderRow());
+  items.push(generateHeaderRow(displayColumns));
 
   for (const [i, user] of displayUsers.entries()) {
-    items.push(generateUserRow(i + idOffset, user));
+    items.push(generateUserRow(i + idOffset, user, displayColumns));
   }
   return <ul className={style.instanceRecords}>{items}</ul>;
 };
@@ -98,9 +103,17 @@ const UserTable: React.FC<{
   users: User[];
   idOffset: number;
   nameSeparator?: string;
+  displayColumns: Record<string, boolean>;
 }> = (prop) => {
   return (
-    <>{generateUserTable(prop.users, prop.idOffset, prop.nameSeparator)}</>
+    <>
+      {generateUserTable(
+        prop.users,
+        prop.idOffset,
+        prop.nameSeparator,
+        prop.displayColumns
+      )}
+    </>
   );
 };
 

@@ -1,17 +1,10 @@
 @import "styles/config.scss";
 
-// hexとopacityからrgbaを作る関数
-@function hexAndOpavityToRgba($hexcolor, $opacity) {
-  $red: red($hexcolor);
-  $green: green($hexcolor);
-  $blue: blue($hexcolor);
-  $alpha: alpha($hexcolor);
-
-  @if $opacity == 1 or $opacity == 100% {
-    @return unquote("rgba(#{$red},#{$green},#{$blue},#{$alpha})");
-  } @else {
-    @return unquote("rgba(#{$red},#{$green},#{$blue},#{$opacity})");
-  }
+// CSSカスタムプロパティで16進数の色が入ってくる場合に、透明度も付与したい目的
+// CSSネイティブのrgb関数でfromをつける構文（ex. rgb(from #000000 r g b / 50%)）はFirefoxでは動かなかったので、
+// color-mixを使用する。
+@function rgbaWithHex($hex_color, $opacity) {
+  @return #{"color-mix(in srgb, #{$hex_color} #{$opacity}, transparent)"};
 }
 
 .pageTitle {
@@ -83,6 +76,7 @@
   transition: 0.2s;
   outline: none;
   box-shadow: 0 0 10px 3px #101010 inset;
+  cursor: pointer;
 
   &:hover {
     background-color: lighten($config-button-color, 15%);

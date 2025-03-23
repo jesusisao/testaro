@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import commonStyle from "styles/common.module.scss";
 import style from "./UserGenerator.module.scss";
 import ParamBox from "src/components/Common/ParamBox";
 import { downloadAsCsv } from "src/models/util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload, faRedo } from "@fortawesome/free-solid-svg-icons";
-import { createUsers, userToCsvText } from "src/models/user/user";
-import UserTable from "src/components/UserGenerator/UserTable";
+import {
+  createUsers,
+  userToCsvText,
+  sortedUserKeys,
+  userDisplayInfo,
+  DisplayUserKey,
+} from "src/models/user/user";
+import UserTable, {
+  headerLabels,
+} from "src/components/UserGenerator/UserTable";
 
 const UserGenerator: React.FC = () => {
   const [genNum, setGenNum] = useState(20);
@@ -14,6 +22,21 @@ const UserGenerator: React.FC = () => {
   const [mailDomain, setMailDomain] = useState("testaro.netlify.app");
   const [idOffset, setIdOffset] = useState(0);
   const [nameSeparator, setNameSeparator] = useState(" ");
+  const [displayColumns, setDisplayColumns] = useState<
+    Record<DisplayUserKey, boolean>
+  >({} as Record<DisplayUserKey, boolean>);
+
+  // Initialize displayColumns with default values from userDisplayInfo
+  useEffect(() => {
+    const initialDisplayColumns: Record<DisplayUserKey, boolean> = {} as Record<
+      DisplayUserKey,
+      boolean
+    >;
+    sortedUserKeys.forEach((key) => {
+      initialDisplayColumns[key] = userDisplayInfo[key].defaultDisplay;
+    });
+    setDisplayColumns(initialDisplayColumns);
+  }, []);
 
   const generate = (): void => {
     setGenNum(0);
@@ -25,7 +48,10 @@ const UserGenerator: React.FC = () => {
   const users = createUsers(genNum, useNumro, mailDomain, idOffset);
 
   const downloadCsv = (): void => {
-    downloadAsCsv(userToCsvText(users, idOffset, nameSeparator), "users");
+    downloadAsCsv(
+      userToCsvText(users, idOffset, nameSeparator, displayColumns),
+      "users"
+    );
   };
   const title = "ダミーユーザー情報生成";
   const description =
@@ -36,6 +62,27 @@ const UserGenerator: React.FC = () => {
       <h1 className={commonStyle.pageTitle}>{title}</h1>
       <p>{description}</p>
       <div className={commonStyle.paramsContainer}>
+        <div className={commonStyle.paramContainer}>
+          <span className={commonStyle.paramLabel}>出力カラム</span>
+          <div className={style.columnCheckboxes}>
+            {sortedUserKeys.map((key) => (
+              <label key={key} className={style.columnCheckbox}>
+                <input
+                  type="checkbox"
+                  checked={displayColumns[key] || false}
+                  onChange={(e): void => {
+                    setDisplayColumns({
+                      ...displayColumns,
+                      [key]: e.target.checked,
+                    });
+                  }}
+                  className={commonStyle.checkbox}
+                />
+                {headerLabels[key] || key}
+              </label>
+            ))}
+          </div>
+        </div>
         <div className={commonStyle.paramContainer}>
           <span className={commonStyle.paramLabel}>ユーザーパラメータ</span>
           <div style={{ marginTop: "8px" }}>
@@ -109,6 +156,7 @@ const UserGenerator: React.FC = () => {
             users={users}
             idOffset={idOffset}
             nameSeparator={nameSeparator}
+            displayColumns={displayColumns}
           />
         </div>
       </div>
