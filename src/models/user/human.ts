@@ -503,7 +503,624 @@ const HumanFamilyNames: Array<FamilyName> = [
     familyNameKana: "アライ",
     familyNameRome: "arai",
   },
+  {
+    familyName: "小鳥遊",
+    familyNameKana: "タカナシ",
+    familyNameRome: "takanashi",
+  },
+  {
+    familyName: "月見里",
+    familyNameKana: "ヤマナシ",
+    familyNameRome: "yamanashi",
+  },
+  {
+    familyName: "春夏冬",
+    familyNameKana: "アキナシ",
+    familyNameRome: "akinashi",
+  },
+  {
+    familyName: "臥龍岡",
+    familyNameKana: "ナガオカ",
+    familyNameRome: "nagaoka",
+  },
+  {
+    familyName: "一",
+    familyNameKana: "ニノマエ",
+    familyNameRome: "ninomae",
+  },
+  {
+    familyName: "勅使河原",
+    familyNameKana: "テシガワラ",
+    familyNameRome: "teshigawara",
+  },
+  {
+    familyName: "水卜",
+    familyNameKana: "ミウラ",
+    familyNameRome: "miura",
+  },
+  {
+    familyName: "蓼丸",
+    familyNameKana: "タデマル",
+    familyNameRome: "tademaru",
+  },
+  {
+    familyName: "薬師丸",
+    familyNameKana: "ヤクシマル",
+    familyNameRome: "yakushimaru",
+  },
+  {
+    familyName: "貫地谷",
+    familyNameKana: "カンジヤ",
+    familyNameRome: "kanjiya",
+  },
+  {
+    familyName: "本仮屋",
+    familyNameKana: "モトカリヤ",
+    familyNameRome: "motokariya",
+  },
+  {
+    familyName: "剛力",
+    familyNameKana: "ゴウリキ",
+    familyNameRome: "goriki",
+  },
+  {
+    familyName: "能年",
+    familyNameKana: "ノウネン",
+    familyNameRome: "nonen",
+  },
+  {
+    familyName: "松任谷",
+    familyNameKana: "マツトウヤ",
+    familyNameRome: "matsutoya",
+  },
+  {
+    familyName: "一青",
+    familyNameKana: "ヒトト",
+    familyNameRome: "hitoto",
+  },
+  {
+    familyName: "假屋崎",
+    familyNameKana: "カリヤザキ",
+    familyNameRome: "kariyazaki",
+  },
+  {
+    familyName: "葉加瀬",
+    familyNameKana: "ハカセ",
+    familyNameRome: "hakase",
+  },
+  {
+    familyName: "東国原",
+    familyNameKana: "ヒガシコクバル",
+    familyNameRome: "higashikokubaru",
+  },
+  {
+    familyName: "筒香",
+    familyNameKana: "ツツゴウ",
+    familyNameRome: "tsutsugo",
+  },
+  {
+    familyName: "梵",
+    familyNameKana: "ソヨギ",
+    familyNameRome: "soyogi",
+  },
+  {
+    familyName: "杉本",
+    familyNameKana: "スギモト",
+    familyNameRome: "sugimoto",
+  },
+  {
+    familyName: "島田",
+    familyNameKana: "シマダ",
+    familyNameRome: "shimada",
+  },
+  {
+    familyName: "古川",
+    familyNameKana: "フルカワ",
+    familyNameRome: "furukawa",
+  },
+  {
+    familyName: "大西",
+    familyNameKana: "オオニシ",
+    familyNameRome: "oonishi",
+  },
+  {
+    familyName: "水野",
+    familyNameKana: "ミズノ",
+    familyNameRome: "mizuno",
+  },
+  {
+    familyName: "桜井",
+    familyNameKana: "サクライ",
+    familyNameRome: "sakurai",
+  },
+  {
+    familyName: "高野",
+    familyNameKana: "タカノ",
+    familyNameRome: "takano",
+  },
+  {
+    familyName: "吉川",
+    familyNameKana: "ヨシカワ",
+    familyNameRome: "yoshikawa",
+  },
+  {
+    familyName: "山内",
+    familyNameKana: "ヤマウチ",
+    familyNameRome: "yamauchi",
+  },
+  {
+    familyName: "飯田",
+    familyNameKana: "イイダ",
+    familyNameRome: "iida",
+  },
+  {
+    familyName: "西田",
+    familyNameKana: "ニシダ",
+    familyNameRome: "nishida",
+  },
+  {
+    familyName: "西川",
+    familyNameKana: "ニシカワ",
+    familyNameRome: "nishikawa",
+  },
+  {
+    familyName: "菊池",
+    familyNameKana: "キクチ",
+    familyNameRome: "kikuchi",
+  },
+  {
+    familyName: "小松",
+    familyNameKana: "コマツ",
+    familyNameRome: "komatsu",
+  },
+  {
+    familyName: "北村",
+    familyNameKana: "キタムラ",
+    familyNameRome: "kitamura",
+  },
+  {
+    familyName: "安田",
+    familyNameKana: "ヤスダ",
+    familyNameRome: "yasuda",
+  },
+  {
+    familyName: "五十嵐",
+    familyNameKana: "イガラシ",
+    familyNameRome: "igarashi",
+  },
+  {
+    familyName: "川口",
+    familyNameKana: "カワグチ",
+    familyNameRome: "kawaguchi",
+  },
+  {
+    familyName: "関",
+    familyNameKana: "セキ",
+    familyNameRome: "seki",
+  },
+  {
+    familyName: "平田",
+    familyNameKana: "ヒラタ",
+    familyNameRome: "hirata",
+  },
+  {
+    familyName: "中田",
+    familyNameKana: "ナカタ",
+    familyNameRome: "nakata",
+  },
+  {
+    familyName: "久保田",
+    familyNameKana: "クボタ",
+    familyNameRome: "kubota",
+  },
+  {
+    familyName: "服部",
+    familyNameKana: "ハットリ",
+    familyNameRome: "hattori",
+  },
+  {
+    familyName: "岩田",
+    familyNameKana: "イワタ",
+    familyNameRome: "iwata",
+  },
+  {
+    familyName: "東",
+    familyNameKana: "アズマ",
+    familyNameRome: "azuma",
+  },
+  {
+    familyName: "土屋",
+    familyNameKana: "ツチヤ",
+    familyNameRome: "tsuchiya",
+  },
+  {
+    familyName: "福島",
+    familyNameKana: "フクシマ",
+    familyNameRome: "fukushima",
+  },
+  {
+    familyName: "川崎",
+    familyNameKana: "カワサキ",
+    familyNameRome: "kawasaki",
+  },
+  {
+    familyName: "本田",
+    familyNameKana: "ホンダ",
+    familyNameRome: "honda",
+  },
+  {
+    familyName: "辻",
+    familyNameKana: "ツジ",
+    familyNameRome: "tsuji",
+  },
+  {
+    familyName: "樋口",
+    familyNameKana: "ヒグチ",
+    familyNameRome: "higuchi",
+  },
+  {
+    familyName: "秋山",
+    familyNameKana: "アキヤマ",
+    familyNameRome: "akiyama",
+  },
+  {
+    familyName: "永井",
+    familyNameKana: "ナガイ",
+    familyNameRome: "nagai",
+  },
+  {
+    familyName: "田口",
+    familyNameKana: "タグチ",
+    familyNameRome: "taguchi",
+  },
+  {
+    familyName: "山中",
+    familyNameKana: "ヤマナカ",
+    familyNameRome: "yamanaka",
+  },
+  {
+    familyName: "中西",
+    familyNameKana: "ナカニシ",
+    familyNameRome: "nakanishi",
+  },
+  {
+    familyName: "吉村",
+    familyNameKana: "ヨシムラ",
+    familyNameRome: "yoshimura",
+  },
+  {
+    familyName: "川上",
+    familyNameKana: "カワカミ",
+    familyNameRome: "kawakami",
+  },
+  {
+    familyName: "石原",
+    familyNameKana: "イシハラ",
+    familyNameRome: "ishihara",
+  },
+  {
+    familyName: "大橋",
+    familyNameKana: "オオハシ",
+    familyNameRome: "ohashi",
+  },
+  {
+    familyName: "松岡",
+    familyNameKana: "マツオカ",
+    familyNameRome: "matsuoka",
+  },
+  {
+    familyName: "馬場",
+    familyNameKana: "ババ",
+    familyNameRome: "baba",
+  },
+  {
+    familyName: "浜田",
+    familyNameKana: "ハマダ",
+    familyNameRome: "hamada",
+  },
+  {
+    familyName: "森本",
+    familyNameKana: "モリモト",
+    familyNameRome: "morimoto",
+  },
+  {
+    familyName: "星野",
+    familyNameKana: "ホシノ",
+    familyNameRome: "hoshino",
+  },
+  {
+    familyName: "浅野",
+    familyNameKana: "アサノ",
+    familyNameRome: "asano",
+  },
+  {
+    familyName: "矢野",
+    familyNameKana: "ヤノ",
+    familyNameRome: "yano",
+  },
+  {
+    familyName: "大久保",
+    familyNameKana: "オオクボ",
+    familyNameRome: "okubo",
+  },
+  {
+    familyName: "松下",
+    familyNameKana: "マツシタ",
+    familyNameRome: "matsushita",
+  },
+  {
+    familyName: "小池",
+    familyNameKana: "コイケ",
+    familyNameRome: "koike",
+  },
+  {
+    familyName: "吉岡",
+    familyNameKana: "ヨシオカ",
+    familyNameRome: "yoshioka",
+  },
+  {
+    familyName: "野田",
+    familyNameKana: "ノダ",
+    familyNameRome: "noda",
+  },
+  {
+    familyName: "荒木",
+    familyNameKana: "アラキ",
+    familyNameRome: "araki",
+  },
+  {
+    familyName: "内藤",
+    familyNameKana: "ナイトウ",
+    familyNameRome: "naito",
+  },
+  {
+    familyName: "大谷",
+    familyNameKana: "オオタニ",
+    familyNameRome: "otani",
+  },
+  {
+    familyName: "松浦",
+    familyNameKana: "マツウラ",
+    familyNameRome: "matsuura",
+  },
+  {
+    familyName: "熊谷",
+    familyNameKana: "クマガイ",
+    familyNameRome: "kumagai",
+  },
+  {
+    familyName: "黒田",
+    familyNameKana: "クロダ",
+    familyNameRome: "kuroda",
+  },
+  {
+    familyName: "尾崎",
+    familyNameKana: "オザキ",
+    familyNameRome: "ozaki",
+  },
+  {
+    familyName: "永田",
+    familyNameKana: "ナガタ",
+    familyNameRome: "nagata",
+  },
+  {
+    familyName: "望月",
+    familyNameKana: "モチヅキ",
+    familyNameRome: "mochizuki",
+  },
+  {
+    familyName: "荒井",
+    familyNameKana: "アライ",
+    familyNameRome: "arai",
+  },
+  {
+    familyName: "田辺",
+    familyNameKana: "タナベ",
+    familyNameRome: "tanabe",
+  },
+  {
+    familyName: "川村",
+    familyNameKana: "カワムラ",
+    familyNameRome: "kawamura",
+  },
+  {
+    familyName: "松村",
+    familyNameKana: "マツムラ",
+    familyNameRome: "matsumura",
+  },
+  {
+    familyName: "堀",
+    familyNameKana: "ホリ",
+    familyNameRome: "hori",
+  },
+  {
+    familyName: "早川",
+    familyNameKana: "ハヤカワ",
+    familyNameRome: "hayakawa",
+  },
+  {
+    familyName: "栗原",
+    familyNameKana: "クリハラ",
+    familyNameRome: "kurihara",
+  },
+  {
+    familyName: "大島",
+    familyNameKana: "オオシマ",
+    familyNameRome: "oshima",
+  },
+  {
+    familyName: "平井",
+    familyNameKana: "ヒライ",
+    familyNameRome: "hirai",
+  },
+  {
+    familyName: "西山",
+    familyNameKana: "ニシヤマ",
+    familyNameRome: "nishiyama",
+  },
+  {
+    familyName: "菅野",
+    familyNameKana: "スガノ",
+    familyNameRome: "sugano",
+  },
+  {
+    familyName: "広瀬",
+    familyNameKana: "ヒロセ",
+    familyNameRome: "hirose",
+  },
+  {
+    familyName: "石橋",
+    familyNameKana: "イシバシ",
+    familyNameRome: "ishibashi",
+  },
+  {
+    familyName: "横田",
+    familyNameKana: "ヨコタ",
+    familyNameRome: "yokota",
+  },
+  {
+    familyName: "萩原",
+    familyNameKana: "ハギワラ",
+    familyNameRome: "hagiwara",
+  },
+  {
+    familyName: "岩本",
+    familyNameKana: "イワモト",
+    familyNameRome: "iwamoto",
+  },
+  {
+    familyName: "関口",
+    familyNameKana: "セキグチ",
+    familyNameRome: "sekiguchi",
+  },
+  {
+    familyName: "片山",
+    familyNameKana: "カタヤマ",
+    familyNameRome: "katayama",
+  },
+  {
+    familyName: "宮田",
+    familyNameKana: "ミヤタ",
+    familyNameRome: "miyata",
+  },
+  {
+    familyName: "大石",
+    familyNameKana: "オオイシ",
+    familyNameRome: "oishi",
+  },
+  {
+    familyName: "吉野",
+    familyNameKana: "ヨシノ",
+    familyNameRome: "yoshino",
+  },
+  {
+    familyName: "高山",
+    familyNameKana: "タカヤマ",
+    familyNameRome: "takayama",
+  },
+  {
+    familyName: "須藤",
+    familyNameKana: "スドウ",
+    familyNameRome: "sudou",
+  },
+  {
+    familyName: "本間",
+    familyNameKana: "ホンマ",
+    familyNameRome: "honma",
+  },
+  {
+    familyName: "岡崎",
+    familyNameKana: "オカザキ",
+    familyNameRome: "okazaki",
+  },
+  {
+    familyName: "小田",
+    familyNameKana: "オダ",
+    familyNameRome: "oda",
+  },
+  {
+    familyName: "伊東",
+    familyNameKana: "イトウ",
+    familyNameRome: "ito",
+  },
+  {
+    familyName: "上原",
+    familyNameKana: "ウエハラ",
+    familyNameRome: "uehara",
+  },
+  {
+    familyName: "鎌田",
+    familyNameKana: "カマタ",
+    familyNameRome: "kamata",
+  },
+  {
+    familyName: "篠原",
+    familyNameKana: "シノハラ",
+    familyNameRome: "shinohara",
+  },
+  {
+    familyName: "小西",
+    familyNameKana: "コニシ",
+    familyNameRome: "konishi",
+  },
+  {
+    familyName: "古賀",
+    familyNameKana: "コガ",
+    familyNameRome: "koga",
+  },
+  {
+    familyName: "松原",
+    familyNameKana: "マツバラ",
+    familyNameRome: "matsubara",
+  },
+  {
+    familyName: "福井",
+    familyNameKana: "フクイ",
+    familyNameRome: "fukui",
+  },
+  {
+    familyName: "小泉",
+    familyNameKana: "コイズミ",
+    familyNameRome: "koizumi",
+  },
+  {
+    familyName: "大森",
+    familyNameKana: "オオモリ",
+    familyNameRome: "omori",
+  },
+  {
+    familyName: "奥村",
+    familyNameKana: "オクムラ",
+    familyNameRome: "okumura",
+  },
+  {
+    familyName: "南",
+    familyNameKana: "ミナミ",
+    familyNameRome: "minami",
+  },
 ];
+
+function extractDuplicateItem<T>(data: Array<T>): Array<T> {
+  const seen = new Set<T>();
+  const duplicates = new Set<T>();
+  for (const name of data) {
+    if (seen.has(name)) {
+      duplicates.add(name);
+    }
+    seen.add(name);
+  }
+  return [...duplicates];
+}
+
+const kanjiFamilyNames = HumanFamilyNames.map(
+  (familyName) => familyName.familyName
+);
+
+const dupFamilyNames = extractDuplicateItem<string>(kanjiFamilyNames);
+if (dupFamilyNames.length !== 0) {
+  console.warn("マスタに名字が重複して登録されています");
+  console.warn(dupFamilyNames);
+}
 
 const HumanGivenNamesMale: Array<GivenName> = [
   { givenName: "翔太", givenNameKana: "ショウタ", givenNameRome: "shota" },
